@@ -9,4 +9,5 @@ public final class TokenCreation {
   public String nextSessionId() {
     return new BigInteger(130, random).toString(32);
   }
+
 }
