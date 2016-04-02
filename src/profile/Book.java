@@ -1,12 +1,15 @@
 package profile;
 
 public class Book {
-
+	// Funcionalidades:
+		// - Cadastro de livros: anota-se para cada livro o ISBN, nome,
+		// autor(es), editora e ano de publicação. Autor(es) e editora podem
+		// ser relacionados como String.
 	private String IsbnCode;
 	private String BookName;
 	private String writers;
 	private String publishingCompany;
-	private int releaseyear;
+	private Integer releaseyear;
 
 	public Book(String isbnCode, String bookName, String writers, String publishingCompany, int releaseyear) {
 
@@ -19,8 +22,8 @@ public class Book {
 
 	@Override
 	public String toString() {
-		return "ISBN CODE:" + IsbnCode + "\nBookName" + BookName + "\nwriters" + writers + "\npublishingCompany"
-				+ publishingCompany + "\nreleaseyear" + releaseyear;
+		return "ISBN CODE   :" + IsbnCode + "\nBook Name   :" + BookName + "\nWriter(s)   :" + writers + "\nPublishing Company   :"
+				+ publishingCompany + "\nRelease Year   :" + releaseyear;
 	}
 
 	public String getIsbnCode() {
@@ -55,20 +58,15 @@ public class Book {
 		this.publishingCompany = publishingCompany;
 	}
 
-	public int getReleaseyear() {
+	public Integer getReleaseyear() {
 		return releaseyear;
 	}
 
-	public void setReleaseyear(int releaseyear) {
+	public void setReleaseyear(Integer releaseyear) {
 		this.releaseyear = releaseyear;
 	}
 
-	// Funcionalidades:
-	// - Cadastro de livros: anota-se para cada livro o ISBN, nome,
-	// autor(es), editora e ano de publicação. Autor(es) e editora podem
-	// ser relacionados como String.
-	// - Cadastro de clientes: cliente contém como informação a
-	// matrícula, o nome e telefone.
+	
 	// - Retirada de livros: registra a retirada de livros de um cliente. Um
 	// cliente pode retirar no máximo três livros e o livro deve estar
 	// disponível na biblioteca. Essa funcionalidade calcula uma data
