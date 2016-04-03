@@ -2,44 +2,47 @@ package profile;
 
 public class Book {
 	// Funcionalidades:
-		// - Cadastro de livros: anota-se para cada livro o ISBN, nome,
-		// autor(es), editora e ano de publicação. Autor(es) e editora podem
-		// ser relacionados como String.
-	private String IsbnCode;
-	private String BookName;
-	private String writers;
-	private String publishingCompany;
-	private Integer releaseyear;
+	// - Cadastro de livros: anota-se para cada livro o ISBN, nome,
+	// autor(es), editora e ano de publicação. Autor(es) e editora podem
+	// ser relacionados como String.
+	private String  bookName, writers, publishingCompany;
+	private Integer releaseyear, countBookRent,IsbnCode;
+	private boolean avaliable; 
 
-	public Book(String isbnCode, String bookName, String writers, String publishingCompany, int releaseyear) {
+	public Book(Integer isbnCode, String bookName, String writers, String publishingCompany, int releaseyear) {
 
-		IsbnCode = isbnCode;
-		BookName = bookName;
+		this.IsbnCode = isbnCode;
+		this.bookName = bookName;
 		this.writers = writers;
 		this.publishingCompany = publishingCompany;
 		this.releaseyear = releaseyear;
+		this.countBookRent = 0;
+		this.avaliable=true;
+	}
+	public Book(){
+		
 	}
 
 	@Override
 	public String toString() {
-		return "ISBN CODE   :" + IsbnCode + "\nBook Name   :" + BookName + "\nWriter(s)   :" + writers + "\nPublishing Company   :"
-				+ publishingCompany + "\nRelease Year   :" + releaseyear;
+		return "ISBN CODE   :" + IsbnCode + "\nBook Name   :" + bookName + "\nWriter(s)   :" + writers
+				+ "\nPublishing Company   :" + publishingCompany + "\nRelease Year   :" + releaseyear;
 	}
 
-	public String getIsbnCode() {
+	public Integer getIsbnCode() {
 		return IsbnCode;
 	}
 
-	public void setIsbnCode(String isbnCode) {
+	public void setIsbnCode(Integer isbnCode) {
 		IsbnCode = isbnCode;
 	}
 
 	public String getBookName() {
-		return BookName;
+		return bookName;
 	}
 
-	public void setBookName(String bookName) {
-		BookName = bookName;
+	public void setBookName(String booksName) {
+		bookName = booksName;
 	}
 
 	public String getWriters() {
@@ -66,7 +69,28 @@ public class Book {
 		this.releaseyear = releaseyear;
 	}
 
-	
+	public Integer getCountBookRent() {
+		return countBookRent;
+	}
+
+	public void setCountBookRent(Integer countBookRent) {
+		this.countBookRent = countBookRent;
+	}
+
+	public boolean isAvaliable() {
+		return avaliable;
+	}
+
+	public void setAvaliable(boolean avaliable) {
+		this.avaliable = avaliable;
+	}
+	public void countUP(){
+		this.countBookRent=+1;
+	}
+	public void countDOWN(){
+		this.countBookRent=-1;
+	}
+
 	// - Retirada de livros: registra a retirada de livros de um cliente. Um
 	// cliente pode retirar no máximo três livros e o livro deve estar
 	// disponível na biblioteca. Essa funcionalidade calcula uma data

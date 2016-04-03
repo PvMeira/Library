@@ -22,7 +22,7 @@ public class BookRepository extends AbstractRepository<Book> {
 		return getBook().stream().filter(Book -> Book.getBookName().equalsIgnoreCase(clientBook)).findFirst()
 				.get();
 	}
-	public Book searchByCode(String clientCode) {
+	public Book searchByCode(Integer clientCode) {
 		return getBook().stream().filter(Code -> Code.getIsbnCode().equals(clientCode)).findFirst()
 				.get();
 	}
