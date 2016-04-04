@@ -19,18 +19,18 @@ public class ClientRepository extends AbstractRepository<Client> {
 	public List<Client> getClient() {
 		return getData();
 	}
-//	public Static Client getAllClients(){
-//		return getClient().stream().forEachOrdered((c) -> {
-//			System.out.println("Client List :"+c).get())}		
-//	}
+	// public Static Client getAllClients(){
+	// return getClient().stream().forEachOrdered((c) -> {
+	// System.out.println("Client List :"+c).get())}
+	// }
 
 	public Client searchByName(String clientName) {
 		return getClient().stream().filter(client -> client.getClientName().equalsIgnoreCase(clientName)).findFirst()
 				.get();
 	}
+
 	public Client searchByToken(String clientToken) {
-		return getClient().stream().filter(Token -> Token.getToken().equals(clientToken)).findFirst()
-				.get();
+		return getClient().stream().filter(Token -> Token.getToken().equals(clientToken)).findFirst().get();
 	}
 
 }

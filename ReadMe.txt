@@ -25,12 +25,12 @@ matrícula, o nome e telefone.(DONE)
 - Retirada de livros: registra a retirada de livros de um cliente. Um
 cliente pode retirar no máximo três livros e o livro deve estar
 disponível na biblioteca. Essa funcionalidade calcula uma data
-para entrega.(ALMOST DONE)
+para entrega.( DONE)
 
 - Devolução de livros: registra a devolução de livros de um
 cliente. Durante a devolução, o livro torna-se disponível
 novamente na biblioteca. Verifica se o livro está com atraso e
-calcula o número de dias de atraso.(NOT DONE)
+calcula o número de dias de atraso.(ALMOST DONE)
 
 - Relatórios: por livros, livros disponíveis, livros mais retirados,
 clientes que mais retiraram um livro, clientes que mais atrasaram,

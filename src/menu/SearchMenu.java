@@ -32,12 +32,12 @@ public class SearchMenu {
 				}
 				break;
 			case 3:
-				//not done yet
+				// not done yet
 				break;
 			case 4:
-            System.out.println("Going back to the main menu");
-            MainMenu menuMain = new MainMenu();
-			menuMain.mainSearch();
+				System.out.println("Going back to the main menu");
+				MainMenu menuMain = new MainMenu();
+				menuMain.mainSearch();
 			}
 		} while (option == 4);
 	}

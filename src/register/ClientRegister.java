@@ -16,7 +16,7 @@ public class ClientRegister implements register<Client> {
 			Client client = new Client(token.nextSessionId(), nameClient, TelephoneClient);
 			ClientRepository.getInstance().add(client);
 		} catch (Exception e) {
-			System.out.println("Invalid format InPut :"+e);
+			System.out.println("Invalid format InPut :" + e);
 		}
 	}
 

@@ -38,13 +38,13 @@ public class MainMenu {
 
 				break;
 			case 6:
-				SearchMenu sMenu=new SearchMenu();
+				SearchMenu sMenu = new SearchMenu();
 				sMenu.Search();
 
 				break;
 			case 7:
 				System.out.println("Exit Aplication");
-				
+
 				break;
 
 			}

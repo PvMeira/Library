@@ -18,7 +18,7 @@ public class BookRegister implements register<Book> {
 			BookRepository.getInstance().add(book);
 		} catch (Exception e) {
 
-			System.out.println("Invalid format InPut :"+e);
+			System.out.println("Invalid format InPut :" + e);
 		}
 
 	}

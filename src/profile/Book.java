@@ -5,9 +5,9 @@ public class Book {
 	// - Cadastro de livros: anota-se para cada livro o ISBN, nome,
 	// autor(es), editora e ano de publicação. Autor(es) e editora podem
 	// ser relacionados como String.
-	private String  bookName, writers, publishingCompany;
-	private Integer releaseyear, countBookRent,IsbnCode;
-	private boolean avaliable; 
+	private String bookName, writers, publishingCompany;
+	private Integer releaseyear, countBookRent, IsbnCode;
+	private boolean avaliable;
 
 	public Book(Integer isbnCode, String bookName, String writers, String publishingCompany, int releaseyear) {
 
@@ -17,10 +17,7 @@ public class Book {
 		this.publishingCompany = publishingCompany;
 		this.releaseyear = releaseyear;
 		this.countBookRent = 0;
-		this.avaliable=true;
-	}
-	public Book(){
-		
+		this.avaliable = true;
 	}
 
 	@Override
@@ -84,11 +81,13 @@ public class Book {
 	public void setAvaliable(boolean avaliable) {
 		this.avaliable = avaliable;
 	}
-	public void countUP(){
-		this.countBookRent=+1;
+
+	public void countUP() {
+		this.countBookRent = +1;
 	}
-	public void countDOWN(){
-		this.countBookRent=-1;
+
+	public void countDOWN() {
+		this.countBookRent = -1;
 	}
 
 	// - Retirada de livros: registra a retirada de livros de um cliente. Um

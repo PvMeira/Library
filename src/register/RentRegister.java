@@ -10,27 +10,25 @@ import util.TokenCreation;
 import util.deadLineCreation;
 
 public class RentRegister {
-	Book b = new Book();
-	Client c = new Client();
 
 	TokenCreation t = new TokenCreation();
 
-	public void addNewRent() {
+	public void addNewRent(Client c, Book b) {
 		try {
 			Integer cod = ConsoleReader.scanInt("Type the ISBN of the book :");
 			BookRepository.getInstance().searchByCode(cod);
-			if (b.isAvaliable()) {
-				if (c.getCountClientBooksRent() > 3) {
+			if (b.isAvaliable() == true) {
+				if (c.getCountClientBooksRent() <= 3) {
 					int cod1 = t.codRentCreation();
 					deadLineCreation dead = new deadLineCreation();
-					dead.getDeadLine();
-					Rent r = new Rent(c, BookRepository.getInstance().getBook(), cod1, dead.getDateFormatter());
+					Rent r = new Rent(c, b, cod1, dead.getDateFormatter());
 					RentRepository.getInstance().add(r);
 					b.setAvaliable(false);
 					b.countUP();
 					c.countUP();
 					c.countUPForReport();
-					System.out.println("You rent was successful ! ");
+					System.out.println("You rent was successful !,\n" + " The Date for the Client to return is :"
+							+ dead.createNewData());
 
 				} else {
 					System.out.println("Sorry, but this Client already has 3 books rent");

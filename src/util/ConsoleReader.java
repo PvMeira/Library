@@ -7,7 +7,7 @@ public class ConsoleReader {
 		System.out.print(out);
 		Scanner scanner = new Scanner(System.in);
 		return (scanner.nextLine());
-		
+
 	}
 
 	public static int scanInt(Object out) {

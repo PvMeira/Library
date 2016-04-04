@@ -15,9 +15,6 @@ public class Client {
 		this.countClientBooksRent = 0;
 		this.clientBooksRent = 0;
 	}
-	public Client(){
-		
-	}
 
 	public String getToken() {
 		return token;

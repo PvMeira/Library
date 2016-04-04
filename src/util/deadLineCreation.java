@@ -4,6 +4,11 @@ import java.text.DateFormat;
 import java.util.Date;
 
 public class deadLineCreation {
+	@Override
+	public String toString() {
+		return " Dead Line   :" + getDateFormatter();
+	}
+
 	private long deadLine;
 	private DateFormat dateFormatter;
 
@@ -30,6 +35,14 @@ public class deadLineCreation {
 		this.deadLine = deadLine;
 	}
 
+	public String createNewData() {
+		return dateFormatter.format(deadLine);
+	}
+
+	public String renewrent() {
+		return dateFormatter.format(deadLine + WEEK);
+	}
+
 	public DateFormat getDateFormatter() {
 		return dateFormatter;
 	}
@@ -37,10 +50,9 @@ public class deadLineCreation {
 	public void setDateFormatter(DateFormat dateFormatter) {
 		this.dateFormatter = dateFormatter;
 	}
-	public boolean hasExpired(){
-		return now()> deadLine;
-	}
 
-	
+	public boolean hasExpired() {
+		return now() > deadLine;
+	}
 
 }

@@ -7,10 +7,10 @@ import java.util.List;
 public class Rent {
 	private Client clientWhoRent;
 	private DateFormat deadLine;
-	private List<Book>bookRent;
+	private Book bookRent;
 	private int codRent;
 
-	public Rent(Client clientWhoRent, List<Book> list, int codRent, DateFormat deadLine) {
+	public Rent(Client clientWhoRent, Book list, int codRent, DateFormat deadLine) {
 		this.clientWhoRent = clientWhoRent;
 		this.bookRent = list;
 		this.codRent = codRent;
@@ -25,11 +25,11 @@ public class Rent {
 		this.clientWhoRent = clientWhoRent;
 	}
 
-	public List<Book> getBookRent() {
+	public Book getBookRent() {
 		return bookRent;
 	}
 
-	public void setBookRent(List<Book> bookRent) {
+	public void setBookRent(Book bookRent) {
 		this.bookRent = bookRent;
 	}
 
