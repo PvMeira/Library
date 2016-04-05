@@ -11,8 +11,14 @@ public class ClientMenu {
 	public void clientMenu() {
 		int op = 0;
 		do {
-			System.out.println(menu.getOptionLayOut());
-			op = ConsoleReader.scanInt("Type the Option :");
+			try {
+				System.out.println(menu.getOptionLayOut());
+				op = ConsoleReader.scanInt("Type the Option :");
+			} catch (Exception e) {
+
+				System.out.println("Format error, only number accept" + e);
+			}
+
 			switch (op) {
 			case 1:
 

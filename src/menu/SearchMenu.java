@@ -10,8 +10,13 @@ public class SearchMenu {
 		SearchMenuLayOut menu = new SearchMenuLayOut();
 		int option = 0;
 		do {
-			System.out.println(menu.getOptionLayOut());
-			option = ConsoleReader.scanInt("Type the Option :");
+			try {
+				System.out.println(menu.getOptionLayOut());
+				option = ConsoleReader.scanInt("Type the Option :");
+			} catch (Exception e) {
+
+				System.out.println("Format error, only number accept" + e);
+			}
 
 			switch (option) {
 			case 1:
@@ -19,7 +24,7 @@ public class SearchMenu {
 					String name = ConsoleReader.scanString("Type the Name:");
 					System.out.println(ClientRepository.getInstance().searchByName(name));
 				} catch (Exception e) {
-					e.getMessage();
+					System.out.println("Error on format" + e);
 				}
 				break;
 			case 2:
@@ -27,8 +32,8 @@ public class SearchMenu {
 					String token = ConsoleReader.scanString("Type the token:");
 					System.out.println(ClientRepository.getInstance().searchByToken(token));
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+
+					System.out.println("Error on format" + e);
 				}
 				break;
 			case 3:

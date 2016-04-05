@@ -23,8 +23,13 @@ public class MainMenu {
 	public void mainSearch() {
 
 		do {
-			System.out.println(menu.getOptionLayOut());
-			option = ConsoleReader.scanInt("Type the Option :");
+			try {
+				System.out.println(menu.getOptionLayOut());
+				option = ConsoleReader.scanInt("Type the Option :");
+			} catch (Exception e) {
+
+				System.out.println("Format error, only number accept" + e);
+			}
 
 			switch (option) {
 			case 1:

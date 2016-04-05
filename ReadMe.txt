@@ -13,7 +13,7 @@ so you'll want to keep one around and reuse it.
 
 
 
-
+---------------------------------------------TRABALHO----------------------------------------------------------------
 Funcionalidades:
 - Cadastro de livros: anota-se para cada livro o ISBN, nome,
 autor(es), editora e ano de publicação. Autor(es) e editora podem
@@ -30,8 +30,13 @@ para entrega.( DONE)
 - Devolução de livros: registra a devolução de livros de um
 cliente. Durante a devolução, o livro torna-se disponível
 novamente na biblioteca. Verifica se o livro está com atraso e
-calcula o número de dias de atraso.(ALMOST DONE)
+calcula o número de dias de atraso.( DONE)
 
 - Relatórios: por livros, livros disponíveis, livros mais retirados,
 clientes que mais retiraram um livro, clientes que mais atrasaram,
 etc.(NOT DONE)
+--------------------------------------------BUG´S----------------------------------------------------------------------
+->treat, when wrong token is type in menu search (DONE)
+->treat, when ask the option int in the mune search, client, 
+book etc, when type other thing than INT, java.util.InputMismatchException( DONE)
+->treat, when you search by the name, the code only take the first one (i think i can use a hashMAP)
