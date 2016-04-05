@@ -2,21 +2,24 @@ package register;
 
 import profile.Rent;
 import util.ConsoleReader;
-import util.deadLineCreation;
+import util.DeadLineCreation;
 
 public class DevolutionRegister {
+	DeadLineCreation dead = new DeadLineCreation();
 
 	public void addNewDevolution(Rent r) {
 		try {
-			Integer codDevolution = ConsoleReader.scanInt("Type the rent code");
-			if (codDevolution == r.getCodRent()) {
-				r.getBookRent().setAvaliable(true);
-				deadLineCreation dead = new deadLineCreation();
-				if (dead.hasExpired() == true) {
-					// do something()
+			Integer codeDevolution = ConsoleReader.scanInt("Type the rent code");
+			if (codeDevolution == r.getCodRent()) {
+				char op = ConsoleReader.scanChar("Renew the DeadLine fot the book (Y/N)");
+				if (op == 'N') {
+					r.getBookRent().setAvaliable(true);
+					System.out.println("\nBook was sucessfull return\n");
+					dead.hasExpired();
+				} else if (op == 'Y') {
+					dead.renewRent();
+					System.out.println("\nDead Line Was extend to : " + dead.createNewData() + "\n");
 				}
-
-				System.out.println("YOur book was sucessfull return ");
 
 			} else
 				System.out.println("Wrong code !");

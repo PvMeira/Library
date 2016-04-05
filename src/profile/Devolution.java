@@ -1,12 +1,12 @@
 package profile;
 
-import util.deadLineCreation;
+import util.DeadLineCreation;
 
 public class Devolution {
 	private Rent data;
-	private deadLineCreation deadLine;
+	private DeadLineCreation deadLine;
 
-	public Devolution(Rent data, deadLineCreation deadLine) {
+	public Devolution(Rent data, DeadLineCreation deadLine) {
 
 		this.data = data;
 		this.deadLine = deadLine;
@@ -20,11 +20,11 @@ public class Devolution {
 		this.data = data;
 	}
 
-	public deadLineCreation getDeadLine() {
+	public DeadLineCreation getDeadLine() {
 		return deadLine;
 	}
 
-	public void setDeadLine(deadLineCreation deadLine) {
+	public void setDeadLine(DeadLineCreation deadLine) {
 		this.deadLine = deadLine;
 	}
 

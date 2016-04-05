@@ -1,8 +1,6 @@
 package profile;
 
 import java.text.DateFormat;
-import java.util.Date;
-import java.util.List;
 
 public class Rent {
 	private Client clientWhoRent;

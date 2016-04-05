@@ -6,8 +6,8 @@ import profile.Rent;
 import repository.BookRepository;
 import repository.RentRepository;
 import util.ConsoleReader;
+import util.DeadLineCreation;
 import util.TokenCreation;
-import util.deadLineCreation;
 
 public class RentRegister {
 
@@ -20,7 +20,7 @@ public class RentRegister {
 			if (b.isAvaliable() == true) {
 				if (c.getCountClientBooksRent() <= 3) {
 					int cod1 = t.codRentCreation();
-					deadLineCreation dead = new deadLineCreation();
+					DeadLineCreation dead = new DeadLineCreation();
 					Rent r = new Rent(c, b, cod1, dead.getDateFormatter());
 					RentRepository.getInstance().add(r);
 					b.setAvaliable(false);

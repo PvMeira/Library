@@ -3,7 +3,7 @@ package util;
 import java.text.DateFormat;
 import java.util.Date;
 
-public class deadLineCreation {
+public class DeadLineCreation {
 	@Override
 	public String toString() {
 		return " Dead Line   :" + getDateFormatter();
@@ -18,7 +18,7 @@ public class deadLineCreation {
 	public static final long DAY = HOUR * 24;
 	public static final long WEEK = DAY * 7;
 
-	public deadLineCreation() {
+	public DeadLineCreation() {
 		deadLine = now() + WEEK;
 		dateFormatter = DateFormat.getDateInstance();
 	}
@@ -39,7 +39,7 @@ public class deadLineCreation {
 		return dateFormatter.format(deadLine);
 	}
 
-	public String renewrent() {
+	public String renewRent() {
 		return dateFormatter.format(deadLine + WEEK);
 	}
 

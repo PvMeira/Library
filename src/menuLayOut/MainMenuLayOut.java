@@ -1,19 +1,23 @@
 package menuLayOut;
 
 public class MainMenuLayOut {
-	public final int OP_ADD_CLIENT = 1;
-	public final int OP_ADD_BOOK = 2;
-	public final int OP_NEW_WITHDRAWAL_BOOK = 3;
-	public final int OP_DEVOLUTION_BOOK = 4;
-	public final int OP_Report = 5;
-	public final int OP_Search_menu = 6;
+	public final int GO_TO_CLIENT_MENU = 1;
+	public final int GO_TO_BOOK_MENU = 2;
+	public final int GO_TO_SEARCH_MENU = 3;
+	public final int INFORM_A_NEW_RENT = 4;
+	public final int REGISTER_A_NEW_DEVOLUTION = 5;
+	public final int GO_TO_REPORTS_MENU = 6;
 	public final int OP_EXIT_APLICATION = 7;
 
 	public String getOptionLayOut() {
-		return ("\n--------------------------------------\n" + "1-Add a new Client         :\n"
-				+ "2-Add a new Book           :\n" + "3-Make a Withdrawal        :\n" + "4-Register a devolution    :\n"
-				+ "5-Consult the reports      :\n" + "6-Go to the Search menu    :\n" + "7-Exit Aplication          :\n"
+		return ("\n--------------------------------------\n" 
+	            + "1-Go to the Client Menu         :\n"
+				+ "2-Go to the Book Menu           :\n" 
+	            + "3-Go to the Search Menu         :\n" 
+				+ "4-Inform a new Rent             :\n"
+				+ "5-Register a new Devolution     :\n" 
+	            + "6-Go to the Reports menu        :\n" 
+				+ "7-Exit Aplication               :\n"
 				+ "\n--------------------------------------\n");
 	}
 }
-// Withdrawal
