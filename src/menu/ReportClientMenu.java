@@ -21,11 +21,21 @@ public class ReportClientMenu {
 
 			switch (option) {
 			case 1:
-				report.clientsWhoMostRentBooks();
+				try {
+					report.clientsWhoMostRentBooks();
+				} catch (Exception e) {
+
+					System.out.println("No client add" + e);
+				}
 
 				break;
 			case 2:
-				report.clientsWhoLessRentBooks();
+				try {
+					report.clientsWhoLessRentBooks();
+				} catch (Exception e) {
+
+					System.out.println("No client add" + e);
+				}
 
 				break;
 			case 3:
