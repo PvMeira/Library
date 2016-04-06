@@ -44,6 +44,6 @@ public class SearchMenu {
 				MainMenu menuMain = new MainMenu();
 				menuMain.mainSearch();
 			}
-		} while (option == 4);
+		} while (option != 5);
 	}
 }

@@ -2,11 +2,13 @@ package menu;
 
 import menuLayOut.ClientMenuLayOut;
 import register.ClientRegister;
+import report.ClientsReport;
 import util.ConsoleReader;
 
 public class ClientMenu {
 	ClientMenuLayOut menu = new ClientMenuLayOut();
 	ClientRegister c = new ClientRegister();
+	ClientsReport cr = new ClientsReport();
 
 	public void clientMenu() {
 		int op = 0;
@@ -31,9 +33,12 @@ public class ClientMenu {
 				sMenu.Search();
 				break;
 			case 3:
-				System.out.println("Going back to the main menu");
-				MainMenu menuMain = new MainMenu();
-				menuMain.mainSearch();
+				System.out.println("Going back Client report menu");
+				ReportClientMenu c = new ReportClientMenu();
+				c.Search();
+				break;
+			case 4:
+
 				break;
 			}
 

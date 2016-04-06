@@ -1,20 +1,25 @@
 package register;
 
+import profile.Devolution;
 import profile.Rent;
+import repository.RentRepository;
 import util.ConsoleReader;
 import util.DeadLineCreation;
 
-public class DevolutionRegister {
+public class DevolutionRegister implements register<Devolution> {
 	DeadLineCreation dead = new DeadLineCreation();
+	Rent rent;
 
-	public void addNewDevolution(Rent r) {
+	@Override
+	public void addNew() {
 		try {
 			Integer codeDevolution = ConsoleReader.scanInt("Type the rent code");
-			if (codeDevolution == r.getCodRent()) {
+			rent = RentRepository.getInstance().searchByID(codeDevolution);
+			if (codeDevolution == rent.getCodRent()) {
 				char op = ConsoleReader.scanChar("Renew the DeadLine fot the book (Y/N)");
 				if (op == 'N') {
-					r.getBookRent().setAvaliable(true);
-					r.getClientWhoRent().countDOWN();
+					rent.getBookRent().setAvaliableDevolution();
+					rent.getClientWhoRent().countDOWN();
 					System.out.println("\nBook was sucessfull return\n");
 					dead.hasExpired();
 				} else if (op == 'Y') {

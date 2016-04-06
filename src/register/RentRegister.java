@@ -11,7 +11,7 @@ import util.DeadLineCreation;
 import util.FileWriter;
 import util.TokenCreation;
 
-public class RentRegister {
+public class RentRegister implements register<Rent> {
 
 	TokenCreation t = new TokenCreation();
 	FileWriter file = new FileWriter();
@@ -19,27 +19,29 @@ public class RentRegister {
 	Book book;
 	int cod1;
 
-	public void addNewRent(Client c, Book b) {
+	@Override
+	public void addNew() {
 		try {
 
 			Integer cod = ConsoleReader.scanInt("Type the ISBN of the book :");
 			book = BookRepository.getInstance().searchByCode(cod);
-			if (b.isAvaliable() == true) {
+			if (book.isAvaliable() == true) {
 
 				String name = ConsoleReader.scanString("Type the Full name of the client ");
 				client = ClientRepository.getInstance().searchByName(name);
 				if (client.getToken() != null) {
 
-					if (c.getCountClientBooksRent() <= 3) {
+					if (client.getClientBooksRent() < 4) {
 
 						cod1 = t.codRentCreation();
 						DeadLineCreation dead = new DeadLineCreation();
-						Rent r = new Rent(c, b, cod1, dead.getDateFormatter());
-						RentRepository.getInstance().add(r);
-						b.setAvaliable(false);
-						b.countUP();
-						c.countUP();
-						c.countUPForReport();
+						Rent rent = new Rent(client, book, cod1, dead.getDateFormatter());
+						RentRepository.getInstance().add(rent);
+						cod1 = rent.getCodRent();
+						book.setAvaliable();
+						book.countUP();
+						client.countUP();
+						client.countUPForReport();
 
 						System.out.println("Client " + client.getClientName() + "\nRent  was successful\n"
 								+ "Book Name :" + book.getBookName() + "\nRent code :" + cod1

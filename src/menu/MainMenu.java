@@ -1,9 +1,6 @@
 package menu;
 
 import menuLayOut.MainMenuLayOut;
-import profile.Book;
-import profile.Client;
-import profile.Rent;
 import register.DevolutionRegister;
 import register.RentRegister;
 import util.ConsoleReader;
@@ -15,9 +12,7 @@ public class MainMenu {
 	SearchMenu sMenu = new SearchMenu();
 	RentRegister rent = new RentRegister();
 	DevolutionRegister devo = new DevolutionRegister();
-	Client client = new Client(null, null, null);
-	Book book = new Book(null, null, null, null, 0);
-	Rent RENT = new Rent(client, book, 0, null);
+
 	int option = 0;
 
 	public void mainSearch() {
@@ -51,22 +46,19 @@ public class MainMenu {
 
 				break;
 			case 4:
-				rent.addNewRent(client, book);
+				rent.addNew();
 				break;
 			case 5:
-				devo.addNewDevolution(RENT);
+				devo.addNew();
 
 				break;
+
 			case 6:
-				// to do Report menu
-
-				break;
-			case 7:
 				System.out.println("Exit Aplication");
 
 				break;
 
 			}
-		} while (option != 7);
+		} while (option != 6);
 	}
 }

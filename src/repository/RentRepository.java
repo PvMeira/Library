@@ -19,4 +19,8 @@ public class RentRepository extends AbstractRepository<Rent> {
 		return getData();
 	}
 
+	public Rent searchByID(int idToken) {
+		return getRent().stream().filter(id -> id.getCodRent().equals(idToken)).findFirst().get();
+	}
+
 }

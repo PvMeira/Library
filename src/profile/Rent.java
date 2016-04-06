@@ -6,7 +6,7 @@ public class Rent {
 	private Client clientWhoRent;
 	private DateFormat deadLine;
 	private Book bookRent;
-	private int codRent;
+	private Integer codRent;
 
 	public Rent(Client clientWhoRent, Book list, int codRent, DateFormat deadLine) {
 		this.clientWhoRent = clientWhoRent;
@@ -31,11 +31,11 @@ public class Rent {
 		this.bookRent = bookRent;
 	}
 
-	public int getCodRent() {
+	public Integer getCodRent() {
 		return codRent;
 	}
 
-	public void setCodRent(int codRent) {
+	public void setCodRent(Integer codRent) {
 		this.codRent = codRent;
 	}
 
