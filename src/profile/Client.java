@@ -5,7 +5,7 @@ public class Client {
 	// - Cadastro de clientes: cliente contém como informação a
 	// matrícula, o nome e telefone.
 	private String token, clientName, clientPhone;
-	private int countClientBooksRent, clientBooksRent;
+	private Integer countClientBooksRent, clientBooksRent;
 
 	public Client(String string, String clientName, String clientPhone) {
 
@@ -40,19 +40,19 @@ public class Client {
 		this.clientPhone = clientPhone;
 	}
 
-	public int getCountClientBooksRent() {
+	public Integer getCountClientBooksRent() {
 		return countClientBooksRent;
 	}
 
-	public void setCountClientBooksRent(int countClientBooksRent) {
+	public void setCountClientBooksRent(Integer countClientBooksRent) {
 		this.countClientBooksRent = countClientBooksRent;
 	}
 
-	public int getClientBooksRent() {
+	public Integer getClientBooksRent() {
 		return clientBooksRent;
 	}
 
-	public void setClientBooksRent(int clientBooksRent) {
+	public void setClientBooksRent(Integer clientBooksRent) {
 		this.clientBooksRent = clientBooksRent;
 	}
 

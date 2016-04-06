@@ -1,6 +1,6 @@
 package menuLayOut;
 
-public class MainMenuLayOut {
+public class MainMenuLayOut implements layOut{
 	public final int GO_TO_CLIENT_MENU = 1;
 	public final int GO_TO_BOOK_MENU = 2;
 	public final int GO_TO_SEARCH_MENU = 3;

@@ -34,9 +34,9 @@ calcula o número de dias de atraso.( DONE)
 
 - Relatórios: por livros, livros disponíveis, livros mais retirados,
 clientes que mais retiraram um livro, clientes que mais atrasaram,
-etc.(NOT DONE)
+etc.(+- DONE)
 --------------------------------------------BUG´S----------------------------------------------------------------------
 ->treat, when wrong token is type in menu search (DONE)
-->treat, when ask the option int in the mune search, client, 
+->treat, when ask the option int in the mune search, client,(DONE) 
 book etc, when type other thing than INT, java.util.InputMismatchException( DONE)
-->treat, when you search by the name, the code only take the first one (i think i can use a hashMAP)
+

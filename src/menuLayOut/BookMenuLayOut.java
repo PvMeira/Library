@@ -1,6 +1,6 @@
 package menuLayOut;
 
-public class BookMenuLayOut {
+public class BookMenuLayOut implements layOut{
 	public final int OP_ADD_NEW_BOOK = 1;
 	public final int OP_SEARCH_BOOK = 2;
 	public final int OP_BACK_TO_MENU = 3;

@@ -8,11 +8,13 @@ import repository.ClientRepository;
 import repository.RentRepository;
 import util.ConsoleReader;
 import util.DeadLineCreation;
+import util.FileWriter;
 import util.TokenCreation;
 
 public class RentRegister {
 
 	TokenCreation t = new TokenCreation();
+	FileWriter file = new FileWriter();
 	Client client;
 	Book book;
 	int cod1;
@@ -40,9 +42,15 @@ public class RentRegister {
 						c.countUPForReport();
 
 						System.out.println("Client " + client.getClientName() + "\nRent  was successful\n"
-								+ "Book Name :" + book.getBookName() + "The Date for the Client to return is :"
-								+ dead.createNewData());
-						pintNote();
+								+ "Book Name :" + book.getBookName() + "\nRent code :" + cod1
+								+ "\nThe Date to return the book is :" + dead.createNewData());
+						// char op1 = ConsoleReader.scanChar("Print the note
+						// ?(y/n)");
+						// if (op1 == 'y') {
+						// file.FileWriter();
+						// } else {
+						// System.out.println("rent finish");
+						// }
 
 					} else {
 						System.out.println("Sorry, but this Client already has 3 books rent");
@@ -60,15 +68,14 @@ public class RentRegister {
 
 	}
 
-	public void pintNote() {
-		char op1 = ConsoleReader.scanChar("Print the note ?(y/n)");
-		if (op1 == 'y') {
-			System.out.println("\nClient Name: " + client.getClientName() + "\nBook Name: " + book.getBookName()
-					+ "\nRent Code: " + cod1);
+	public StringBuilder printNote() {
+		StringBuilder builder = new StringBuilder();
 
-		} else {
-			System.out.println("___");
-		}
+		builder.append("\nClient Name: " + client.getClientName());
+		builder.append("\nBook Name: " + book.getBookName());
+		builder.append("\nRent Code: " + cod1);
+
+		return builder;
 	}
 
 }

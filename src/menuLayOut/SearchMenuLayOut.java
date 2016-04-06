@@ -1,6 +1,6 @@
 package menuLayOut;
 
-public class SearchMenuLayOut {
+public class SearchMenuLayOut implements layOut{
 	public final int OP_SEARCH_BY_NAME = 1;
 	public final int OP_SEARCH_BY_Token = 2;
 	public final int OP_SEARCH_BY_PHONE = 3;

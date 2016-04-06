@@ -14,6 +14,7 @@ public class DevolutionRegister {
 				char op = ConsoleReader.scanChar("Renew the DeadLine fot the book (Y/N)");
 				if (op == 'N') {
 					r.getBookRent().setAvaliable(true);
+					r.getClientWhoRent().countDOWN();
 					System.out.println("\nBook was sucessfull return\n");
 					dead.hasExpired();
 				} else if (op == 'Y') {
