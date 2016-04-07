@@ -1,4 +1,4 @@
-TokenCreation-
+TokenCreation-----------------------------------------------------------------------------------------------
 This works by choosing 130 bits from a cryptographically secure random bit generator,
  and encoding them in base-32. 128 bits is considered to be cryptographically strong, 
 but each digit in a base 32 number can encode 5 bits, 
@@ -32,11 +32,13 @@ cliente. Durante a devolução, o livro torna-se disponível
 novamente na biblioteca. Verifica se o livro está com atraso e
 calcula o número de dias de atraso.( DONE)
 
-- Relatórios: por livros, livros disponíveis, livros mais retirados,
-clientes que mais retiraram um livro, clientes que mais atrasaram,
-etc.(+- DONE)
+- Relatórios: por livros, livros disponíveis(----STILL HAVE TO LOOK, cannot invoke bollean on stream()---), livros mais retirados(DONE),
+clientes que mais retiraram um livro, clientes que mais atrasaram(NOT DONE),
+etc.( DONE)
 --------------------------------------------BUG´S----------------------------------------------------------------------
 ->treat, when wrong token is type in menu search (DONE)
 ->treat, when ask the option int in the mune search, client,(DONE) 
 book etc, when type other thing than INT, java.util.InputMismatchException( DONE)
-
+-------------------------------------------NOTA----------------------------------------------------------------------------
+Realização de testes: testes unitários e testes funcionais bem documentados (documento contendo os testes que foram realizados 
+– não precisa estar em uma especificação padrão);

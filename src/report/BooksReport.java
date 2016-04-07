@@ -31,4 +31,8 @@ public class BooksReport {
 		String n = BookRepository.getInstance().getBook().toString();
 		return "\nAll books avaliable register are :" + n;
 	}
+//	public String showAllBooksAvaliable() {
+//		String n = BookRepository.getInstance().getBook().stream().filter(book.isAvaliable().toString();
+//		return "\nAll books avaliable register are :" + n;
+//	}
 }
