@@ -8,13 +8,12 @@ import repository.ClientRepository;
 import repository.RentRepository;
 import util.ConsoleReader;
 import util.DeadLineCreation;
-import util.FileWriter;
 import util.TokenCreation;
 
 public class RentRegister implements register<Rent> {
 
 	TokenCreation t = new TokenCreation();
-	FileWriter file = new FileWriter();
+	// FileWriter file = new FileWriter();
 	Client client;
 	Book book;
 	int cod1;
@@ -31,7 +30,7 @@ public class RentRegister implements register<Rent> {
 				client = ClientRepository.getInstance().searchByName(name);
 				if (client.getToken() != null) {
 
-					if (client.getClientBooksRent() < 4) {
+					if (client.getMaxCountRent() < 3) {
 
 						cod1 = t.codRentCreation();
 						DeadLineCreation dead = new DeadLineCreation();
@@ -40,12 +39,13 @@ public class RentRegister implements register<Rent> {
 						cod1 = rent.getCodRent();
 						book.setAvaliable();
 						book.countUP();
-						client.countUP();
+						client.countMaxRentUP();
 						client.countUPForReport();
 
 						System.out.println("Client " + client.getClientName() + "\nRent  was successful\n"
 								+ "Book Name :" + book.getBookName() + "\nRent code :" + cod1
 								+ "\nThe Date to return the book is :" + dead.createNewData());
+						return;
 						// char op1 = ConsoleReader.scanChar("Print the note
 						// ?(y/n)");
 						// if (op1 == 'y') {
@@ -54,7 +54,8 @@ public class RentRegister implements register<Rent> {
 						// System.out.println("rent finish");
 						// }
 
-					} else {
+					} 
+					else {
 						System.out.println("Sorry, but this Client already has 3 books rent");
 					}
 				} else {
@@ -70,14 +71,14 @@ public class RentRegister implements register<Rent> {
 
 	}
 
-	public StringBuilder printNote() {
-		StringBuilder builder = new StringBuilder();
-
-		builder.append("\nClient Name: " + client.getClientName());
-		builder.append("\nBook Name: " + book.getBookName());
-		builder.append("\nRent Code: " + cod1);
-
-		return builder;
-	}
+	// public StringBuilder printNote() {
+	// StringBuilder builder = new StringBuilder();
+	//
+	// builder.append("\nClient Name: " + client.getClientName());
+	// builder.append("\nBook Name: " + book.getBookName());
+	// builder.append("\nRent Code: " + cod1);
+	//
+	// return builder;
+	// }
 
 }

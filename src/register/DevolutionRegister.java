@@ -19,7 +19,7 @@ public class DevolutionRegister implements register<Devolution> {
 				char op = ConsoleReader.scanChar("Renew the DeadLine fot the book (Y/N)");
 				if (op == 'N') {
 					rent.getBookRent().setAvaliableDevolution();
-					rent.getClientWhoRent().countDOWN();
+					rent.getClientWhoRent().countMaxRentDOWN();
 					System.out.println("\nBook was sucessfull return\n");
 					dead.hasExpired();
 				} else if (op == 'Y') {

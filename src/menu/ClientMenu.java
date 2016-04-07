@@ -33,11 +33,14 @@ public class ClientMenu {
 				sMenu.Search();
 				break;
 			case 3:
-				System.out.println("Going back Client report menu");
+				System.out.println("Going to Client report menu");
 				ReportClientMenu c = new ReportClientMenu();
 				c.Search();
 				break;
 			case 4:
+				System.out.println("Going back to the main menu");
+				MainMenu menuMain = new MainMenu();
+				menuMain.mainSearch();
 
 				break;
 			}

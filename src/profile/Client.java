@@ -5,15 +5,15 @@ public class Client {
 	// - Cadastro de clientes: cliente contém como informação a
 	// matrícula, o nome e telefone.
 	private String token, clientName, clientPhone;
-	private Integer countClientBooksRent, clientBooksRent;
+	private Integer counterMaxRent, clientTotalRent;
 
 	public Client(String string, String clientName, String clientPhone) {
 
 		this.token = string;
 		this.clientName = clientName;
 		this.clientPhone = clientPhone;
-		this.countClientBooksRent = 0;
-		this.clientBooksRent = 0;
+		this.counterMaxRent = 0;
+		this.clientTotalRent = 0;
 	}
 
 	public String getToken() {
@@ -40,36 +40,36 @@ public class Client {
 		this.clientPhone = clientPhone;
 	}
 
-	public Integer getCountClientBooksRent() {
-		return countClientBooksRent;
+	public Integer getMaxCountRent() {
+		return counterMaxRent;
 	}
 
-	public void setCountClientBooksRent(Integer countClientBooksRent) {
-		this.countClientBooksRent = countClientBooksRent;
+	public void setMaxCountRent(Integer countClientBooksRent) {
+		this.counterMaxRent = countClientBooksRent;
 	}
 
 	public Integer getClientBooksRent() {
-		return clientBooksRent;
+		return clientTotalRent;
 	}
 
 	public void setClientBooksRent(Integer clientBooksRent) {
-		this.clientBooksRent = clientBooksRent;
+		this.clientTotalRent = clientBooksRent;
 	}
 
-	public void countUP() {
-		this.countClientBooksRent = +1;
+	public void countMaxRentUP() {
+		this.counterMaxRent = +1;
 	}
 
-	public void countDOWN() {
-		this.countClientBooksRent = -1;
+	public void countMaxRentDOWN() {
+		this.counterMaxRent = -1;
 	}
 
 	public void countUPForReport() {
-		this.clientBooksRent = +1;
+		this.clientTotalRent = +1;
 	}
 
 	public void countDOWNForReport() {
-		this.clientBooksRent = -1;
+		this.clientTotalRent = -1;
 	}
 
 	@Override

@@ -1,13 +1,13 @@
 package menu;
 
-import menuLayOut.ReportClientLayOut;
-import report.ClientsReport;
+import menuLayOut.ReportBookLayOut;
+import report.BooksReport;
 import util.ConsoleReader;
 
-public class ReportClientMenu {
-	public void Search() {
-		ClientsReport report = new ClientsReport();
-		ReportClientLayOut menu = new ReportClientLayOut();
+public class ReportBookMenu {
+	public void SearchBook() {
+		BooksReport report = new BooksReport();
+		ReportBookLayOut menu = new ReportBookLayOut();
 		int option = 0;
 
 		do {
@@ -22,30 +22,29 @@ public class ReportClientMenu {
 			switch (option) {
 			case 1:
 				try {
-					System.out.println(report.clientsWhoMostRentBooks());
+					System.out.println(report.mostRentBook());
 				} catch (Exception e) {
 
-					System.out.println("No client add" + e);
+					System.out.println("No book add" + e);
 				}
 
 				break;
 			case 2:
 				try {
-					System.out.println(report.clientsWhoLessRentBooks());
+					System.out.println(report.lessRentBook());
 				} catch (Exception e) {
 
-					System.out.println("No client add" + e);
+					System.out.println("No Book add" + e);
 				}
 
 				break;
 			case 3:
 				try {
-					System.out.println(report.showAllClients());
+					System.out.println(report.showAllBooks());
 				} catch (Exception e) {
 
-					System.out.println("No client add" + e);
+					System.out.println("No Book add" + e);
 				}
-
 				break;
 			case 4:
 				System.out.println("Going back to the main menu");

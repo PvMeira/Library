@@ -18,6 +18,11 @@ public class ClientsReport {
 		return "The Client who, less rent books was :" + client.getClientName();
 	}
 
+	public String showAllClients() {
+		String c = ClientRepository.getInstance().getClient().toString();
+		return "\nAll Clients register  are :" + c;
+	}
+
 }
 // public String mostRentBook() {
 // book = BookRepository.getInstance().getBook().stream()

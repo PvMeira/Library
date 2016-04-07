@@ -7,6 +7,7 @@ import util.ConsoleReader;
 public class BookMenu {
 	BookMenuLayOut menu = new BookMenuLayOut();
 	BookRegister b = new BookRegister();
+	ReportBookMenu menu1 = new ReportBookMenu();
 
 	public void bookMenu() {
 		int op = 0;
@@ -31,6 +32,11 @@ public class BookMenu {
 				sMenu.Search();
 				break;
 			case 3:
+				System.out.println("Going to Report book menu");
+				menu1.SearchBook();
+
+				break;
+			case 4:
 				System.out.println("Going back to the main menu");
 				MainMenu menuMain = new MainMenu();
 				menuMain.mainSearch();
