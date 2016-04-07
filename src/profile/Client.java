@@ -57,19 +57,19 @@ public class Client {
 	}
 
 	public void countMaxRentUP() {
-		this.counterMaxRent = +1;
+		this.counterMaxRent = this.counterMaxRent + 1;
 	}
 
 	public void countMaxRentDOWN() {
-		this.counterMaxRent = -1;
+		this.counterMaxRent = this.counterMaxRent - 1;
 	}
 
 	public void countUPForReport() {
-		this.clientTotalRent = +1;
+		this.clientTotalRent = this.clientTotalRent + 1;
 	}
 
 	public void countDOWNForReport() {
-		this.clientTotalRent = -1;
+		this.clientTotalRent = this.clientTotalRent - 1;
 	}
 
 	@Override

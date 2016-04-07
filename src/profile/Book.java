@@ -83,11 +83,11 @@ public class Book {
 	}
 
 	public void countUP() {
-		this.countBookRent = +1;
+		this.countBookRent = this.countBookRent + 1;
 	}
 
 	public void countDOWN() {
-		this.countBookRent = -1;
+		this.countBookRent = this.countBookRent - 1;
 	}
 
 	public void setAvaliableDevolution() {
