@@ -7,11 +7,6 @@ import util.ConsoleReader;
 
 public class MainMenu {
 	MainMenuLayOut menu = new MainMenuLayOut();
-	BookMenu bmenu = new BookMenu();
-	ClientMenu Clientmenu = new ClientMenu();
-	SearchMenu sMenu = new SearchMenu();
-	RentRegister rent = new RentRegister();
-	DevolutionRegister devo = new DevolutionRegister();
 
 	int option = 0;
 
@@ -29,26 +24,28 @@ public class MainMenu {
 			switch (option) {
 			case 1:
 				System.out.println("Going to Clients menu");
-
+				ClientMenu Clientmenu = new ClientMenu();
 				Clientmenu.clientMenu();
 
 				break;
 			case 2:
 				System.out.println("Going to Books menu");
-
+				BookMenu bmenu = new BookMenu();
 				bmenu.bookMenu();
 
 				break;
 			case 3:
 				System.out.println("Going to Search menu");
-
+				SearchMenu sMenu = new SearchMenu();
 				sMenu.Search();
 
 				break;
 			case 4:
+				RentRegister rent = new RentRegister();
 				rent.addNew();
 				break;
 			case 5:
+				DevolutionRegister devo = new DevolutionRegister();
 				devo.addNew();
 
 				break;

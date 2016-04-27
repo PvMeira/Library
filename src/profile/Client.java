@@ -74,7 +74,7 @@ public class Client {
 
 	@Override
 	public String toString() {
-		return "Client token  : " + token + "\nClient Name   :" + clientName + "\nClient Phone  :" + clientPhone;
+		return "\n Client token  : " + token + "\nClient Name   :" + clientName + "\nClient Phone  :" + clientPhone;
 	}
 
 }

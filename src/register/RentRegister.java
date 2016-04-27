@@ -71,14 +71,5 @@ public class RentRegister implements register<Rent> {
 
 	}
 
-	// public StringBuilder printNote() {
-	// StringBuilder builder = new StringBuilder();
-	//
-	// builder.append("\nClient Name: " + client.getClientName());
-	// builder.append("\nBook Name: " + book.getBookName());
-	// builder.append("\nRent Code: " + cod1);
-	//
-	// return builder;
-	// }
 
 }

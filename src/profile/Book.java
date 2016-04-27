@@ -1,10 +1,6 @@
 package profile;
 
 public class Book {
-	// Funcionalidades:
-	// - Cadastro de livros: anota-se para cada livro o ISBN, nome,
-	// autor(es), editora e ano de publicação. Autor(es) e editora podem
-	// ser relacionados como String.
 	private String bookName, writers, publishingCompany;
 	private Integer releaseyear, countBookRent, IsbnCode;
 	private boolean avaliable;

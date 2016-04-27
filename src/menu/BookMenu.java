@@ -6,8 +6,6 @@ import util.ConsoleReader;
 
 public class BookMenu {
 	BookMenuLayOut menu = new BookMenuLayOut();
-	BookRegister b = new BookRegister();
-	ReportBookMenu menu1 = new ReportBookMenu();
 
 	public void bookMenu() {
 		int op = 0;
@@ -22,19 +20,19 @@ public class BookMenu {
 
 			switch (op) {
 			case 1:
-
+				BookRegister b = new BookRegister();
 				b.addNew();
 				System.out.println("New book client add !");
 				break;
 			case 2:
 				System.out.println("Going to the Search Menu");
-				SearchMenu sMenu = new SearchMenu();
+				SearchMenuBook sMenu = new SearchMenuBook();
 				sMenu.Search();
 				break;
 			case 3:
 				System.out.println("Going to Report book menu");
+				ReportBookMenu menu1 = new ReportBookMenu();
 				menu1.SearchBook();
-
 				break;
 			case 4:
 				System.out.println("Going back to the main menu");
@@ -43,7 +41,7 @@ public class BookMenu {
 				break;
 			}
 
-		} while (op != 4);
+		} while (op == 5);
 
 	}
 }
