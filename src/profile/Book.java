@@ -1,5 +1,8 @@
 package profile;
-
+/**
+ * @author Pedro
+ *
+ */
 public class Book {
 	private String bookName, writers, publishingCompany;
 	private Integer releaseyear, countBookRent, IsbnCode;

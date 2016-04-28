@@ -4,7 +4,10 @@ import menuLayOut.MainMenuLayOut;
 import register.DevolutionRegister;
 import register.RentRegister;
 import util.ConsoleReader;
-
+/**
+ * @author Pedro
+ *
+ */
 public class MainMenu {
 	MainMenuLayOut menu = new MainMenuLayOut();
 

@@ -1,11 +1,15 @@
 package menu;
-
+/**
+ * @author Pedro
+ *
+ */
 import menuLayOut.BookMenuLayOut;
 import register.BookRegister;
 import util.ConsoleReader;
 
 public class BookMenu {
 	BookMenuLayOut menu = new BookMenuLayOut();
+	BookRegister b = new BookRegister();
 
 	public void bookMenu() {
 		int op = 0;
@@ -19,10 +23,9 @@ public class BookMenu {
 			}
 
 			switch (op) {
-			case 1:
-				BookRegister b = new BookRegister();
+			case 1:			
 				b.addNew();
-				System.out.println("New book client add !");
+				System.out.println("New book  add !");
 				break;
 			case 2:
 				System.out.println("Going to the Search Menu");
@@ -41,7 +44,7 @@ public class BookMenu {
 				break;
 			}
 
-		} while (op == 5);
+		} while (op != 4);
 
 	}
 }

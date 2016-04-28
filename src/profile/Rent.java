@@ -1,5 +1,8 @@
 package profile;
-
+/**
+ * @author Pedro
+ *
+ */
 import java.text.DateFormat;
 
 public class Rent {

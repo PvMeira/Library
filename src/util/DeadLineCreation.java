@@ -1,5 +1,8 @@
 package util;
-
+/**
+ * @author Pedro
+ *
+ */
 import java.text.DateFormat;
 import java.util.Date;
 

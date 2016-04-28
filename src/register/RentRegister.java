@@ -1,5 +1,9 @@
 package register;
 
+/**
+ * @author Pedro
+ *
+ */
 import profile.Book;
 import profile.Client;
 import profile.Rent;
@@ -17,6 +21,7 @@ public class RentRegister implements register<Rent> {
 	Client client;
 	Book book;
 	int cod1;
+	String dataForPrint;
 
 	@Override
 	public void addNew() {
@@ -41,18 +46,21 @@ public class RentRegister implements register<Rent> {
 						book.countUP();
 						client.countMaxRentUP();
 						client.countUPForReport();
-
-						System.out.println("Client " + client.getClientName() + "\nRent  was successful\n"
-								+ "Book Name :" + book.getBookName() + "\nRent code :" + cod1
-								+ "\nThe Date to return the book is :" + dead.createNewData());
+                         dataForPrint="Client " + client.getClientName() + "\nRent  was successful\n"
+		                  + "Book Name :" + book.getBookName() + "\nRent code :" + cod1
+		                  + "\nThe Date to return the book is :" + dead.createNewData();
+						System.out.println(dataForPrint);
 						return;
-						// char op1 = ConsoleReader.scanChar("Print the note
-						// ?(y/n)");
-						// if (op1 == 'y') {
-						// file.FileWriter();
-						// } else {
-						// System.out.println("rent finish");
-						// }
+//						 char op1 = ConsoleReader.scanChar("Print the note?(y/n)");
+//						 if (op1 == 'y') {
+//						
+//						FileWriter print=new FileWriter();
+//						print.writing();
+//						System.out.println("Note was sucesfull print");
+//						 } else {
+//						 System.out.println("rent finish");
+//						 return;
+//						 }
 
 					} 
 					else {
@@ -71,5 +79,12 @@ public class RentRegister implements register<Rent> {
 
 	}
 
+//	public String getDataForPrint() {
+//		return dataForPrint;
+//	}
+
+	
+
+	
 
 }

@@ -1,10 +1,10 @@
 package menuLayOut;
-
+/**
+ * @author Pedro
+ *
+ */
 public class ReportClientLayOut implements layOut {
-	public final int OP_REPORT_TYPE_A_CLIENT = 1;
-	public final int OP_REPROT_TYPE_B_CLIENT = 2;
-	public final int OP_REPROT_TYPE_C_CLIENT = 3;
-	public final int OP_BACK_TO_MENU = 4;
+
 
 	public String getOptionLayOut() {
 		return ("\n------------------------------------------\n" 

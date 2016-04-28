@@ -1,5 +1,8 @@
 package profile;
-
+/**
+ * @author Pedro
+ *
+ */
 public class Client {
 
 	// - Cadastro de clientes: cliente contém como informação a

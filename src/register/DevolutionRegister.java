@@ -1,5 +1,8 @@
 package register;
-
+/**
+ * @author Pedro
+ *
+ */
 import profile.Devolution;
 import profile.Rent;
 import repository.RentRepository;

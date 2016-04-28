@@ -1,7 +1,6 @@
 package menu;
 
 import menuLayOut.SearchMenuLayOut;
-import repository.ClientRepository;
 import util.ConsoleReader;
 
 public class SearchMenu {
@@ -20,26 +19,16 @@ public class SearchMenu {
 
 			switch (option) {
 			case 1:
-				try {
-					String name = ConsoleReader.scanString("Type the Name:");
-					System.out.println(ClientRepository.getInstance().searchByName(name));
-				} catch (Exception e) {
-					System.out.println("Error on format" + e);
-				}
+				System.out.println("Going  to the Client Search menu");
+				SearchMenuClient menuC = new SearchMenuClient();
+				menuC.Search();
 				break;
 			case 2:
-				try {
-					String token = ConsoleReader.scanString("Type the token:");
-					System.out.println(ClientRepository.getInstance().searchByToken(token));
-				} catch (Exception e) {
-
-					System.out.println("Error on format" + e);
-				}
+				System.out.println("Going  to the Book Search menu");
+				SearchMenuBook menuB = new SearchMenuBook();
+				menuB.Search();
 				break;
 			case 3:
-				// not done yet
-				break;
-			case 4:
 				System.out.println("Going back to the main menu");
 				MainMenu menuMain = new MainMenu();
 				menuMain.mainSearch();

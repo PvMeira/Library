@@ -1,5 +1,8 @@
 package util;
-
+/**
+ * @author Pedro
+ *
+ */
 import java.security.SecureRandom;
 import java.util.Random;
 import java.math.BigInteger;
@@ -13,7 +16,7 @@ public final class TokenCreation {
 	}
 
 	public final int codRentCreation() {
-		int i = generator.nextInt(50);
+		int i = generator.nextInt(1150);
 		return i;
 	}
 

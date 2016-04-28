@@ -1,5 +1,8 @@
 package main;
-
+/**
+ * @author Pedro
+ *
+ */
 import menu.MainMenu;
 
 public class Main_class {

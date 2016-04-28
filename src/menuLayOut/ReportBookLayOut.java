@@ -1,11 +1,11 @@
 package menuLayOut;
-
+/**
+ * @author Pedro
+ *
+ */
 public class ReportBookLayOut implements layOut{
 	
-	public final int OP_REPORT_TYPE_A_BOOK = 1;
-	public final int OP_REPROT_TYPE_B_BOOK = 2;
-	public final int OP_REPROT_TYPE_C_BOOK = 3;
-	public final int OP_BACK_TO_MENU = 4;
+	
 
 	@Override
 	public String getOptionLayOut() {

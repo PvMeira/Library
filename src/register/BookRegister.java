@@ -1,5 +1,8 @@
 package register;
-
+/**
+ * @author Pedro
+ *
+ */
 import profile.Book;
 import repository.BookRepository;
 import util.ConsoleReader;

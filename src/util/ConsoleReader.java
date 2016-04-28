@@ -1,5 +1,8 @@
 package util;
-
+/**
+ * @author Pedro
+ *
+ */
 import java.util.Scanner;
 
 public class ConsoleReader {

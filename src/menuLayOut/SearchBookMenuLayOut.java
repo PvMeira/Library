@@ -1,12 +1,10 @@
 package menuLayOut;
-
+/**
+ * @author Pedro
+ *
+ */
 public class SearchBookMenuLayOut implements layOut {
 
-	public final int OP_SEARCH_BY_NAME = 1;
-	public final int OP_SEARCH_BY_Author = 2;
-	public final int OP_SEARCH_BY_publishingCompany = 3;
-	public final int OP_SEARCH_BY_releaseyear = 4;
-	public final int OP_BACK_TO_MENU = 5;
 
 	public String getOptionLayOut() {
 		return ("\n--------------------------------------\n" 

@@ -1,12 +1,10 @@
 package menuLayOut;
-
+/**
+ * @author Pedro
+ *
+ */
 public class MainMenuLayOut implements layOut{
-	public final int GO_TO_CLIENT_MENU = 1;
-	public final int GO_TO_BOOK_MENU = 2;
-	public final int GO_TO_SEARCH_MENU = 3;
-	public final int INFORM_A_NEW_RENT = 4;
-	public final int REGISTER_A_NEW_DEVOLUTION = 5;
-	public final int OP_EXIT_APLICATION = 6;
+
 
 	public String getOptionLayOut() {
 		return ("\n--------------------------------------\n" 
