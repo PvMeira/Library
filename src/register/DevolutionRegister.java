@@ -1,4 +1,5 @@
 package register;
+
 /**
  * @author Pedro
  *
@@ -18,7 +19,7 @@ public class DevolutionRegister implements register<Devolution> {
 		try {
 			Integer codeDevolution = ConsoleReader.scanInt("Type the rent code");
 			rent = RentRepository.getInstance().searchByID(codeDevolution);
-			if (codeDevolution == rent.getCodRent()) {
+			if (codeDevolution.equals(rent.getCodRent())) {
 				char op = ConsoleReader.scanChar("Renew the DeadLine fot the book (Y/N)");
 				if (op == 'N') {
 					rent.getBookRent().setAvaliableDevolution();
