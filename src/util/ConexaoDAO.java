@@ -40,4 +40,4 @@ public abstract class ConexaoDAO {
 			Logger.getLogger(ConexaoDAO.class.getName()).log(Level.SEVERE, null, ex);
 		}
 	}
-} // fim da classe
+}
