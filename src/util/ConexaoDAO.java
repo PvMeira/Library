@@ -6,12 +6,12 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public abstract class ConectionDAO {
+public abstract class ConexaoDAO {
 
 	private static final String DRIVER = "org.postgresql.Driver";
-	private static final String DBURL = "jdbc:postgresql:// LOCALHOST:5432/library";
+	private static final String DBURL = "jdbc:postgresql://LOCALHOST:5432/library";
 	private static final String USER = "postgres";
-	private static final String SENHA = "123";
+	private static final String SENHA = "123456";
 	private static Connection conn = null;
 
 	String connectionUrl = "jdbc:postgresql://localhost:5432;"
@@ -37,7 +37,7 @@ public abstract class ConectionDAO {
 		try {
 			conn.close();
 		} catch (SQLException ex) {
-			Logger.getLogger(ConectionDAO.class.getName()).log(Level.SEVERE, null, ex);
+			Logger.getLogger(ConexaoDAO.class.getName()).log(Level.SEVERE, null, ex);
 		}
 	}
 } // fim da classe
