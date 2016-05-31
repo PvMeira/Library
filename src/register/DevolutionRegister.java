@@ -15,7 +15,7 @@ public class DevolutionRegister implements register<Devolution> {
 	Rent rent;
 
 	@Override
-	public void addNew() {
+	public void registerNewBook() {
 		try {
 			Integer codeDevolution = ConsoleReader.scanInt("Type the rent code");
 			rent = RentRepository.getInstance().searchByID(codeDevolution);

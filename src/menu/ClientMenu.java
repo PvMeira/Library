@@ -27,7 +27,7 @@ public class ClientMenu {
 			switch (op) {
 			case 1:
 
-				c.addNew();
+				c.registerNewBook();
 				System.out.println("New client add !");
 				break;
 			case 2:

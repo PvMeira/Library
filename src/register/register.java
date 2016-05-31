@@ -4,5 +4,5 @@ package register;
  *
  */
 public interface register<Type> {
-	public void addNew();
+	public void registerNewBook();
 }

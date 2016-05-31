@@ -1,4 +1,5 @@
 package profile;
+
 /**
  * @author Pedro
  *
@@ -7,6 +8,7 @@ public class Book {
 	private String bookName, writers, publishingCompany;
 	private Integer releaseyear, countBookRent, IsbnCode;
 	private boolean avaliable;
+	private int id;
 
 	public Book(Integer isbnCode, String bookName, String writers, String publishingCompany, int releaseyear) {
 
@@ -19,10 +21,17 @@ public class Book {
 		this.avaliable = true;
 	}
 
-	@Override
-	public String toString() {
-		return "\nISBN CODE   :" + IsbnCode + "\nBook Name   :" + bookName + "\nWriter(s)   :" + writers
-				+ "\nPublishing Company   :" + publishingCompany + "\nRelease Year   :" + releaseyear;
+	public Book(String bookName, String writers, String publishingCompany, Integer releaseyear, Integer countBookRent,
+			Integer isbnCode, boolean avaliable, int id) {
+
+		this.bookName = bookName;
+		this.writers = writers;
+		this.publishingCompany = publishingCompany;
+		this.releaseyear = releaseyear;
+		this.countBookRent = countBookRent;
+		IsbnCode = isbnCode;
+		this.avaliable = avaliable;
+		this.id = id;
 	}
 
 	public Integer getIsbnCode() {
@@ -91,6 +100,14 @@ public class Book {
 
 	public void setAvaliableDevolution() {
 		this.avaliable = true;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 }

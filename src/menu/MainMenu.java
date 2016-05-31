@@ -45,11 +45,11 @@ public class MainMenu {
 				break;
 			case 4:
 				RentRegister rent = new RentRegister();
-				rent.addNew();
+				rent.registerNewBook();
 				break;
 			case 5:
 				DevolutionRegister devo = new DevolutionRegister();
-				devo.addNew();
+				devo.registerNewBook();
 
 				break;
 

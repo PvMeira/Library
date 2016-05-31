@@ -11,7 +11,7 @@ import util.TokenCreation;
 public class ClientRegister implements register<Client> {
 
 	@Override
-	public void addNew() {
+	public void registerNewBook() {
 		try {
 			TokenCreation token = new TokenCreation();
 			String nameClient = ConsoleReader.scanString("Type the Client name:");

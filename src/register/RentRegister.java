@@ -24,7 +24,7 @@ public class RentRegister implements register<Rent> {
 	String dataForPrint;
 
 	@Override
-	public void addNew() {
+	public void registerNewBook() {
 		try {
 
 			Integer cod = ConsoleReader.scanInt("Type the ISBN of the book :");

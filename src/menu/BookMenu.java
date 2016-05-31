@@ -1,4 +1,5 @@
 package menu;
+
 /**
  * @author Pedro
  *
@@ -17,34 +18,47 @@ public class BookMenu {
 			try {
 				System.out.println(menu.getOptionLayOut());
 				op = ConsoleReader.scanInt("Type the Option :");
+
+				switch (op) {
+				case 1:
+					b.registerNewBook();
+					System.out.println("Livro adicionado");
+					break;
+				case 2:
+					System.out.println("Deletar livro existente");
+					SearchMenuBook sMenu = new SearchMenuBook();
+					sMenu.Search();
+					break;
+				case 3:
+					System.out.println("Atualizar livro existente");
+					ReportBookMenu menu1 = new ReportBookMenu();
+					menu1.SearchBook();
+					break;
+				case 4:
+					System.out.println("Listar todos livros existentes");
+					MainMenu menuMain = new MainMenu();
+					menuMain.mainSearch();
+					break;
+
+				case 5:
+					System.out.println("Consultar livro pelo nome");
+					MainMenu menuMain = new MainMenu();
+					menuMain.mainSearch();
+					break;
+
+				case 6:
+					System.out.println("Sair");
+					MainMenu menuMain = new MainMenu();
+					menuMain.mainSearch();
+
+				default:
+					System.out.println("opção Inválida");
+				}
 			} catch (Exception e) {
 
-				System.out.println("Format error, only number accept" + e);
+				System.err.println("Formato Inválido, apenas numeros aceitos!");
 			}
-
-			switch (op) {
-			case 1:			
-				b.addNew();
-				System.out.println("New book  add !");
-				break;
-			case 2:
-				System.out.println("Going to the Search Menu");
-				SearchMenuBook sMenu = new SearchMenuBook();
-				sMenu.Search();
-				break;
-			case 3:
-				System.out.println("Going to Report book menu");
-				ReportBookMenu menu1 = new ReportBookMenu();
-				menu1.SearchBook();
-				break;
-			case 4:
-				System.out.println("Going back to the main menu");
-				MainMenu menuMain = new MainMenu();
-				menuMain.mainSearch();
-				break;
-			}
-
-		} while (op != 4);
+		} while (op != 6);
 
 	}
 }
