@@ -25,31 +25,26 @@ public class BookMenu {
 					System.out.println("Livro adicionado");
 					break;
 				case 2:
-					System.out.println("Deletar livro existente");
-					SearchMenuBook sMenu = new SearchMenuBook();
-					sMenu.Search();
+					b.deleteBook();
+					System.out.println("Livro deletado");
 					break;
 				case 3:
-					System.out.println("Atualizar livro existente");
-					ReportBookMenu menu1 = new ReportBookMenu();
-					menu1.SearchBook();
+					b.updateBook();
+					System.out.println("Livro atualizado");
 					break;
 				case 4:
-					System.out.println("Listar todos livros existentes");
-					MainMenu menuMain = new MainMenu();
-					menuMain.mainSearch();
+					System.out.println("Listar todos livros existentes...");
+					b.listBooks();
 					break;
 
 				case 5:
 					System.out.println("Consultar livro pelo nome");
-					MainMenu menuMain = new MainMenu();
-					menuMain.mainSearch();
+					b.searchBookByName();
 					break;
 
 				case 6:
 					System.out.println("Sair");
-					MainMenu menuMain = new MainMenu();
-					menuMain.mainSearch();
+					
 
 				default:
 					System.out.println("opção Inválida");

@@ -1,12 +1,12 @@
 package menu;
 
-import menuLayOut.SearchMenuClientLayOut;
+/*import menuLayOut.SearchMenuClientLayOut;
 import repository.ClientRepository;
 import util.ConsoleReader;
-/**
+*//**
  * @author Pedro
  *
- */
+ *//*
 public class SearchMenuClient {
 
 	public void Search() {
@@ -50,3 +50,4 @@ public class SearchMenuClient {
 		} while (option != 5);
 	}
 }
+*/

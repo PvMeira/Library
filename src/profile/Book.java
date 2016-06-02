@@ -10,7 +10,8 @@ public class Book {
 	private boolean avaliable;
 	private int id;
 
-	public Book(Integer isbnCode, String bookName, String writers, String publishingCompany, int releaseyear) {
+	public Book(Integer isbnCode, String bookName, String writers, String publishingCompany, int releaseyear,
+			boolean avaliable, int id2) {
 
 		this.IsbnCode = isbnCode;
 		this.bookName = bookName;
@@ -19,19 +20,19 @@ public class Book {
 		this.releaseyear = releaseyear;
 		this.countBookRent = 0;
 		this.avaliable = true;
+		this.id = id2;
 	}
 
-	public Book(String bookName, String writers, String publishingCompany, Integer releaseyear, Integer countBookRent,
-			Integer isbnCode, boolean avaliable, int id) {
+	public Book(int isbc, String name, String writer, String publishingCompany2, int releaseYear2, boolean status) {
 
-		this.bookName = bookName;
-		this.writers = writers;
-		this.publishingCompany = publishingCompany;
-		this.releaseyear = releaseyear;
-		this.countBookRent = countBookRent;
-		IsbnCode = isbnCode;
-		this.avaliable = avaliable;
-		this.id = id;
+		this.bookName = name;
+		this.writers = writer;
+		this.publishingCompany = publishingCompany2;
+		this.releaseyear = releaseYear2;
+		
+		IsbnCode = isbc;
+		this.avaliable = status;
+
 	}
 
 	public Integer getIsbnCode() {

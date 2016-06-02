@@ -11,7 +11,7 @@ public abstract class ConexaoDAO {
 	private static final String DRIVER = "org.postgresql.Driver";
 	private static final String DBURL = "jdbc:postgresql://LOCALHOST:5432/library";
 	private static final String USER = "postgres";
-	private static final String SENHA = "123456";
+	private static final String SENHA = "postgres";
 	private static Connection conn = null;
 
 	String connectionUrl = "jdbc:postgresql://localhost:5432;"

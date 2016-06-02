@@ -4,28 +4,30 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+import repository.dao;
+
 public abstract class AbstractDao<T> implements dao<T> {
-	protected Connection conexao;
-	protected PreparedStatement comando;
+	protected Connection conection;
+	protected PreparedStatement comand;
 
-	public Connection conectar(String sql) throws SQLException {
-		conexao = ConexaoDAO.createConnection();
-		comando = conexao.prepareStatement(sql);
-		return conexao;
+	public Connection conect(String sql) throws SQLException {
+		conection = ConexaoDAO.createConnection();
+		comand = conection.prepareStatement(sql);
+		return conection;
 	}
 
-	public void conectarObtendoId(String sql) throws SQLException {
-		conexao = ConexaoDAO.createConnection();
-		comando = conexao.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
+	public void conectUsingId(String sql) throws SQLException {
+		conection = ConexaoDAO.createConnection();
+		comand = conection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
 	}
 
-	public void fecharConexao() {
+	public void closeConection() {
 		try {
-			if (comando != null) {
-				comando.close();
+			if (comand != null) {
+				comand.close();
 			}
-			if (conexao != null) {
-				conexao.close();
+			if (conection != null) {
+				conection.close();
 			}
 		} catch (SQLException ex) {
 			System.err.println("Erro de Sistema - Erro ao encerrar a conexao");

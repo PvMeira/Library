@@ -1,13 +1,13 @@
 package menu;
 
-import menuLayOut.ClientMenuLayOut;
+/*import menuLayOut.ClientMenuLayOut;
 import register.ClientRegister;
 import report.ClientsReport;
 import util.ConsoleReader;
-/**
+*//**
  * @author Pedro
  *
- */
+ *//*
 public class ClientMenu {
 	ClientMenuLayOut menu = new ClientMenuLayOut();
 	ClientRegister c = new ClientRegister();
@@ -52,3 +52,4 @@ public class ClientMenu {
 
 	}
 }
+*/

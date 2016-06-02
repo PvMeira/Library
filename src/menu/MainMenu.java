@@ -1,9 +1,8 @@
 package menu;
 
 import menuLayOut.MainMenuLayOut;
-import register.DevolutionRegister;
-import register.RentRegister;
 import util.ConsoleReader;
+
 /**
  * @author Pedro
  *
@@ -18,7 +17,7 @@ public class MainMenu {
 		do {
 			try {
 				System.out.println(menu.getOptionLayOut());
-				option = ConsoleReader.scanInt("Type the Option :");
+				option = ConsoleReader.scanInt("Digite uma opção :");
 			} catch (Exception e) {
 
 				System.out.println("Format error, only number accept" + e);
@@ -26,30 +25,21 @@ public class MainMenu {
 
 			switch (option) {
 			case 1:
-				System.out.println("Going to Clients menu");
-				ClientMenu Clientmenu = new ClientMenu();
-				Clientmenu.clientMenu();
+				System.out.println("Indo para o menu de Livro");
+				BookMenu b = new BookMenu();
+				b.bookMenu();
 
 				break;
 			case 2:
-				System.out.println("Going to Books menu");
-				BookMenu bmenu = new BookMenu();
-				bmenu.bookMenu();
 
 				break;
 			case 3:
-				System.out.println("Going to Search menu");
-				SearchMenu sMenu = new SearchMenu();
-				sMenu.Search();
 
 				break;
 			case 4:
-				RentRegister rent = new RentRegister();
-				rent.registerNewBook();
+
 				break;
 			case 5:
-				DevolutionRegister devo = new DevolutionRegister();
-				devo.registerNewBook();
 
 				break;
 
