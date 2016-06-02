@@ -143,12 +143,12 @@ public class BookDaoBd extends AbstractDao<Book> implements BookDAO {
 			ResultSet result = comand.executeQuery();
 			if (result.next()) {
 				int id = result.getInt("id");
-				String name = result.getString("name");
+				String name = result.getString("name1");
 				int ISBC = result.getInt("ISBC");
 				String writer = result.getString("writer");
 				String publishingCompany = result.getString("publishingCompany");
 				int releaseYear = result.getInt("releaseYear");
-				boolean status = result.getBoolean("status");
+				boolean status = result.getBoolean("avaliable");
 				Book book = new Book(ISBC, name, writer, publishingCompany, releaseYear, status, id);
 				return book;
 			}
