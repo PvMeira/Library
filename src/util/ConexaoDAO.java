@@ -3,41 +3,29 @@ package util;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public abstract class ConexaoDAO {
+	private final static String HOST = "localhost";
+	private final static String PORT = "5432";
+	private final static String BD = "library";
+	private final static String URL = "jdbc:postgresql://" + HOST + ":" + PORT + "/" + BD;
+	private final static String USUARIO = "postgres";
+	private final static String SENHA = "123456";
 
-	private static final String DRIVER = "org.postgresql.Driver";
-	private static final String DBURL = "jdbc:postgresql://LOCALHOST:5432/library";
-	private static final String USER = "postgres";
-	private static final String SENHA = "postgres";
-	private static Connection conn = null;
-
-	String connectionUrl = "jdbc:postgresql://localhost:5432;"
-			+ "databaseName=AdventureWorks;user=UserName;password=*****";
-
-	// inicio da conex„o com banco
-	public static Connection createConnection() {
-
+	public static Connection getConnection() {
+		Connection conexao = null;
 		try {
-			Class.forName(DRIVER);
-			conn = DriverManager.getConnection(DBURL, USER, SENHA);
-			System.out.println("Conex„o OK!");
+			Class.forName("org.postgresql.Driver");
+			conexao = DriverManager.getConnection(URL, USUARIO, SENHA);
 
 		} catch (ClassNotFoundException ex) {
-			System.out.println("Problemas no Driver de Conex„o");
+			System.err.println("Erro de Sistema - Classe do Driver Nao Encontrada!");
+			throw new RuntimeException(ex);
 		} catch (SQLException ex) {
-			ex.printStackTrace();
+			System.err.println("Erro de Sistema - Problema na conex√£o do banco de dados");
+			throw new RuntimeException(ex);
 		}
-		return conn;
+		return (conexao);
 	}
 
-	public void Close() {
-		try {
-			conn.close();
-		} catch (SQLException ex) {
-			Logger.getLogger(ConexaoDAO.class.getName()).log(Level.SEVERE, null, ex);
-		}
-	}
 }

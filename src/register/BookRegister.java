@@ -16,7 +16,7 @@ public class BookRegister {
 	private BookService bookService;
 
 	public void registerNewBook() {
-
+		bookService=new BookService();
 		String name = ConsoleReader.scanString("Nome: ");
 		String writer = ConsoleReader.scanString("Autor: ");
 		int ISBC = ConsoleReader.scanInt("Codigo ISbc: ");
@@ -27,7 +27,8 @@ public class BookRegister {
 			System.out.println("Livro " + name + "Cadastrado com sucesso!");
 		} catch (Exception e) {
 
-			System.out.println("Invalid format InPut :");
+			System.out.println("Invalid format InPut :"+e.getMessage());
+			e.printStackTrace();
 		}
 
 	}

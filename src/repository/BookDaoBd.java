@@ -15,7 +15,7 @@ public class BookDaoBd extends AbstractDao<Book> implements BookDAO {
 	public void save(Book book) {
 		int id = 0;
 		try {
-			String sql = "INSERT INTO book (name,ISBC,writer,publishingCompany,releaseyear,avaliable)"
+			String sql = "INSERT INTO book (name1,ISBC,writer,publishingCompany,releaseyear,avaliable)"
 					+ "VALUES (?,?,?,?,?,?)";
 			conectUsingId(sql);
 			comand.setString(1, book.getBookName());
@@ -62,7 +62,7 @@ public class BookDaoBd extends AbstractDao<Book> implements BookDAO {
 	@Override
 	public void update(Book book) {
 		try {
-			String sql = "UPDATE book SET name=?, ISBC=?, writer=?, publishingCompany=?, releasyear=?, avaliable=?"
+			String sql = "UPDATE book SET name1=?, ISBC=?, writer=?, publishingCompany=?, releasyear=?, avaliable=?"
 					+ "WHERE id=?";
 			conect(sql);
 			comand.setString(1, book.getBookName());
@@ -164,7 +164,7 @@ public class BookDaoBd extends AbstractDao<Book> implements BookDAO {
 	@Override
 	public List<Book> searchByName(String name) {
 		List<Book> listOfbooks = new ArrayList<>();
-		String sql = "SELECT * FROM book WHERE name ?";
+		String sql = "SELECT * FROM book WHERE name1 ?";
 		try {
 			conect(sql);
 			comand.setString(1, "%" + name + "%");

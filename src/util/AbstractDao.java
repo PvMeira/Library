@@ -11,13 +11,13 @@ public abstract class AbstractDao<T> implements dao<T> {
 	protected PreparedStatement comand;
 
 	public Connection conect(String sql) throws SQLException {
-		conection = ConexaoDAO.createConnection();
+		conection = ConexaoDAO.getConnection();
 		comand = conection.prepareStatement(sql);
 		return conection;
 	}
 
 	public void conectUsingId(String sql) throws SQLException {
-		conection = ConexaoDAO.createConnection();
+		conection = ConexaoDAO.getConnection();
 		comand = conection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
 	}
 

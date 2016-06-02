@@ -3,7 +3,7 @@ package menuLayOut;
  * @author Pedro
  *
  */
-public class MainMenuLayOut implements layOut{
+public class MainMenuLayOut {
 
 
 	public String getOptionLayOut() {
