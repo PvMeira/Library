@@ -34,6 +34,7 @@ public class BookRegister {
 	}
 
 	public void listBooks() {
+		bookService=new BookService();
 		List<Book> listBooks = bookService.list();
 		this.showBookList(listBooks);
 	}
@@ -48,6 +49,7 @@ public class BookRegister {
 	}
 
 	public void showBookList(List<Book> listBooks) {
+		bookService=new BookService();
 		if (listBooks.isEmpty()) {
 			System.out.println("Nenhum livro cadastrado");
 		} else {
@@ -65,6 +67,7 @@ public class BookRegister {
 	}
 
 	public void updateBook() {
+		bookService=new BookService();
 		int ISBC = ConsoleReader.scanInt("Codigo do livro a ser alterado: ");
 		try {
 			Book book = bookService.SerachByCode(ISBC);
@@ -103,6 +106,7 @@ public class BookRegister {
 		}
 	}
 	public void deleteBook() {
+		bookService=new BookService();
 		int ISBC = ConsoleReader.scanInt("Codigo Isbc do livro a ser deletado:");
 		try {
 			Book book = bookService.SerachByCode(ISBC);
