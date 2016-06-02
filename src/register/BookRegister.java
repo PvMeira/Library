@@ -76,7 +76,7 @@ public class BookRegister {
 			String name = ConsoleReader.scanString("Nome:");
 			String writer = ConsoleReader.scanString("Autor:");
 			String publishingCompany = ConsoleReader.scanString("Editora:");
-			int releaseyear = ConsoleReader.scanInt("Autor:");
+			int releaseyear = ConsoleReader.scanInt("ano de lançamento:");
 			if (!name.isEmpty()) {
 				book.setBookName(name);
 			}

@@ -9,7 +9,7 @@ import profile.Book;
 import util.AbstractDao;
 import util.BDExeption;
 
-public class BookDaoBd extends AbstractDao<Book> implements BookDAO {
+public class BookDaoBd extends AbstractDao<Book>implements BookDAO {
 
 	@Override
 	public void save(Book book) {
@@ -90,13 +90,13 @@ public class BookDaoBd extends AbstractDao<Book> implements BookDAO {
 			ResultSet result = comand.executeQuery();
 			while (result.next()) {
 				int id = result.getInt("id");
-				String name = result.getString("Nome");
+				String name = result.getString("Name");
 				int isbc = result.getInt("ISBC");
-				String writer = result.getString("Escritor");
-				String publishingCompany = result.getString("editora");
-				int releaseYear = result.getInt("Ano");
-				boolean status = result.getBoolean("Estado");
-				Book book = new Book(isbc, name, writer, publishingCompany, releaseYear, status,id);
+				String writer = result.getString("writer");
+				String publishingCompany = result.getString("publishingCompany");
+				int releaseYear = result.getInt("releaseYear");
+				boolean status = result.getBoolean("avaliable");
+				Book book = new Book(isbc, name, writer, publishingCompany, releaseYear, status, id);
 				listOfBooks.add(book);
 			}
 		} catch (Exception e) {
@@ -116,12 +116,12 @@ public class BookDaoBd extends AbstractDao<Book> implements BookDAO {
 			comand.setInt(1, id);
 			ResultSet result = comand.executeQuery();
 			if (result.next()) {
-				String name = result.getString("Nome");
+				String name = result.getString("name");
 				int isbc = result.getInt("ISBC");
-				String writer = result.getString("Escritor");
-				String publishingCompany = result.getString("editora");
-				int releaseYear = result.getInt("Ano");
-				boolean status = result.getBoolean("Estado");
+				String writer = result.getString("writer");
+				String publishingCompany = result.getString("publishingCompany");
+				int releaseYear = result.getInt("releaseYear");
+				boolean status = result.getBoolean("avaliable");
 				Book book = new Book(isbc, name, writer, publishingCompany, releaseYear, status);
 				return book;
 			}
@@ -171,12 +171,12 @@ public class BookDaoBd extends AbstractDao<Book> implements BookDAO {
 			ResultSet result = comand.executeQuery();
 			while (result.next()) {
 				int id = result.getInt("id");
-				String nameZ = result.getString("Nome");
+				String nameZ = result.getString("Name");
 				int ISBC = result.getInt("ISBC");
-				String writer = result.getString("Escritor");
-				String publishingCompany = result.getString("editora");
-				int releaseYear = result.getInt("Ano");
-				boolean status = result.getBoolean("Estado");
+				String writer = result.getString("writer");
+				String publishingCompany = result.getString("publishingCompany");
+				int releaseYear = result.getInt("releaseYear");
+				boolean status = result.getBoolean("avaliable");
 				Book book = new Book(ISBC, nameZ, writer, publishingCompany, releaseYear, status, id);
 				listOfbooks.add(book);
 			}
