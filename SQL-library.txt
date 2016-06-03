@@ -1,0 +1,14 @@
+create table book(
+id serial primary key,
+name1 varchar(50),
+ISBC int ,
+writer varchar(50),
+publishingCompany varchar(50),
+releaseyear bigint,
+avaliable boolean
+);
+
+INSERT INTO book (name1,ISBC,writer,publishingCompany,releaseyear,avaliable) VALUES ('harry Potter : As Reliquias da Morte Part1',123,'J.K','O globo',2006,true);
+
+select*from book 
+					
