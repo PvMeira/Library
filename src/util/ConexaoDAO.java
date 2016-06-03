@@ -10,7 +10,7 @@ public abstract class ConexaoDAO {
 	private final static String BD = "library";
 	private final static String URL = "jdbc:postgresql://" + HOST + ":" + PORT + "/" + BD;
 	private final static String USUARIO = "postgres";
-	private final static String SENHA = "123456";
+	private final static String SENHA = "postgres";
 
 	public static Connection getConnection() {
 		Connection conexao = null;

@@ -23,7 +23,7 @@ public class BookRegister {
 		String publishCompany = ConsoleReader.scanString("Editora: ");
 		int releaseYear = ConsoleReader.scanInt("Ano de lançamento: ");
 		try {
-			bookService.save(new Book(ISBC, writer, name, publishCompany, releaseYear,true));
+			bookService.save(new Book(ISBC, name, writer, publishCompany, releaseYear,true));
 			System.out.println("Livro " + name + "Cadastrado com sucesso!");
 		} catch (Exception e) {
 
@@ -40,6 +40,7 @@ public class BookRegister {
 	}
 
 	public void showBook(Book b) {
+		bookService=new BookService();
 		System.out.println("--------------");
 		System.out.println("Book");
 		System.out.println("Nome: " + b.getBookName());
@@ -97,6 +98,7 @@ public class BookRegister {
 		} 
 	}
 	public void searchBookByName(){
+		bookService=new BookService();
 		String name = ConsoleReader.scanString("Nome :");
 		try {
 			List<Book> listBook= bookService.SerachByName(name);
