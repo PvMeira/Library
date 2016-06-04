@@ -8,7 +8,15 @@ releaseyear bigint,
 avaliable boolean
 );
 
+create table client(
+id serial primary key,
+name1 varchar(50),
+registration int ,
+phone varchar(50)
+);
+
 INSERT INTO book (name1,ISBC,writer,publishingCompany,releaseyear,avaliable) VALUES ('harry Potter : As Reliquias da Morte Part1',123,'J.K','O globo',2006,true);
+insert into client (name1,registration,phone)VALUES('pedro2',123,'(41)141414141');
 
 select*from book 
 					

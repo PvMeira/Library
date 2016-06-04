@@ -31,7 +31,9 @@ public class MainMenu {
 
 				break;
 			case 2:
-
+				System.out.println("Indo para o menu de Cliente");
+				ClientMenu c = new ClientMenu();
+				c.clientMenu();
 				break;
 			case 3:
 

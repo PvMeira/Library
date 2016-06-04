@@ -3,11 +3,9 @@ package br.library.controller.register;
 import java.util.List;
 
 import br.library.controller.service.ClientService;
-import br.library.domain.profile.Book;
 import br.library.domain.profile.Client;
 import br.library.infra.persistence.setup.UIUtil;
 import br.library.infra.util.ConsoleReader;
-import br.library.infra.util.CustomExeption;
 
 public class ClientRegister {
 	private ClientService clientService;
@@ -21,7 +19,7 @@ public class ClientRegister {
 		try {
 			clientService.save(new Client(name, registration, phone));
 			System.out.println("Cliente " + name + "Cadastrado com sucesso!");
-		} catch (CustomExeption e) {
+		} catch (Exception e) {
 
 			System.out.println("Invalid format InPut :" + e.getMessage());
 			e.printStackTrace();
@@ -31,12 +29,12 @@ public class ClientRegister {
 
 	public void listClient() {
 		clientService = new ClientService();
-		List<Client> listClients = ClientService.list();
+		List<Client> listClients = clientService.list();
 		this.showClientList(listClients);
 	}
 
 	public void showClient(Client b) {
-		clientService=new ClientService();
+		clientService = new ClientService();
 		System.out.println("--------------");
 		System.out.println("Cliente");
 		System.out.println("Nome: " + b.getName());
@@ -63,11 +61,11 @@ public class ClientRegister {
 
 	}
 
-	public void updateBook() {
+	public void updateClient() {
 		clientService = new ClientService();
 		int registration = ConsoleReader.scanInt("Matricula do cliente a ser atualizado: ");
 		try {
-			Client client = clientService.SerachByRegister(registration);
+			Client client = clientService.SerachByRegistration(registration);
 			this.showClient(client);
 			System.out.println("Digite as informações do Cliente que deseja alterar[Vazio caso nao queira]");
 			String name = ConsoleReader.scanString("Nome:");
@@ -87,7 +85,7 @@ public class ClientRegister {
 			clientService.update(client);
 			System.out.println("Cliente " + name + " atualizado com sucesso");
 
-		} catch (CustomExeption e) {
+		} catch (Exception e) {
 			UIUtil.showError(e);
 		}
 	}
@@ -98,14 +96,14 @@ public class ClientRegister {
 		try {
 			List<Client> listClient = clientService.SerachByName(name);
 			this.showClientList(listClient);
-		} catch (CustomExeption e) {
+		} catch (Exception e) {
 			UIUtil.showError(e.getMessage());
 		}
 	}
 
 	public void deleteClient() {
 		clientService = new ClientService();
-		int registration = ConsoleReader.scanInt("Codigo Isbc do livro a ser deletado:");
+		int registration = ConsoleReader.scanInt("Registro do cliente a ser deletado:");
 		try {
 			Client client = clientService.SerachByRegistration(registration);
 			this.showClient(client);
@@ -116,7 +114,7 @@ public class ClientRegister {
 				System.out.println("Operação cancelada");
 			}
 
-		} catch (CustomExeption e) {
+		} catch (Exception e) {
 			UIUtil.showError(e.getMessage());
 		}
 	}

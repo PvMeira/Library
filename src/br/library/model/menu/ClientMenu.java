@@ -8,7 +8,7 @@ public class ClientMenu {
 	ClientMenuLayOut menu = new ClientMenuLayOut();
 	ClientRegister b = new ClientRegister();
 
-	public void bookMenu() {
+	public void clientMenu() {
 		int op = 0;
 		do {
 			try {
@@ -17,25 +17,25 @@ public class ClientMenu {
 
 				switch (op) {
 				case 1:
-					
+					b.registerNewClient();
 					System.out.println("Livro adicionado");
 					break;
 				case 2:
-					
+					b.deleteClient();
 					System.out.println("Livro deletado");
 					break;
 				case 3:
-					
+					b.updateClient();
 					System.out.println("Livro atualizado");
 					break;
 				case 4:
-					
+					b.listClient();
 					System.out.println("Listar todos livros existentes...");				
 					break;
 
 				case 5:
 					System.out.println("Consultar livro pelo nome");
-					
+					b.searchClientByName();
 					break;
 
 				case 6:
