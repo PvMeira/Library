@@ -27,8 +27,8 @@ public class ClientService {
 			throw new Exception("Campo Registro nao informado");
 		}
 		Client b = clientDAO.searchByRegistration(register);
-		if (b == null) {
-			throw new Exception("Livro nao encontrando");
+		if ( b == null) {
+			throw new Exception("Cliente nao encontrando");
 		}
 		return (b);
 	}
