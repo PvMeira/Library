@@ -1,10 +1,11 @@
-package br.library.dao;
+package br.library.dao.impl;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.library.dao.interf.BookDAO;
 import br.library.domain.profile.Book;
 import br.library.infra.persistence.setup.BDExeption;
 

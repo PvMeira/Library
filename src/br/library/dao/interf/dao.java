@@ -1,4 +1,4 @@
-package br.library.dao;
+package br.library.dao.interf;
 
 import java.util.List;
 

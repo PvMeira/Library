@@ -2,9 +2,8 @@ package br.library.controller.service;
 
 import java.util.List;
 
-
-import br.library.dao.ClientDAO;
-import br.library.dao.ClientDAOBd;
+import br.library.dao.impl.ClientDAOBd;
+import br.library.dao.interf.ClientDAO;
 import br.library.domain.profile.Client;
 
 public class ClientService {

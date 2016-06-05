@@ -2,8 +2,8 @@ package br.library.controller.service;
 
 import java.util.List;
 
-import br.library.dao.BookDAO;
-import br.library.dao.BookDaoBd;
+import br.library.dao.impl.BookDaoBd;
+import br.library.dao.interf.BookDAO;
 import br.library.domain.profile.Book;
 
 public class BookService {

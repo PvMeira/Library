@@ -1,27 +1,27 @@
 package br.library.domain.profile;
 
-import java.text.DateFormat;
+import java.util.Date;
 
 public class Rent {
+
 	private int id;
 	private Client client;
-	private DateFormat deadLine;
-	private Book bookRent;
-	private Integer codRent;
+	private Book booksRent;
+	private Date rentData;
 
-	public Rent(int id, Client client, DateFormat deadLine, Book bookRent, Integer codRent) {	
-		this.id = id;
-		this.client = client;
-		this.deadLine = deadLine;
-		this.bookRent = bookRent;
-		this.codRent = codRent;
+	public Rent(Date dataRentRe, Client clientRe, Book booksRe) {
+		this.rentData = dataRentRe;
+		this.client = clientRe;
+		this.booksRent = booksRe;
+
 	}
 
-	public Rent(Client client, DateFormat deadLine, Book bookRent, Integer codRent) {
-		this.client = client;
-		this.deadLine = deadLine;
-		this.bookRent = bookRent;
-		this.codRent = codRent;
+	public Rent(int id, Date dataRentRe, Client clientRe, Book booksRe) {
+		this.id = id;
+		this.rentData = dataRentRe;
+		this.client = clientRe;
+		this.booksRent = booksRe;
+
 	}
 
 	public int getId() {
@@ -40,28 +40,25 @@ public class Rent {
 		this.client = client;
 	}
 
-	public DateFormat getDeadLine() {
-		return deadLine;
+	public Book getBooksRent() {
+		return booksRent;
 	}
 
-	public void setDeadLine(DateFormat deadLine) {
-		this.deadLine = deadLine;
+	public void setBooksRent(Book booksRent) {
+		this.booksRent = booksRent;
 	}
 
-	public Book getBookRent() {
-		return bookRent;
+	public Date getRentData() {
+		return rentData;
 	}
 
-	public void setBookRent(Book bookRent) {
-		this.bookRent = bookRent;
+	public void setRentData(Date rentData) {
+		this.rentData = rentData;
 	}
 
-	public Integer getCodRent() {
-		return codRent;
-	}
-
-	public void setCodRent(Integer codRent) {
-		this.codRent = codRent;
+	@Override
+	public String toString() {
+		return "Rent [id=" + id + ", client=" + client + ", booksRent=" + booksRent + ", rentData=" + rentData + "]";
 	}
 
 }

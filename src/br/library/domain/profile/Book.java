@@ -5,58 +5,47 @@ package br.library.domain.profile;
  *
  */
 public class Book {
-	private String bookName, writers, publishingCompany;
-	private Integer releaseyear, countBookRent, IsbnCode;
-	private boolean avaliable;
-	private int id;
+	private Long isbn;
+	private String name, publishingCompany, writer, year;
+	private boolean avaliable = true;
+	private int id, totalRentQuantity = 0;
 
-	public Book(Integer isbnCode, String bookName, String writers, String publishingCompany, int releaseyear,
-			boolean avaliable, int id2) {
-
-		this.IsbnCode = isbnCode;
-		this.bookName = bookName;
-		this.writers = writers;
+	public Book(Long isbnRe, String name, String publishingCompany, String writer, String year) {
+		this.isbn = isbnRe;
+		this.name = name;
 		this.publishingCompany = publishingCompany;
-		this.releaseyear = releaseyear;
-		this.countBookRent = 0;
+		this.writer = writer;
+		this.year = year;
 		this.avaliable = true;
-		this.id = id2;
+		this.totalRentQuantity = 0;
 	}
 
-	public Book(int isbc, String name, String writer, String publishingCompany2, int releaseYear2, boolean status) {
-
-		this.bookName = name;
-		this.writers = writer;
-		this.publishingCompany = publishingCompany2;
-		this.releaseyear = releaseYear2;
-		
-		IsbnCode = isbc;
-		this.avaliable = status;
-
+	public Book(int id, Long isbnRe, String name, String publishingCompany, String writer, String year,
+			boolean avaliableRe, int totalRentQuantityRe) {
+		this.id = id;
+		this.isbn = isbnRe;
+		this.name = name;
+		this.publishingCompany = publishingCompany;
+		this.writer = writer;
+		this.year = year;
+		this.avaliable = avaliableRe;
+		this.totalRentQuantity = totalRentQuantityRe;
 	}
 
-	public Integer getIsbnCode() {
-		return IsbnCode;
+	public Long getIsbn() {
+		return isbn;
 	}
 
-	public void setIsbnCode(Integer isbnCode) {
-		IsbnCode = isbnCode;
+	public void setIsbn(Long isbn) {
+		this.isbn = isbn;
 	}
 
-	public String getBookName() {
-		return bookName;
+	public String getName() {
+		return name;
 	}
 
-	public void setBookName(String booksName) {
-		bookName = booksName;
-	}
-
-	public String getWriters() {
-		return writers;
-	}
-
-	public void setWriters(String writers) {
-		this.writers = writers;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getPublishingCompany() {
@@ -67,40 +56,28 @@ public class Book {
 		this.publishingCompany = publishingCompany;
 	}
 
-	public Integer getReleaseyear() {
-		return releaseyear;
+	public String getWriter() {
+		return writer;
 	}
 
-	public void setReleaseyear(Integer releaseyear) {
-		this.releaseyear = releaseyear;
+	public void setWriter(String writer) {
+		this.writer = writer;
 	}
 
-	public Integer getCountBookRent() {
-		return countBookRent;
+	public String getYear() {
+		return year;
 	}
 
-	public void setCountBookRent(Integer countBookRent) {
-		this.countBookRent = countBookRent;
+	public void setYear(String year) {
+		this.year = year;
 	}
 
 	public boolean isAvaliable() {
 		return avaliable;
 	}
 
-	public void setAvaliable() {
-		this.avaliable = false;
-	}
-
-	public void countUP() {
-		this.countBookRent = this.countBookRent + 1;
-	}
-
-	public void countDOWN() {
-		this.countBookRent = this.countBookRent - 1;
-	}
-
-	public void setAvaliableDevolution() {
-		this.avaliable = true;
+	public void setAvaliable(boolean avaliable) {
+		this.avaliable = avaliable;
 	}
 
 	public int getId() {
@@ -109,6 +86,21 @@ public class Book {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public int getTotalRentQuantity() {
+		return totalRentQuantity;
+	}
+
+	public void setTotalRentQuantity(int totalRentQuantity) {
+		this.totalRentQuantity = totalRentQuantity;
+	}
+
+	@Override
+	public String toString() {
+		return "Book [isbn=" + isbn + ", name=" + name + ", publishingCompany=" + publishingCompany + ", writer="
+				+ writer + ", year=" + year + ", avaliable=" + avaliable + ", id=" + id + ", totalRentQuantity="
+				+ totalRentQuantity + "]";
 	}
 
 }

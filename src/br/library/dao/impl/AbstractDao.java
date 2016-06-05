@@ -1,9 +1,10 @@
-package br.library.dao;
+package br.library.dao.impl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+import br.library.dao.interf.dao;
 import br.library.infra.persistence.setup.BDExeption;
 import br.library.infra.persistence.setup.ConexaoDAO;
 

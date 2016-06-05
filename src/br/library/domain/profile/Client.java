@@ -1,26 +1,42 @@
 package br.library.domain.profile;
 
 public class Client {
-	private int id;
-	private String name;
-	private int registration;
-	private String phone;
-	private int totalCounter;
-	private int counterMaxRent;
 
-	public Client(int id, String name, int registration, String phone) {
+	private int id, booksRent, quantityOfBooksRent, late;
+	private String name, phone;
+	private Long register, cpf;
 
-		this.id = id;
-		this.name = name;
-		this.registration = registration;
-		this.phone = phone;
+	public Client(String nameRe, long cpfRe, String phoneRe, Long registerRe) {
+		this.name = nameRe;
+		this.cpf = cpfRe;
+		this.phone = phoneRe;
+		this.register = registerRe;
+		this.booksRent = 0;
+		this.quantityOfBooksRent = 0;
+		this.late = 0;
 	}
 
-	public Client(String name, int registration, String phone) {
+	public Client(int idIn, String nomeIn, long rgIn, String telefoneIn, long matriculaIn) {
+		this.id = idIn;
+		this.name = nomeIn;
+		this.cpf = rgIn;
+		this.phone = telefoneIn;
+		this.register = matriculaIn;
+		this.booksRent = 0;
+		this.quantityOfBooksRent = 0;
+		this.late = 0;
+	}
 
-		this.name = name;
-		this.registration = registration;
-		this.phone = phone;
+	public Client(int idIn, String nomeIn, long rgIn, String telefoneIn, long matriculaIn, int livrosAlugadosIn,
+			int qntdelivrosalugadosIn, int qntdeatrasoIn) {
+		this.id = idIn;
+		this.name = nomeIn;
+		this.cpf = rgIn;
+		this.phone = telefoneIn;
+		this.register = matriculaIn;
+		this.booksRent = livrosAlugadosIn;
+		this.quantityOfBooksRent = qntdelivrosalugadosIn;
+		this.late = qntdeatrasoIn;
 	}
 
 	public int getId() {
@@ -31,20 +47,36 @@ public class Client {
 		this.id = id;
 	}
 
+	public int getBooksRent() {
+		return booksRent;
+	}
+
+	public void setBooksRent(int booksRent) {
+		this.booksRent = booksRent;
+	}
+
+	public int getQuantityOfBooksRent() {
+		return quantityOfBooksRent;
+	}
+
+	public void setQuantityOfBooksRent(int quantityOfBooksRent) {
+		this.quantityOfBooksRent = quantityOfBooksRent;
+	}
+
+	public int getLate() {
+		return late;
+	}
+
+	public void setLate(int late) {
+		this.late = late;
+	}
+
 	public String getName() {
 		return name;
 	}
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public int getRegistration() {
-		return registration;
-	}
-
-	public void setRegistration(int registration) {
-		this.registration = registration;
 	}
 
 	public String getPhone() {
@@ -55,35 +87,27 @@ public class Client {
 		this.phone = phone;
 	}
 
-	public int getTotalCounter() {
-		return totalCounter;
+	public Long getRegister() {
+		return register;
 	}
 
-	public void setTotalCounter(int totalCounter) {
-		this.totalCounter = totalCounter;
+	public void setRegister(Long register) {
+		this.register = register;
 	}
 
-	public int getCounterMaxRent() {
-		return counterMaxRent;
+	public Long getCpf() {
+		return cpf;
 	}
 
-	public void setCounterMaxRent(int counterMaxRent) {
-		this.counterMaxRent = counterMaxRent;
+	public void setCpf(Long cpf) {
+		this.cpf = cpf;
 	}
 
-	public void countMaxRentUP() {
-		this.counterMaxRent = this.counterMaxRent + 1;
+	@Override
+	public String toString() {
+		return "Client [id=" + id + ", booksRent=" + booksRent + ", quantityOfBooksRent=" + quantityOfBooksRent
+				+ ", late=" + late + ", name=" + name + ", phone=" + phone + ", register=" + register + ", cpf=" + cpf
+				+ "]";
 	}
 
-	public void countMaxRentDOWN() {
-		this.counterMaxRent = this.counterMaxRent - 1;
-	}
-
-	public void countUPForReport() {
-		this.totalCounter = this.totalCounter + 1;
-	}
-
-	public void countDOWNForReport() {
-		this.totalCounter = this.totalCounter - 1;
-	}
 }
