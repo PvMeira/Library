@@ -58,7 +58,7 @@ public class Rent {
 
 	@Override
 	public String toString() {
-		return "Rent [id=" + id + ", client=" + client + ", booksRent=" + booksRent + ", rentData=" + rentData + "]";
+		return "Cliente" + client + "\nLivros Alugados" + booksRent + "\nData de aluguel" + rentData;
 	}
 
 }

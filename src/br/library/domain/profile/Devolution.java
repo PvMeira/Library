@@ -52,7 +52,7 @@ public class Devolution {
 
 	@Override
 	public String toString() {
-		return "Devolution [id=" + id + ", devolutionDate=" + devolutionDate + ", rent=" + rent + "]";
+		return "Date de devolução=" + devolutionDate + "\nAluguel" + rent;
 	}
 
 }
