@@ -14,7 +14,7 @@ public class ClientDAOBd extends AbstractDao<Client> implements ClientDAO {
 	public void insert(Client client) {
 		int id;
 		try {
-			String sql = "INSERT INTO client (nome, rg, telefone, matricula, livrosAlugados, qntdelivrosalugados, qntdeatraso) "
+			String sql = "INSERT INTO client (name, cpf, phone, register, rentBooks, quantityOfRentBooks, late) "
 					+ "VALUES (?,?,?,?,?,?,?)";
 
 			conectUsingId(sql);
@@ -44,14 +44,14 @@ public class ClientDAOBd extends AbstractDao<Client> implements ClientDAO {
 	@Override
 	public void delete(Client client) {
 		try {
-			String sql = "DELETE FROM cliente WHERE cpf = ?";
+			String sql = "DELETE FROM client WHERE cpf = ?";
 
 			conect(sql);
 			comand.setLong(1, client.getCpf());
 			comand.executeUpdate();
 
 		} catch (SQLException ex) {
-			System.err.println("Erro de Sistema - Problema ao deletar novo Cliente");
+			System.err.println("Erro de Sistema - Problema ao deletar Cliente");
 			throw new RuntimeException(ex);
 		} finally {
 			closeConection();
@@ -61,7 +61,7 @@ public class ClientDAOBd extends AbstractDao<Client> implements ClientDAO {
 
 	@Override
 	public void update(Client c, String newX, String colum) {
-		String sql = "UPDATE cliente SET " + colum + "=(?) WHERE id=(?)";
+		String sql = "UPDATE client SET " + colum + "=(?) WHERE id=(?)";
 		try {
 			conect(sql);
 			comand.setString(1, newX);
@@ -77,7 +77,7 @@ public class ClientDAOBd extends AbstractDao<Client> implements ClientDAO {
 
 	@Override
 	public void update(Client c, long newX, String colum) {
-		String sql = "UPDATE cliente SET " + colum + "=(?) WHERE id=(?)";
+		String sql = "UPDATE client SET " + colum + "=(?) WHERE id=(?)";
 		try {
 			conect(sql);
 			comand.setLong(1, newX);
@@ -96,7 +96,7 @@ public class ClientDAOBd extends AbstractDao<Client> implements ClientDAO {
 	public List<Client> list() {
 		List<Client> listOfClients = new ArrayList<>();
 
-		String sql = "SELECT * FROM cliente ORDER BY nome";
+		String sql = "SELECT * FROM client ORDER BY name";
 
 		try {
 			conect(sql);
@@ -205,7 +205,7 @@ public class ClientDAOBd extends AbstractDao<Client> implements ClientDAO {
 
 	@Override
 	public Client searchByName(String name) {
-		String sql = "SELECT * FROM cliente WHERE nome = ?";
+		String sql = "SELECT * FROM client WHERE name = ?";
 
 		try {
 			conect(sql);
@@ -242,7 +242,7 @@ public class ClientDAOBd extends AbstractDao<Client> implements ClientDAO {
 
 	@Override
 	public Client searchByRegister(long register) {
-		String sql = "SELECT * FROM client WHERE matricula = ?";
+		String sql = "SELECT * FROM client WHERE register = ?";
 
 		try {
 			conect(sql);
@@ -280,7 +280,7 @@ public class ClientDAOBd extends AbstractDao<Client> implements ClientDAO {
 	@Override
 	public List<Client> listByName(String nome) {
 		List<Client> listOfClients = new ArrayList<>();
-		String sql = "SELECT * FROM client WHERE nome LIKE ?";
+		String sql = "SELECT * FROM client WHERE name LIKE ?";
 
 		try {
 			conect(sql);

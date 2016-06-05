@@ -16,7 +16,7 @@ public class DevolutionDaoBd extends AbstractDao<Devolution> implements Devoluti
 	public void insert(Devolution devolution, boolean late) {
 		int id;
 		try {
-			String sql = "INSERT INTO devolution (id_rent, id_client, bookCode, devolutionDate) " + "VALUES (?,?,?,?)";
+			String sql = "INSERT INTO devolution (id_rent, id_client, id_book, devolutionDate) " + "VALUES (?,?,?,?)";
 
 			conectUsingId(sql);
 			comand.setInt(1, devolution.getRent().getId());
@@ -40,7 +40,7 @@ public class DevolutionDaoBd extends AbstractDao<Devolution> implements Devoluti
 			}
 
 		} catch (SQLException ex) {
-			System.err.println("Erro de Sistema - Problema ao Inserir novo aluguel");
+			System.err.println("Erro de Sistema - Problema ao Inserir nova devolução");
 			throw new RuntimeException(ex);
 		} finally {
 			closeConection();
@@ -51,14 +51,14 @@ public class DevolutionDaoBd extends AbstractDao<Devolution> implements Devoluti
 	@Override
 	public void updateClient(Devolution devolution) {
 		try {
-			String sql = "UPDATE client SET livrosAlugados=(livrosAlugados-1) " + "WHERE id=(?)";
+			String sql = "UPDATE client SET rentBooks=(rentBooks-1) " + "WHERE id=(?)";
 
 			conect(sql);
 			comand.setInt(1, devolution.getRent().getClient().getId());
 			comand.executeUpdate();
 
 		} catch (SQLException ex) {
-			System.err.println("Erro de Sistema - Problema ao Inserir novo aluguel");
+			System.err.println("Erro de Sistema - Problema ao atualizar  cliente na devolução");
 			throw new RuntimeException(ex);
 		} finally {
 			closeConection();
@@ -68,14 +68,14 @@ public class DevolutionDaoBd extends AbstractDao<Devolution> implements Devoluti
 	@Override
 	public void ClientUpdateDelay(Devolution devolucao) {
 		try {
-			String sql = "UPDATE client SET qntdeatraso=(qntdeatraso+1) " + "WHERE id=(?)";
+			String sql = "UPDATE client SET late=(late+1) " + "WHERE id=(?)";
 
 			conect(sql);
 			comand.setInt(1, devolucao.getRent().getClient().getId());
 			comand.executeUpdate();
 
 		} catch (SQLException ex) {
-			System.err.println("Erro de Sistema - Problema ao Inserir novo aluguel");
+			System.err.println("Erro de Sistema - Problema ao atualizar atraso no cliente durante a devolução");
 			throw new RuntimeException(ex);
 		} finally {
 			closeConection();
@@ -91,7 +91,7 @@ public class DevolutionDaoBd extends AbstractDao<Devolution> implements Devoluti
 			comand.executeUpdate();
 
 		} catch (SQLException ex) {
-			System.err.println("Erro de Sistema - Problema ao Inserir novo aluguel");
+			System.err.println("Erro de Sistema - Problema ao trocar disponibilidade do livro na devolução");
 			throw new RuntimeException(ex);
 		} finally {
 			closeConection();
@@ -117,7 +117,7 @@ public class DevolutionDaoBd extends AbstractDao<Devolution> implements Devoluti
 				devolutionList.add(devolution);
 			}
 		} catch (SQLException ex) {
-			System.err.println("Erro de Sistema - Problema ao Inserir novo aluguel");
+			System.err.println("Erro de Sistema - Problema ao listar devoluções");
 			throw new RuntimeException(ex);
 		} finally {
 			closeConection();
@@ -147,7 +147,7 @@ public class DevolutionDaoBd extends AbstractDao<Devolution> implements Devoluti
 				return devolution;
 			}
 		} catch (SQLException ex) {
-			System.err.println("Erro de Sistema - Problema ao Inserir novo aluguel");
+			System.err.println("Erro de Sistema - Problema buscar devolução pelo ID");
 			throw new RuntimeException(ex);
 		} finally {
 			closeConection();

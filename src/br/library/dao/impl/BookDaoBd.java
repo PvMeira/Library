@@ -34,7 +34,7 @@ public class BookDaoBd extends AbstractDao<Book> implements BookDAO {
 			}
 
 		} catch (SQLException ex) {
-			System.err.println("Erro de Sistema - Problema ao Inserir novo aluguel");
+			System.err.println("Erro de Sistema - Problema ao Inserir novo Livro");
 			throw new RuntimeException(ex);
 		} finally {
 			closeConection();
@@ -45,14 +45,14 @@ public class BookDaoBd extends AbstractDao<Book> implements BookDAO {
 	@Override
 	public void delete(Book book) {
 		try {
-			String sql = "DELETE FROM book WHERE cod=?";
+			String sql = "DELETE FROM book WHERE id = ?";
 
 			conect(sql);
 			comand.setInt(1, book.getId());
 			comand.executeUpdate();
 
 		} catch (SQLException ex) {
-			System.err.println("Erro de Sistema - Problema ao Inserir novo aluguel");
+			System.err.println("Erro de Sistema - Problema ao deletar cadastro de livro");
 			throw new RuntimeException(ex);
 		} finally {
 			closeConection();
@@ -62,7 +62,7 @@ public class BookDaoBd extends AbstractDao<Book> implements BookDAO {
 
 	@Override
 	public void edit(Book l, String newX, String colum) {
-		String sql = "UPDATE book SET " + colum + "=(?) WHERE cod=(?)";
+		String sql = "UPDATE book SET " + colum + "=(?) WHERE id=(?)";
 		try {
 			conect(sql);
 			comand.setString(1, newX);
@@ -78,7 +78,7 @@ public class BookDaoBd extends AbstractDao<Book> implements BookDAO {
 
 	@Override
 	public void edit(Book l, long newX, String colum) {
-		String sql = "UPDATE book SET " + colum + "=(?) WHERE cod=(?)";
+		String sql = "UPDATE book SET " + colum + "=(?) WHERE id=(?)";
 		try {
 			conect(sql);
 			comand.setLong(1, newX);
@@ -202,7 +202,7 @@ public class BookDaoBd extends AbstractDao<Book> implements BookDAO {
 
 	@Override
 	public Book searchByName(String name) {
-		String sql = "SELECT * FROM livro WHERE name1 = ?";
+		String sql = "SELECT * FROM book WHERE name1 = ?";
 
 		try {
 			conect(sql);

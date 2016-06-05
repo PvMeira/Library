@@ -17,7 +17,7 @@ public class RentDaoBd extends AbstractDao<Rent> implements RentDAO {
 	public void save(Rent rent) {
 		int id;
 		try {
-			String sql = "INSERT INTO rent (rentDate, id_client, bookCode) " + "VALUES (?,?,?)";
+			String sql = "INSERT INTO rent (rentDate, id_client, id_book) " + "VALUES (?,?,?)";
 
 			conectUsingId(sql);
 
@@ -48,7 +48,7 @@ public class RentDaoBd extends AbstractDao<Rent> implements RentDAO {
 	@Override
 	public void updateClient(Rent rent) {
 		try {
-			String sql = "UPDATE client SET rentedBooks=(rentedBooks+1) " + "WHERE id=?";
+			String sql = "UPDATE client SET rentBooks=(rentBooks+1) " + "WHERE id=?";
 
 			conect(sql);
 			comand.setInt(1, rent.getClient().getId());
@@ -81,13 +81,13 @@ public class RentDaoBd extends AbstractDao<Rent> implements RentDAO {
 	@Override
 	public void updateQuntityOfBooks(Rent rent) {
 		try {
-			String sql = "UPDATE book SET qntdeTotalAlugado=(qntdeTotalAlugado+1) " + "WHERE cod=?";
+			String sql = "UPDATE book SET totalRentQuantity=(totalRentQuantity+1) " + "WHERE cod=?";
 			conect(sql);
 			comand.setInt(1, rent.getBooksRent().getId());
 			comand.executeUpdate();
 
 		} catch (SQLException ex) {
-			System.err.println("Erro de Sistema - Problema ao  atualizar quantidade no Livro no aluguel");
+			System.err.println("Erro de Sistema - Problema ao  atualizar quantidade do Livro no aluguel");
 			throw new RuntimeException(ex);
 		} finally {
 			closeConection();
@@ -97,7 +97,7 @@ public class RentDaoBd extends AbstractDao<Rent> implements RentDAO {
 	@Override
 	public void updateQuantityOfRentBooksByClient(Rent rent) {
 		try {
-			String sql = "UPDATE cliente SET qntdelivrosalugados=(qntdelivrosalugados+1) " + "WHERE id=?";
+			String sql = "UPDATE client SET quantityOfRentBooks=(quantityOfRentBooks+1) " + "WHERE id=?";
 			conect(sql);
 			comand.setInt(1, rent.getClient().getId());
 			comand.executeUpdate();
@@ -119,12 +119,12 @@ public class RentDaoBd extends AbstractDao<Rent> implements RentDAO {
 			conect(sql);
 			ResultSet resultado = comand.executeQuery();
 			while (resultado.next()) {
-				int idAluguel = resultado.getInt("idAluguel");
+				int idAluguel = resultado.getInt("id_rent");
 				// Trabalhando com data: lembrando dataSql -> dataUtil
 				java.sql.Date dataSql = resultado.getDate("rentDate");
 				java.util.Date dataUtil = new java.util.Date(dataSql.getTime());
-				int id = resultado.getInt("id_cliente");
-				int code = resultado.getInt("bookCode");
+				int id = resultado.getInt("id_client");
+				int code = resultado.getInt("id_book");
 				ClientDAO clientDao = new ClientDAOBd();
 				BookDAO bookDao = new BookDaoBd();
 				Client client1 = clientDao.searchById(id);
@@ -135,7 +135,7 @@ public class RentDaoBd extends AbstractDao<Rent> implements RentDAO {
 			}
 		} catch (SQLException ex) {
 			System.err.println(
-					"Erro de Sistema - Problema ao  atualizar quantidade de livros alugados pelo cliente no aluguel");
+					"Erro de Sistema - Problema ao  listar os alugueis ativos");
 			throw new RuntimeException(ex);
 		} finally {
 			closeConection();
@@ -145,7 +145,7 @@ public class RentDaoBd extends AbstractDao<Rent> implements RentDAO {
 
 	@Override
 	public Rent searchById(int id) {
-		String sql = "SELECT * FROM rent WHERE idAluguel = ?";
+		String sql = "SELECT * FROM rent WHERE id_rent = ?";
 
 		try {
 			conect(sql);
@@ -159,7 +159,7 @@ public class RentDaoBd extends AbstractDao<Rent> implements RentDAO {
 				java.sql.Date dataSql = resultado.getDate("rentDate");
 				java.util.Date dataUtil = new java.util.Date(dataSql.getTime());
 				int idX = resultado.getInt("id_client");
-				int code = resultado.getInt("bookRent");
+				int code = resultado.getInt("id_book");
 				ClientDAO clientDao = new ClientDAOBd();
 				BookDAO bookDao = new BookDaoBd();
 				Client client1 = clientDao.searchById(idX);
@@ -170,7 +170,7 @@ public class RentDaoBd extends AbstractDao<Rent> implements RentDAO {
 			}
 		} catch (SQLException ex) {
 			System.err.println(
-					"Erro de Sistema - Problema ao  atualizar quantidade de livros alugados pelo cliente no aluguel ");
+					"Erro de Sistema - Problema ao buscar alugueis pelo id ");
 			throw new RuntimeException(ex);
 		} finally {
 			closeConection();
