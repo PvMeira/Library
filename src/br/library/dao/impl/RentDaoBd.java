@@ -65,7 +65,7 @@ public class RentDaoBd extends AbstractDao<Rent> implements RentDAO {
 	@Override
 	public void updateBook(Rent rent) {
 		try {
-			String sql = "UPDATE book SET avaliable=false " + "WHERE cod=?";
+			String sql = "UPDATE book SET avaliable=false " + "WHERE id=?";
 			conect(sql);
 			comand.setInt(1, rent.getBooksRent().getId());
 			comand.executeUpdate();
@@ -81,7 +81,7 @@ public class RentDaoBd extends AbstractDao<Rent> implements RentDAO {
 	@Override
 	public void updateQuntityOfBooks(Rent rent) {
 		try {
-			String sql = "UPDATE book SET totalRentQuantity=(totalRentQuantity+1) " + "WHERE cod=?";
+			String sql = "UPDATE book SET totalRentQuantity=(totalRentQuantity+1) " + "WHERE id=?";
 			conect(sql);
 			comand.setInt(1, rent.getBooksRent().getId());
 			comand.executeUpdate();
@@ -117,21 +117,20 @@ public class RentDaoBd extends AbstractDao<Rent> implements RentDAO {
 		String sql = "SELECT * FROM rent ORDER BY id";
 		try {
 			conect(sql);
-			ResultSet resultado = comand.executeQuery();
-			while (resultado.next()) {
-				int idAluguel = resultado.getInt("id_rent");
-				// Trabalhando com data: lembrando dataSql -> dataUtil
-				java.sql.Date dataSql = resultado.getDate("rentDate");
+			ResultSet result = comand.executeQuery();
+			while (result.next()) {
+				int idRent = result.getInt("id");
+				java.sql.Date dataSql = result.getDate("rentDate");
 				java.util.Date dataUtil = new java.util.Date(dataSql.getTime());
-				int id = resultado.getInt("id_client");
-				int code = resultado.getInt("id_book");
+				int idClient = result.getInt("id_client");
+				int idBook = result.getInt("id_book");
 				ClientDAO clientDao = new ClientDAOBd();
 				BookDAO bookDao = new BookDaoBd();
-				Client client1 = clientDao.searchById(id);
-				Book book = bookDao.searchByIsbn(code);
+				Client client1 = clientDao.searchById(idClient);
+				Book book = bookDao.searchByIsbn(idBook);
 
-				Rent aluguel = new Rent(idAluguel, dataUtil, client1, book);
-				rentList.add(aluguel);
+				Rent rent = new Rent(idRent, dataUtil, client1, book);
+				rentList.add(rent);
 			}
 		} catch (SQLException ex) {
 			System.err.println(
@@ -145,28 +144,27 @@ public class RentDaoBd extends AbstractDao<Rent> implements RentDAO {
 
 	@Override
 	public Rent searchById(int id) {
-		String sql = "SELECT * FROM rent WHERE id = ?";
+		String sql = "SELECT * FROM rent WHERE id=?";
 
 		try {
 			conect(sql);
 			comand.setLong(1, id);
 
-			ResultSet resultado = comand.executeQuery();
+			ResultSet result = comand.executeQuery();
 
-			if (resultado.next()) {
-				int idAluguel = resultado.getInt("id");
-				
-				java.sql.Date dataSql = resultado.getDate("rentDate");
+			if (result.next()) {
+				int idRent = result.getInt("id");			
+				java.sql.Date dataSql = result.getDate("rentDate");
 				java.util.Date dataUtil = new java.util.Date(dataSql.getTime());
-				int idX = resultado.getInt("id_client");
-				int code = resultado.getInt("id_book");
+				int idClient = result.getInt("id_client");
+				int idBook = result.getInt("id_book");
 				ClientDAO clientDao = new ClientDAOBd();
 				BookDAO bookDao = new BookDaoBd();
-				Client client1 = clientDao.searchById(idX);
-				Book book = bookDao.searchById(code);
+				Client client = clientDao.searchById(idClient);
+				Book book = bookDao.searchById(idBook);
 
-				Rent aluguel = new Rent(idAluguel, dataUtil, client1, book);
-				return aluguel;
+				Rent rent = new Rent(idRent, dataUtil, client, book);
+				return rent;
 			}
 		} catch (SQLException ex) {
 			System.err.println(

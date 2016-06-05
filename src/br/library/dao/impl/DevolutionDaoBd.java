@@ -29,7 +29,6 @@ public class DevolutionDaoBd extends AbstractDao<Devolution> implements Devoluti
 
 			ResultSet result = comand.getGeneratedKeys();
 			if (result.next()) {
-				// seta o id para o objeto
 				id = result.getInt(1);
 				devolution.setId(id);
 			}
@@ -107,8 +106,8 @@ public class DevolutionDaoBd extends AbstractDao<Devolution> implements Devoluti
 			ResultSet result = comand.executeQuery();
 			while (result.next()) {
 				int id = result.getInt("id");
-				int idRent = result.getInt("idRent");
-				// Trabalhando com data: lembrando dataSql -> dataUtil
+				int idRent = result.getInt("id_rent");
+				
 				java.sql.Date dataSql = result.getDate("rentDate");
 				java.util.Date dataUtil = new java.util.Date(dataSql.getTime());
 				RentDAO rentDao = new RentDaoBd();
@@ -137,8 +136,8 @@ public class DevolutionDaoBd extends AbstractDao<Devolution> implements Devoluti
 
 			if (result.next()) {
 				int idX = result.getInt("id");
-				int idRent = result.getInt("idRent");
-				// Trabalhando com data: lembrando dataSql -> dataUtil
+				int idRent = result.getInt("id_rent");
+				
 				java.sql.Date dataSql = result.getDate("rentDate");
 				java.util.Date dataUtil = new java.util.Date(dataSql.getTime());
 				RentDAO rentDao = new RentDaoBd();
