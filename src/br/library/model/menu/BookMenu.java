@@ -13,34 +13,35 @@ public class BookMenu {
 		do {
 			try {
 				System.out.println(menu.getOptionLayOut());
-				op = ConsoleReader.scanInt("Type the Option :");
+				op = ConsoleReader.scanInt("Digite uma opção :");
 
 				switch (op) {
 				case 1:
 					b.registerNewBook();
-					System.out.println("Livro adicionado");
+
 					break;
 				case 2:
 					b.deleteBook();
-					System.out.println("Livro deletado");
+
 					break;
 				case 3:
-					b.updateBook();
+					b.editBook();
 					System.out.println("Livro atualizado");
 					break;
 				case 4:
-					System.out.println("Listar todos livros existentes...");
-					b.listBooks();
+
+					b.showBook();
 					break;
 
 				case 5:
-					System.out.println("Consultar livro pelo nome");
-					b.searchBookByName();
+
+					b.searchBook();
 					break;
 
 				case 6:
-					System.out.println("Sair");
-					
+					System.out.println("Voltar para menu principal");
+					MainMenu mainMenu= new MainMenu();
+					mainMenu.mainSearch();
 
 				default:
 					System.out.println("opção Inválida");

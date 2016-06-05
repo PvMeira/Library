@@ -17,30 +17,12 @@ public class RentMenu {
 
 				switch (op) {
 				case 1:
-
-					System.out.println("Livro Alugado");
+					b.addNewRent();
 					break;
 				case 2:
 
-					System.out.println("Livro Devolvido");
-					break;
-				case 3:
-
-					System.out.println("Livro renovado");
-					break;
-				case 4:
-					System.out.println("Listar todos os alugueis existentes...");
-
-					break;
-
-				case 5:
-					System.out.println("Consultar livro pelo codigo do aluguel");
-
-					break;
-
-				case 6:
-					System.out.println("Sair");
-
+					MainMenu mainMenu = new MainMenu();
+					mainMenu.mainSearch();
 				default:
 					System.out.println("opção Inválida");
 				}

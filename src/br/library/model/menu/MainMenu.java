@@ -20,37 +20,31 @@ public class MainMenu {
 				option = ConsoleReader.scanInt("Digite uma opção :");
 			} catch (Exception e) {
 
-				System.out.println("Format error, only number accept" + e);
+				System.err.println("Formato não aceito, apenas Numeros" + e);
 			}
 
 			switch (option) {
 			case 1:
-				System.out.println("Indo para o menu de Livro");
 				BookMenu b = new BookMenu();
 				b.bookMenu();
 
 				break;
 			case 2:
-				System.out.println("Indo para o menu de Cliente");
 				ClientMenu c = new ClientMenu();
 				c.clientMenu();
 				break;
 			case 3:
-
+				RentMenu r = new RentMenu();
+				r.rentMenu();
 				break;
 			case 4:
 
 				break;
 			case 5:
-
-				break;
-
-			case 6:
 				System.out.println("Exit Aplication");
-
 				break;
 
 			}
-		} while (option != 6);
+		} while (option != 5);
 	}
 }

@@ -18,29 +18,30 @@ public class ClientMenu {
 				switch (op) {
 				case 1:
 					b.registerNewClient();
-					System.out.println("Livro adicionado");
+
 					break;
 				case 2:
 					b.deleteClient();
-					System.out.println("Livro deletado");
+
 					break;
 				case 3:
-					b.updateClient();
-					System.out.println("Livro atualizado");
+					b.editClient();
+
 					break;
 				case 4:
-					b.listClient();
-					System.out.println("Listar todos livros existentes...");				
+					b.showClient();
+
 					break;
 
 				case 5:
-					System.out.println("Consultar livro pelo nome");
-					b.searchClientByName();
+
+					b.searchClient();
 					break;
 
 				case 6:
-					System.out.println("Sair");
-					
+					System.out.println("Voltar para menu principal");
+					MainMenu mainMenu= new MainMenu();
+					mainMenu.mainSearch();
 
 				default:
 					System.out.println("opção Inválida");

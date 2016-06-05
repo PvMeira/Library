@@ -48,5 +48,11 @@ public class ConsoleReader {
 		Scanner scanner = new Scanner(System.in);
 		return (scanner.next().charAt(0));
 	}
+	public static long scanLong(Object out){
+		System.out.println(out);
+		@SuppressWarnings("resource")
+		Scanner scanner=new Scanner(System.in);
+		return (scanner.nextLong());
+	}
 
 }

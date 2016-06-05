@@ -8,12 +8,11 @@ public class MainMenuLayOut {
 
 	public String getOptionLayOut() {
 		return ("\n--------------------------------------\n" 
-	            + "1-Go to the Client Menu         :\n"
-				+ "2-Go to the Book Menu           :\n" 
-	            + "3-Go to the Search Menu         :\n" 
-				+ "4-Inform a new Rent             :\n"
-				+ "5-Register a new Devolution     :\n" 	           
-				+ "6-Exit Aplication               :\n"
+	            + "1-Ir para o menu de livro        :\n"
+				+ "2-Ir para o menu de cliente      :\n"             
+				+ "3-Registrar um novo aluguel      :\n"
+				+ "4-Registrar uma nova devolução   :\n" 	           
+				+ "5-Sair da aplicação              :\n"
 				+ "\n--------------------------------------\n");
 	}
 }
