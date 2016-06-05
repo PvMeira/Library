@@ -50,7 +50,7 @@ public class DevolutionDaoBd extends AbstractDao<Devolution> implements Devoluti
 	@Override
 	public void updateClient(Devolution devolution) {
 		try {
-			String sql = "UPDATE client SET rentBooks=(rentBooks-1) " + "WHERE id=(?)";
+			String sql = "UPDATE client SET rentBooks=(rentBooks-1) " + "WHERE id=?";
 
 			conect(sql);
 			comand.setInt(1, devolution.getRent().getClient().getId());
@@ -67,7 +67,7 @@ public class DevolutionDaoBd extends AbstractDao<Devolution> implements Devoluti
 	@Override
 	public void ClientUpdateDelay(Devolution devolucao) {
 		try {
-			String sql = "UPDATE client SET late=(late+1) " + "WHERE id=(?)";
+			String sql = "UPDATE client SET late=(late+1) " + "WHERE id=?";
 
 			conect(sql);
 			comand.setInt(1, devolucao.getRent().getClient().getId());
@@ -84,7 +84,7 @@ public class DevolutionDaoBd extends AbstractDao<Devolution> implements Devoluti
 	@Override
 	public void updateBook(Devolution devolution) {
 		try {
-			String sql = "UPDATE book SET avaliable=true WHERE id=(?)";
+			String sql = "UPDATE book SET avaliable=true WHERE id=?";
 			conect(sql);
 			comand.setInt(1, devolution.getRent().getBooksRent().getId());
 			comand.executeUpdate();

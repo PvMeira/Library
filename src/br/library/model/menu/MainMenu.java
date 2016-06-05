@@ -42,10 +42,16 @@ public class MainMenu {
 				d.devolutionMenu();
 				break;
 			case 5:
-				System.out.println("Exit Aplication");
+				ReportMenu h = new ReportMenu();
+				h.bookMenu();
 				break;
 
-			}
-		} while (option != 5);
+			
+		case 6:
+			System.out.println("Exit Aplication");
+			break;
+
+		}
+		} while (option != 6);
 	}
 }
