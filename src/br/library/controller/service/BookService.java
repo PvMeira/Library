@@ -1,5 +1,7 @@
 package br.library.controller.service;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import br.library.dao.impl.BookDaoBd;
@@ -8,88 +10,132 @@ import br.library.domain.profile.Book;
 
 public class BookService {
 
-	private BookDAO bookDAO;
+	private BookDAO dao;
 
 	public BookService() {
 
-		bookDAO = new BookDaoBd();
+		dao = new BookDaoBd();
 	}
 
-	public void save(Book book) throws Exception {
-		this.validateObliguefields(book);
-		this.validateISBC(book);
-		bookDAO.save(book);
+	public boolean bookExist(String name) {
 
+		Book book = dao.searchByName(name);
+		return (book != null);
 	}
 
-	public Book SerachByCode(int ISBC) throws Exception {
-		if (ISBC == 0) {
-			throw new Exception("Campo codigo ISBC nao informado");
-		}
-		Book b = bookDAO.searchByIsbc(ISBC);
-		if (b == null) {
-			throw new Exception("Livro nao encontrando");
-		}
-		return (b);
-	}
+	public boolean bookExist(long isbn) {
 
-	public List<Book> list() {
-
-		return (bookDAO.list());
-	}
-
-	public void delete(Book book) throws Exception {
-		if (book == null || book.getIsbnCode() == null) {
-			throw new Exception("Livro não existe");
-		}
-		bookDAO.delete(book);
-	}
-
-	public void update(Book book) throws Exception {
-		if (book == null || book.getIsbnCode() == null) {
-			throw new Exception("Livro não existe");
-		}
-		this.validateObliguefields(book);
-		bookDAO.update(book);
-
-	}
-
-	public List<Book> SerachByName(String name) throws Exception {
-		if (name == null || name.isEmpty()) {
-			throw new Exception("campo nome nao informado");
-		}
-
-		return (bookDAO.searchByName(name));
-	}
-
-	public boolean bookExist(int isbc) {
-		Book b = bookDAO.searchByIsbc(isbc);
-		return (b != null);
-	}
-
-	private void validateObliguefields(Book b) throws Exception {
-		if (b.getBookName() == null || b.getBookName().isEmpty()) {
-			throw new Exception("Campo nome nao preenchido");
-		}
-
-		if (b.getIsbnCode() == 0) {
-			throw new Exception("Campo codigo ISBC  nao preenchido");
-		}
-		if (b.getWriters() == null || b.getWriters().isEmpty()) {
-			throw new Exception("Campo Autor  nao preenchido");
-		}
-		if (b.getPublishingCompany() == null || b.getPublishingCompany().isEmpty()) {
-			throw new Exception("Campo Editora  nao preenchido");
-		}
-		if (b.getReleaseyear() == 0) {
-			throw new Exception("Campo ano  nao preenchido");
+		Book book = dao.searchByIsbn(isbn);
+		if (book != null) {
+			return true;
+		} else {
+			return false;
 		}
 	}
 
-	private void validateISBC(Book b) throws Exception {
-		if (bookExist(b.getIsbnCode())) {
-			throw new Exception("ISBC ja existente");
-		}
+	public void addNewBook(Book book) {
+		dao.insert(book);
+	}
 
+	public List<Book> listBooks() {
+		return dao.list();
+	}
+
+	public Book searchBookByIsbn(long isbn) {
+
+		Book book = dao.searchByIsbn(isbn);
+		return (book);
+	}
+
+	public Book searchByName(String name) {
+
+		Book book = dao.searchByName(name);
+		return (book);
+	}
+
+	public void editBook(String op, long newX, Book l) {
+
+		if (op.equals("1")) {
+			dao.edit(l, newX, "isbn");
+		}
+	}
+
+	public void editBook(String op, String newX, Book l) {
+
+		if (op.equals("2")) {
+			dao.edit(l, newX, "name");
+		}
+		if (op.equals("3")) {
+			dao.edit(l, newX, "publishingCompany");
+		}
+		if (op.equals("4")) {
+			dao.edit(l, newX, "writer");
+		}
+		if (op.equals("5")) {
+			dao.edit(l, newX, "year");
+		}
+	}
+
+	public void deletarLivro(Book l) {
+
+		dao.delete(l);
+	}
+
+	public boolean isbnIsValid(long isbn) {
+		Book book = dao.searchByIsbn(isbn);
+		if (book != null) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public void listAvaliableBooks() {
+		List<Book> listBookRank = dao.list();
+		System.out.println("-----------------------------\n");
+		System.out.println(String.format("%-10s", "Isbn: ") + "\t" + String.format("%-20s", "|Nome: ") + "\t"
+				+ String.format("%-20s", "|Editora: ") + "\t" + String.format("%-20s", "|Autor(es): ") + "\t"
+				+ String.format("%-20s", "|Ano de Publicação: ") + "\t"
+				+ String.format("%-20s", "|Quantidade de vezes que foi alugado: "));
+		for (Book listOfBook : listBookRank) {
+			if (listOfBook.isAvaliable() == true) {
+				System.out.println(String.format("%-10s", listOfBook.getIsbn()) + "\t"
+						+ String.format("%-20s", "|" + listOfBook.getName()) + "\t"
+						+ String.format("%-20s", "|" + listOfBook.getPublishingCompany()) + "\t"
+						+ String.format("%-20s", "|" + listOfBook.getWriter()) + "\t"
+						+ String.format("%-20s", "|" + listOfBook.getYear()) + "\t"
+						+ String.format("%-20s", "|" + listOfBook.getTotalRentQuantity()));
+			}
+		}
+	}
+
+	public boolean validateYearOfTheBook(String data) {
+		return data.matches("[0-9]{4}+");
+	}
+
+	public void booksWhoGotMostRent() {
+		List<Book> listBookRank = dao.list();
+		Collections.sort(listBookRank, new bookMostRent());
+		System.out.println("-----------------------------\n");
+		System.out.println(String.format("%-10s", "Isbn: ") + "\t" + String.format("%-20s", "|Nome: ") + "\t"
+				+ String.format("%-20s", "|Editora: ") + "\t" + String.format("%-20s", "|Autor(es): ") + "\t"
+				+ String.format("%-20s", "|Ano de Publicação: ") + "\t"
+				+ String.format("%-20s", "|Quantidade de vezes que foi alugado: "));
+		for (Book listOfBook : listBookRank) {
+			System.out.println(String.format("%-10s", listOfBook.getIsbn()) + "\t"
+					+ String.format("%-20s", "|" + listOfBook.getName()) + "\t"
+					+ String.format("%-20s", "|" + listOfBook.getPublishingCompany()) + "\t"
+					+ String.format("%-20s", "|" + listOfBook.getWriter()) + "\t"
+					+ String.format("%-20s", "|" + listOfBook.getYear()) + "\t"
+					+ String.format("%-20s", "|" + listOfBook.getTotalRentQuantity()));
+		}
+	}
+
+	public class bookMostRent implements Comparator<Book> {
+
+		@Override
+		public int compare(Book book1, Book book2) {
+			return book2.getTotalRentQuantity() - book1.getTotalRentQuantity();
+		}
 	}
 }
