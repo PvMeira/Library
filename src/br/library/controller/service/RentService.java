@@ -14,7 +14,7 @@ public class RentService {
 	}
 
 	public boolean IdExist(int id) {
-		Rent rent = dao.searchByID(id);
+		Rent rent = dao.searchById(id);
 		if (rent != null) {
 			return true;
 		} else {

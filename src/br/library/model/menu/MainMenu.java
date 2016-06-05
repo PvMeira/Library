@@ -38,7 +38,8 @@ public class MainMenu {
 				r.rentMenu();
 				break;
 			case 4:
-
+				DevolutionMenu d = new DevolutionMenu();
+				d.devolutionMenu();
 				break;
 			case 5:
 				System.out.println("Exit Aplication");
