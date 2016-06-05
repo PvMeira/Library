@@ -13,7 +13,7 @@ public interface DevolutionDAO {
 
 	public List<Devolution> list();
 
-	public Devolution procurarPorId(int id);
+	public Devolution searchById(int id);
 
-	public void atualizarAtrasoCliente(Devolution devolution);
+	public void ClientUpdateDelay(Devolution devolution);
 }

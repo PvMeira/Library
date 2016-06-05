@@ -7,35 +7,35 @@ import java.util.List;
 
 import br.library.dao.interf.BookDAO;
 import br.library.domain.profile.Book;
-import br.library.infra.persistence.setup.BDExeption;
 
-public class BookDaoBd extends AbstractDao<Book>implements BookDAO {
-
+public class BookDaoBd extends AbstractDao<Book> implements BookDAO {
 	@Override
-	public void save(Book book) {
-		int id = 0;
+	public void insert(Book book) {
+		int cod;
 		try {
-			String sql = "INSERT INTO book (name1,ISBC,writer,publishingCompany,releaseyear,avaliable)"
-					+ "VALUES (?,?,?,?,?,?)";
+			String sql = "INSERT INTO book (isbn, name1, publishingCompany, writer, year, avaliable, totalRentQuantity) "
+					+ "VALUES (?,?,?,?,?,?,?)";
+
 			conectUsingId(sql);
-			comand.setString(1, book.getBookName());
-			comand.setLong(2, book.getIsbnCode());
-			comand.setString(3, book.getWriters());
-			comand.setString(4, book.getPublishingCompany());
-			comand.setLong(5, book.getReleaseyear());
-			comand.setBoolean(6, true);
+			comand.setLong(1, book.getIsbn());
+			comand.setString(2, book.getName());
+			comand.setString(3, book.getPublishingCompany());
+			comand.setString(4, book.getWriter());
+			comand.setString(5, book.getYear());
+			comand.setBoolean(6, book.isAvaliable());
+			comand.setInt(7, book.getTotalRentQuantity());
 			comand.executeUpdate();
+
 			ResultSet result = comand.getGeneratedKeys();
 			if (result.next()) {
-				id = result.getInt(1);
-				book.setId(id);
-			} else {
-				System.err.println("Erro de Sistema - Não foi possivel gerar o id comforme o esperado");
-				throw new BDExeption("Não gerou o id conforme o esperado");
+
+				cod = result.getInt(1);
+				book.setId(cod);
 			}
-		} catch (SQLException e) {
-			System.err.println("Erro de Sistema - Problema ao Salvar Livro");
-			throw new RuntimeException(e);
+
+		} catch (SQLException ex) {
+			System.err.println("Erro de Sistema - Problema ao Inserir novo aluguel");
+			throw new RuntimeException(ex);
 		} finally {
 			closeConection();
 		}
@@ -45,36 +45,14 @@ public class BookDaoBd extends AbstractDao<Book>implements BookDAO {
 	@Override
 	public void delete(Book book) {
 		try {
-			String sql = "DELETE FROM book WHERE id = ?";
+			String sql = "DELETE FROM book WHERE cod=?";
 
 			conect(sql);
 			comand.setInt(1, book.getId());
 			comand.executeUpdate();
-		} catch (SQLException e) {
-			System.err.println("Erro de Sistema - Problema ao deletar Livro");
-			throw new RuntimeException(e);
-		} finally {
-			closeConection();
-		}
 
-	}
-
-	@Override
-	public void update(Book book) {
-		try {
-			String sql = "UPDATE book SET name1=?, ISBC=?, writer=?, publishingCompany=?, releaseyear=?, avaliable=?"
-					+ "WHERE id=?";
-			conect(sql);
-			comand.setString(1, book.getBookName());
-			comand.setLong(2, book.getIsbnCode());
-			comand.setString(3, book.getWriters());
-			comand.setString(4, book.getPublishingCompany());
-			comand.setLong(5, book.getReleaseyear());
-			comand.setBoolean(6, book.isAvaliable());
-			comand.setInt(7, book.getId());
-			comand.executeUpdate();
 		} catch (SQLException ex) {
-			System.err.println("Erro de Systema - Problema ao atualizar Livro");
+			System.err.println("Erro de Sistema - Problema ao Inserir novo aluguel");
 			throw new RuntimeException(ex);
 		} finally {
 			closeConection();
@@ -83,28 +61,67 @@ public class BookDaoBd extends AbstractDao<Book>implements BookDAO {
 	}
 
 	@Override
-	public List<Book> list() {
-		List<Book> listOfBooks = new ArrayList<>();
-		String sql = "SELECT * FROM book";
+	public void edit(Book l, String newX, String colum) {
+		String sql = "UPDATE book SET " + colum + "=(?) WHERE cod=(?)";
 		try {
 			conect(sql);
-			
+			comand.setString(1, newX);
+			comand.setInt(2, l.getId());
+			comand.executeUpdate();
+		} catch (SQLException ex) {
+			System.err.println("Erro de Sistema - Problema ao editar  cadastro de Livro");
+			throw new RuntimeException(ex);
+		} finally {
+			closeConection();
+		}
+	}
+
+	@Override
+	public void edit(Book l, long newX, String colum) {
+		String sql = "UPDATE book SET " + colum + "=(?) WHERE cod=(?)";
+		try {
+			conect(sql);
+			comand.setLong(1, newX);
+			comand.setInt(2, l.getId());
+			comand.executeUpdate();
+		} catch (SQLException ex) {
+			System.err.println("Erro de Sistema - Problema ao editar  cadastro de Livro");
+			throw new RuntimeException(ex);
+		} finally {
+			closeConection();
+		}
+	}
+
+	@Override
+	public List<Book> list() {
+		List<Book> listOfBooks = new ArrayList<>();
+
+		String sql = "SELECT * FROM book ORDER BY name1";
+
+		try {
+			conect(sql);
+
 			ResultSet result = comand.executeQuery();
-			
+
 			while (result.next()) {
 				int id = result.getInt("id");
+				long isbn = result.getLong("isbn");
 				String name = result.getString("name1");
-				int isbc = result.getInt("ISBC");
-				String writer = result.getString("writer");
 				String publishingCompany = result.getString("publishingCompany");
-				int releaseYear = result.getInt("releaseYear");
-				boolean status = result.getBoolean("avaliable");
-				Book book = new Book(isbc, name, writer, publishingCompany, releaseYear, status, id);
+				String writer = result.getString("writer");
+				String year = result.getString("year");
+				Boolean avaliable = result.getBoolean("avaliable");
+				int totalRentQuantity = result.getInt("totalRentQuantity");
+
+				Book book = new Book(id, isbn, name, publishingCompany, writer, year, avaliable, totalRentQuantity);
+
 				listOfBooks.add(book);
+
 			}
-		} catch (SQLException e) {
-			System.err.println("Erro de Sistema - Problema ao bsucar os livros ");
-			throw new RuntimeException(e);
+
+		} catch (SQLException ex) {
+			System.err.println("Erro de Sistema - Problema ao editar  cadastro de Livro");
+			throw new RuntimeException(ex);
 		} finally {
 			closeConection();
 		}
@@ -112,97 +129,161 @@ public class BookDaoBd extends AbstractDao<Book>implements BookDAO {
 	}
 
 	@Override
+	public Book searchByIsbn(long isbn) {
+		String sql = "SELECT * FROM book WHERE isbn = ?";
+
+		try {
+			conect(sql);
+			comand.setLong(1, isbn);
+
+			ResultSet result = comand.executeQuery();
+
+			if (result.next()) {
+				int id = result.getInt("id");
+				long isbnX = result.getLong("isbn");
+				String name = result.getString("name1");
+				String publishingCompany = result.getString("publishingCompany");
+				String writer = result.getString("writer");
+				String year = result.getString("year");
+				Boolean avaliable = result.getBoolean("avaliable");
+				int totalRentQuantity = result.getInt("totalRentQuantity");
+
+				Book book = new Book(id, isbnX, name, publishingCompany, writer, year, avaliable, totalRentQuantity);
+
+				return book;
+
+			}
+
+		} catch (SQLException ex) {
+			System.err.println("Erro de Sistema - Problema ao editar  cadastro de Livro");
+			throw new RuntimeException(ex);
+		} finally {
+			closeConection();
+		}
+
+		return (null);
+	}
+
+	@Override
 	public Book searchByID(int id) {
 		String sql = "SELECT * FROM book WHERE id = ?";
+
 		try {
 			conect(sql);
 			comand.setInt(1, id);
+
 			ResultSet result = comand.executeQuery();
+
 			if (result.next()) {
+				int idX = result.getInt("id");
+				long isbnX = result.getLong("isbn");
 				String name = result.getString("name1");
-				int isbc = result.getInt("ISBC");
-				String writer = result.getString("writer");
 				String publishingCompany = result.getString("publishingCompany");
-				int releaseYear = result.getInt("releaseYear");
-				boolean status = result.getBoolean("avaliable");
-				Book book = new Book(isbc, name, writer, publishingCompany, releaseYear, status);
+				String writer = result.getString("writer");
+				String year = result.getString("year");
+				Boolean avaliable = result.getBoolean("avaliable");
+				int totalRentQuantity = result.getInt("totalRentQuantity");
+
+				Book book = new Book(idX, isbnX, name, publishingCompany, writer, year, avaliable, totalRentQuantity);
+
 				return book;
+
 			}
-		} catch (SQLException e) {
-			System.err.println("Erro de Sistema - Problema ao buscar o livro pelo ID");
-			throw new RuntimeException(e);
+
+		} catch (SQLException ex) {
+			System.err.println("Erro de Sistema - Problema ao editar  cadastro de Livro");
+			throw new RuntimeException(ex);
 		} finally {
 			closeConection();
 		}
+
 		return (null);
 	}
 
 	@Override
-	public Book searchByIsbc(int isbc) {
-		String sql = "SELECT * FROM book WHERE ISBC = ?";
+	public Book searchByName(String name) {
+		String sql = "SELECT * FROM livro WHERE name1 = ?";
+
 		try {
 			conect(sql);
-			comand.setInt(1, isbc);
+			comand.setString(1, name);
+
 			ResultSet result = comand.executeQuery();
+
 			if (result.next()) {
 				int id = result.getInt("id");
-				String name = result.getString("name1");
-				int ISBC = result.getInt("ISBC");
-				String writer = result.getString("writer");
+				long isbn = result.getLong("isbn");
+				String nameX = result.getString("name1");
 				String publishingCompany = result.getString("publishingCompany");
-				int releaseYear = result.getInt("releaseYear");
-				boolean status = result.getBoolean("avaliable");
-				Book book = new Book(ISBC, name, writer, publishingCompany, releaseYear, status, id);
+				String writer = result.getString("writer");
+				String year = result.getString("year");
+				Boolean avaliable = result.getBoolean("avaliable");
+				int totalRentQuantity = result.getInt("totalRentQuantity");
+
+				Book book = new Book(id, isbn, nameX, publishingCompany, writer, year, avaliable, totalRentQuantity);
+
 				return book;
+
 			}
-		} catch (SQLException e) {
-			System.err.println("Erro de Sistema  - Problema ao buscar livro pelo ISBC");
-			throw new RuntimeException(e);
+
+		} catch (SQLException ex) {
+			System.err.println("Erro de Sistema - Problema ao editar  cadastro de Livro");
+			throw new RuntimeException(ex);
 		} finally {
 			closeConection();
 		}
+
 		return (null);
 	}
 
 	@Override
-	public List<Book> searchByName(String name) {
-		List<Book> listOfbooks = new ArrayList<>();
-		String sql = "SELECT * FROM book WHERE name1 LIKE ?";
+	public List<Book> listByName(String name) {
+		List<Book> listOfBooks = new ArrayList<>();
+		String sql = "SELECT * FROM book WHERE name LIKE ?";
+
 		try {
-			
 			conect(sql);
-			
 			comand.setString(1, "%" + name + "%");
-			
 			ResultSet result = comand.executeQuery();
-			
+
 			while (result.next()) {
-				
 				int id = result.getInt("id");
-				
-				String nameZ = result.getString("name1");
-				
-				int ISBC = result.getInt("ISBC");
-				
-				String writer = result.getString("writer");
-				
+				long isbn = result.getLong("isbn");
+				String nameX = result.getString("name1");
 				String publishingCompany = result.getString("publishingCompany");
-				
-				int releaseYear = result.getInt("releaseYear");
-				
-				boolean status = result.getBoolean("avaliable");
-				
-				Book book = new Book(ISBC, nameZ, writer, publishingCompany, releaseYear, status, id);
-				listOfbooks.add(book);
+				String writer = result.getString("writer");
+				String year = result.getString("year");
+				Boolean avaliable = result.getBoolean("avaliable");
+				int totalRentQuantity = result.getInt("totalRentQuantity");
+
+				Book book = new Book(id, isbn, nameX, publishingCompany, writer, year, avaliable, totalRentQuantity);
+
+				listOfBooks.add(book);
 			}
-			
-		} catch (SQLException e) {
-			System.err.println("Erro de Sistema - Problema ao buscar livro pelo nome ");
-			throw new RuntimeException(e);
+
+		} catch (SQLException ex) {
+			System.err.println("Erro de Sistema - Problema ao editar  cadastro de Livro");
+			throw new RuntimeException(ex);
 		} finally {
 			closeConection();
 		}
-		return (listOfbooks);
+
+		return (listOfBooks);
 	}
 
+	@Override
+	public void save(Book dominio) {
+
+	}
+
+	@Override
+	public void update(Book paciente) {
+
+	}
+
+	@Override
+	public Book searchById(int id) {
+
+		return null;
+	}
 }

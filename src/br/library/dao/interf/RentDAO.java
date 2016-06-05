@@ -5,7 +5,7 @@ import java.util.List;
 import br.library.domain.profile.Rent;
 
 public interface RentDAO extends dao<Rent> {
-	public void insert(Rent rent);
+	public void save(Rent rent);
 
 	public void updateClient(Rent rent);
 

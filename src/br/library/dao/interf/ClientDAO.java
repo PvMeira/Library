@@ -18,8 +18,9 @@ public interface ClientDAO extends dao<Client> {
 	public Client searchById(int id);
 
 	public Client searchByName(String name);
+	public Client searchByCpf(long cpf);
 
 	public Client searchByRegister(long register);
 
-	public List<Client> listByName(String nome);
+	public List<Client> listByName(String name);
 }

@@ -7,300 +7,328 @@ import java.util.List;
 
 import br.library.dao.interf.ClientDAO;
 import br.library.domain.profile.Client;
-import br.library.infra.persistence.setup.BDExeption;
 
 public class ClientDAOBd extends AbstractDao<Client> implements ClientDAO {
 
-	 @Override
-	    public void insert(Client client) {
-	        int id;
-	        try {
-	            String sql = "INSERT INTO client (nome, rg, telefone, matricula, livrosAlugados, qntdelivrosalugados, qntdeatraso) "
-	                    + "VALUES (?,?,?,?,?,?,?)";
-
-	            //Foi criado um novo método conectar para obter o id
-	            conectarObtendoId(sql);
-	            comando.setString(1, client.getNome());
-	            comando.setLong(2, client.getRg());
-	            comando.setString(3, client.getTelefone());
-	            comando.setLong(4, client.getMatricula());
-	            comando.setInt(5, client.getLivrosAlugados());
-	            comando.setInt(6, client.getQntdelivrosalugados());
-	            comando.setInt(7, client.getQntdeatraso());
-	            comando.executeUpdate();
-	            //Obtém o resultSet para pegar o id
-	            ResultSet resultado = comando.getGeneratedKeys();
-	            if (resultado.next()) {
-	                //seta o id para o objeto
-	                id = resultado.getInt(1);
-	                client.setId(id);
-	            }
-
-	        } catch (SQLException ex) {
-	            Logger.getLogger(ClienteDaoBd.class.getName()).log(Level.SEVERE, null, ex);
-	        } finally {
-	            fecharConexao();
-	        }
-
-	        //Caso queira retornar id:
-	        //return (id);
-	    }
-
-	    @Override
-	    public void deletar(Cliente cliente) {
-	        try {
-	            String sql = "DELETE FROM cliente WHERE rg = ?";
-
-	            conectar(sql);
-	            comando.setLong(1, cliente.getRg());
-	            comando.executeUpdate();
-
-	        } catch (SQLException ex) {
-	            Logger.getLogger(ClienteDaoBd.class.getName()).log(Level.SEVERE, null, ex);
-	        } finally {
-	            fecharConexao();
-	        }
-
-	    }
-
-	    @Override
-	    public void editar(Cliente c, String novoX, String coluna) {
-	        String sql = "UPDATE cliente SET " + coluna + "=(?) WHERE id=(?)";
-	        try {
-	            conectar(sql);
-	            comando.setString(1, novoX);
-	            comando.setInt(2, c.getId());
-	            comando.executeUpdate();
-	        } catch (SQLException ex) {
-	            Logger.getLogger(ClienteDaoBd.class.getName()).log(Level.SEVERE, null, ex);
-	        } finally {
-	            fecharConexao();
-	        }
-	    }
-
-	    @Override
-	    public void editar(Cliente c, long novoX, String coluna) {
-	        String sql = "UPDATE cliente SET " + coluna + "=(?) WHERE id=(?)";
-	        try {
-	            conectar(sql);
-	            comando.setLong(1, novoX);
-	            comando.setInt(2, c.getId());
-	            comando.executeUpdate();
-	        } catch (SQLException ex) {
-	            Logger.getLogger(ClienteDaoBd.class.getName()).log(Level.SEVERE, null, ex);
-	        } finally {
-	            fecharConexao();
-	        }
-	    }
-
-	    @Override
-	    public List<Cliente> listar() {
-	        List<Cliente> listaClientes = new ArrayList<>();
-
-	        String sql = "SELECT * FROM cliente ORDER BY nome";
-
-	        try {
-	            conectar(sql);
-
-	            ResultSet resultado = comando.executeQuery();
-
-	            while (resultado.next()) {
-	                int id = resultado.getInt("id");
-	                String nome = resultado.getString("nome");
-	                long rg = resultado.getLong("rg");
-	                String telefone = resultado.getString("telefone");
-	                long matricula = resultado.getLong("matricula");
-	                int livrosAlugados = resultado.getInt("livrosAlugados");
-	                int qntdelivrosalugados = resultado.getInt("qntdelivrosalugados");
-	                int qntdeatraso = resultado.getInt("qntdeatraso");
+	@Override
+	public void insert(Client client) {
+		int id;
+		try {
+			String sql = "INSERT INTO client (nome, rg, telefone, matricula, livrosAlugados, qntdelivrosalugados, qntdeatraso) "
+					+ "VALUES (?,?,?,?,?,?,?)";
+
+			conectUsingId(sql);
+			comand.setString(1, client.getName());
+			comand.setLong(2, client.getCpf());
+			comand.setString(3, client.getPhone());
+			comand.setLong(4, client.getRegister());
+			comand.setInt(5, client.getBooksRent());
+			comand.setInt(6, client.getQuantityOfBooksRent());
+			comand.setInt(7, client.getLate());
+			comand.executeUpdate();
+
+			ResultSet resultado = comand.getGeneratedKeys();
+			if (resultado.next()) {
+				id = resultado.getInt(1);
+				client.setId(id);
+			}
+
+		} catch (SQLException ex) {
+			System.err.println("Erro de Sistema - Problema ao Inserir novo Cliente");
+			throw new RuntimeException(ex);
+		} finally {
+			closeConection();
+		}
+	}
+
+	@Override
+	public void delete(Client client) {
+		try {
+			String sql = "DELETE FROM cliente WHERE cpf = ?";
+
+			conect(sql);
+			comand.setLong(1, client.getCpf());
+			comand.executeUpdate();
+
+		} catch (SQLException ex) {
+			System.err.println("Erro de Sistema - Problema ao deletar novo Cliente");
+			throw new RuntimeException(ex);
+		} finally {
+			closeConection();
+		}
+
+	}
+
+	@Override
+	public void update(Client c, String newX, String colum) {
+		String sql = "UPDATE cliente SET " + colum + "=(?) WHERE id=(?)";
+		try {
+			conect(sql);
+			comand.setString(1, newX);
+			comand.setInt(2, c.getId());
+			comand.executeUpdate();
+		} catch (SQLException ex) {
+			System.err.println("Erro de Sistema - Problema ao atualizar novo Cliente");
+			throw new RuntimeException(ex);
+		} finally {
+			closeConection();
+		}
+	}
+
+	@Override
+	public void update(Client c, long newX, String colum) {
+		String sql = "UPDATE cliente SET " + colum + "=(?) WHERE id=(?)";
+		try {
+			conect(sql);
+			comand.setLong(1, newX);
+			comand.setInt(2, c.getId());
+			comand.executeUpdate();
+		} catch (SQLException ex) {
+			System.err.println("Erro de Sistema - Problema ao atualizar novo Cliente");
+			throw new RuntimeException(ex);
+		} finally {
+			closeConection();
+			;
+		}
+	}
+
+	@Override
+	public List<Client> list() {
+		List<Client> listOfClients = new ArrayList<>();
+
+		String sql = "SELECT * FROM cliente ORDER BY nome";
+
+		try {
+			conect(sql);
+
+			ResultSet result = comand.executeQuery();
+
+			while (result.next()) {
+				int id = result.getInt("id");
+				String name = result.getString("name");
+				long cpf = result.getLong("cpf");
+				String phone = result.getString("phone");
+				long register = result.getLong("register");
+				int rentBooks = result.getInt("rentBooks");
+				int quantityOfRentBooks = result.getInt("quantityOfRentBooks");
+				int late = result.getInt("late");
 
-	                Cliente cli = new Cliente(id, nome, rg, telefone, matricula, livrosAlugados, qntdelivrosalugados, qntdeatraso);
+				Client cli = new Client(id, name, cpf, phone, register, rentBooks, quantityOfRentBooks, late);
 
-	                listaClientes.add(cli);
+				listOfClients.add(cli);
 
-	            }
+			}
 
-	        } catch (SQLException ex) {
-	            Logger.getLogger(ClienteDaoBd.class.getName()).log(Level.SEVERE, null, ex);
-	        } finally {
-	            fecharConexao();
-	        }
+		} catch (SQLException ex) {
+			System.err.println("Erro de Sistema - Problema ao listar  Cliente");
+			throw new RuntimeException(ex);
+		} finally {
+			closeConection();
+			;
+		}
 
-	        return (listaClientes);
-	    }
+		return (listOfClients);
+	}
 
-	    @Override
-	    public Cliente procurarPorId(int id) {
-	        String sql = "SELECT * FROM cliente WHERE id = ?";
+	@Override
+	public Client searchById(int id) {
+		String sql = "SELECT * FROM client WHERE id = ?";
 
-	        try {
-	            conectar(sql);
-	            comando.setInt(1, id);
+		try {
+			conect(sql);
+			comand.setInt(1, id);
 
-	            ResultSet resultado = comando.executeQuery();
+			ResultSet result = comand.executeQuery();
+
+			if (result.next()) {
+				String name = result.getString("name");
+				long cpf = result.getLong("cpf");
+				String phone = result.getString("phone");
+				long register = result.getLong("register");
+				int rentBooks = result.getInt("rentBooks");
+				int quantityOfRentBooks = result.getInt("quantityOfRentBooks");
+				int late = result.getInt("late");
 
-	            if (resultado.next()) {
-	                String nome = resultado.getString("nome");
-	                long rg = resultado.getLong("rg");
-	                String telefone = resultado.getString("telefone");
-	                long matricula = resultado.getLong("matricula");
-	                int livrosAlugados = resultado.getInt("livrosAlugados");
-	                int qntdelivrosalugados = resultado.getInt("qntdelivrosalugados");
-	                int qntdeatraso = resultado.getInt("qntdeatraso");
+				Client cli = new Client(id, name, cpf, phone, register, rentBooks, quantityOfRentBooks, late);
 
-	                Cliente cli = new Cliente(id, nome, rg, telefone, matricula, livrosAlugados, qntdelivrosalugados, qntdeatraso);
+				return cli;
 
-	                return cli;
+			}
 
-	            }
+		} catch (SQLException ex) {
+			System.err.println("Erro de Sistema - Problema ao buscar  Cliente pelo id");
+			throw new RuntimeException(ex);
+		} finally {
+			closeConection();
+			;
+		}
 
-	        } catch (SQLException ex) {
-	            Logger.getLogger(ClienteDaoBd.class.getName()).log(Level.SEVERE, null, ex);
-	        } finally {
-	            fecharConexao();
-	        }
+		return (null);
+	}
 
-	        return (null);
-	    }
+	@Override
+	public Client searchByCpf(long rg) {
+		String sql = "SELECT * FROM client WHERE cpf = ?";
 
-	    @Override
-	    public Cliente procurarPorRg(long rg) {
-	        String sql = "SELECT * FROM cliente WHERE rg = ?";
+		try {
+			conect(sql);
+			comand.setLong(1, rg);
+
+			ResultSet result = comand.executeQuery();
+
+			if (result.next()) {
+				int id = result.getInt("id");
+				String name = result.getString("name");
+				long cpf = result.getLong("cpf");
+				String phone = result.getString("phone");
+				long register = result.getLong("register");
+				int rentBooks = result.getInt("rentBooks");
+				int quantityOfRentBooks = result.getInt("quantityOfRentBooks");
+				int late = result.getInt("late");
+
+				Client cli = new Client(id, name, cpf, phone, register, rentBooks, quantityOfRentBooks, late);
+
+				return cli;
+
+			}
+
+		} catch (SQLException ex) {
+			System.err.println("Erro de Sistema - Problema ao buscar Cliente pelo cpf");
+			throw new RuntimeException(ex);
+		} finally {
+			closeConection();
+			;
+		}
+
+		return (null);
+	}
+
+	@Override
+	public Client searchByName(String name) {
+		String sql = "SELECT * FROM cliente WHERE nome = ?";
+
+		try {
+			conect(sql);
+			comand.setString(1, name);
+
+			ResultSet result = comand.executeQuery();
+
+			if (result.next()) {
+				int id = result.getInt("id");
+				String nameX = result.getString("name");
+				long cpf = result.getLong("cpf");
+				String phone = result.getString("phone");
+				long register = result.getLong("register");
+				int rentBooks = result.getInt("rentBooks");
+				int quantityOfRentBooks = result.getInt("quantityOfRentBooks");
+				int late = result.getInt("late");
+
+				Client cli = new Client(id, nameX, cpf, phone, register, rentBooks, quantityOfRentBooks, late);
+
+				return cli;
 
-	        try {
-	            conectar(sql);
-	            comando.setLong(1, rg);
-
-	            ResultSet resultado = comando.executeQuery();
-
-	            if (resultado.next()) {
-	                int id = resultado.getInt("id");
-	                String nome = resultado.getString("nome");
-	                long rgX = resultado.getLong("rg");
-	                String telefone = resultado.getString("telefone");
-	                long matricula = resultado.getLong("matricula");
-	                int livrosAlugados = resultado.getInt("livrosAlugados");
-	                int qntdelivrosalugados = resultado.getInt("qntdelivrosalugados");
-	                int qntdeatraso = resultado.getInt("qntdeatraso");
-
-	                Cliente cli = new Cliente(id, nome, rgX, telefone, matricula, livrosAlugados, qntdelivrosalugados, qntdeatraso);
-
-	                return cli;
-
-	            }
-
-	        } catch (SQLException ex) {
-	            Logger.getLogger(ClienteDaoBd.class.getName()).log(Level.SEVERE, null, ex);
-	        } finally {
-	            fecharConexao();
-	        }
-
-	        return (null);
-	    }
-
-	    @Override
-	    public Cliente procurarPorNome(String nome) {
-	        String sql = "SELECT * FROM cliente WHERE nome = ?";
-
-	        try {
-	            conectar(sql);
-	            comando.setString(1, nome);
-
-	            ResultSet resultado = comando.executeQuery();
-
-	            if (resultado.next()) {
-	                int id = resultado.getInt("id");
-	                String nomeX = resultado.getString("nome");
-	                long rg = resultado.getLong("rg");
-	                String telefone = resultado.getString("telefone");
-	                long matricula = resultado.getLong("matricula");
-	                int livrosAlugados = resultado.getInt("livrosAlugados");
-	                int qntdelivrosalugados = resultado.getInt("qntdelivrosalugados");
-	                int qntdeatraso = resultado.getInt("qntdeatraso");
-
-	                Cliente cli = new Cliente(id, nomeX, rg, telefone, matricula, livrosAlugados, qntdelivrosalugados, qntdeatraso);
-
-	                return cli;
-
-	            }
-
-	        } catch (SQLException ex) {
-	            Logger.getLogger(ClienteDaoBd.class.getName()).log(Level.SEVERE, null, ex);
-	        } finally {
-	            fecharConexao();
-	        }
-
-	        return (null);
-	    }
-
-	    @Override
-	    public Cliente procurarPorMatricula(long matricula) {
-	        String sql = "SELECT * FROM cliente WHERE matricula = ?";
-
-	        try {
-	            conectar(sql);
-	            comando.setLong(1, matricula);
-
-	            ResultSet resultado = comando.executeQuery();
-
-	            if (resultado.next()) {
-	                int id = resultado.getInt("id");
-	                String nome = resultado.getString("nome");
-	                long rg = resultado.getLong("rg");
-	                String telefone = resultado.getString("telefone");
-	                long matriculaX = resultado.getLong("matricula");
-	                int livrosAlugados = resultado.getInt("livrosAlugados");
-	                int qntdelivrosalugados = resultado.getInt("qntdelivrosalugados");
-	                int qntdeatraso = resultado.getInt("qntdeatraso");
-
-	                Cliente cli = new Cliente(id, nome, rg, telefone, matriculaX, livrosAlugados, qntdelivrosalugados, qntdeatraso);
-
-	                return cli;
-
-	            }
-
-	        } catch (SQLException ex) {
-	            Logger.getLogger(ClienteDaoBd.class.getName()).log(Level.SEVERE, null, ex);
-	        } finally {
-	            fecharConexao();
-	        }
-
-	        return (null);
-	    }
-
-	    @Override
-	    public List<Cliente> listarPorNome(String nome) {
-	        List<Cliente> listaClientes = new ArrayList<>();
-	        String sql = "SELECT * FROM cliente WHERE nome LIKE ?";
-
-	        try {
-	            conectar(sql);
-	            comando.setString(1, "%" + nome + "%");
-	            ResultSet resultado = comando.executeQuery();
-
-	            while (resultado.next()) {
-	                int id = resultado.getInt("id");
-	                String nomeX = resultado.getString("nome");
-	                long rg = resultado.getLong("rg");
-	                String telefone = resultado.getString("telefone");
-	                long matricula = resultado.getLong("matricula");
-	                int livrosAlugados = resultado.getInt("livrosAlugados");
-	                int qntdelivrosalugados = resultado.getInt("qntdelivrosalugados");
-	                int qntdeatraso = resultado.getInt("qntdeatraso");
-
-	                Cliente cli = new Cliente(id, nomeX, rg, telefone, matricula, livrosAlugados, qntdelivrosalugados, qntdeatraso);
-
-	                listaClientes.add(cli);
-
-	            }
-
-	        } catch (SQLException ex) {
-	            Logger.getLogger(ClienteDaoBd.class.getName()).log(Level.SEVERE, null, ex);
-	        } finally {
-	            fecharConexao();
-	        }
-
-	        return (listaClientes);
-	    }
-
+			}
+
+		} catch (SQLException ex) {
+			System.err.println("Erro de Sistema - Problema ao buscar  Cliente pelo nome");
+			throw new RuntimeException(ex);
+		} finally {
+			closeConection();
+			;
+		}
+
+		return (null);
+	}
+
+	@Override
+	public Client searchByRegister(long register) {
+		String sql = "SELECT * FROM client WHERE matricula = ?";
+
+		try {
+			conect(sql);
+			comand.setLong(1, register);
+
+			ResultSet result = comand.executeQuery();
+
+			if (result.next()) {
+				int id = result.getInt("id");
+				String name = result.getString("name");
+				long cpf = result.getLong("cpf");
+				String phone = result.getString("phone");
+				long registerX = result.getLong("register");
+				int rentBooks = result.getInt("rentBooks");
+				int quantityOfRentBooks = result.getInt("quantityOfRentBooks");
+				int late = result.getInt("late");
+
+				Client cli = new Client(id, name, cpf, phone, registerX, rentBooks, quantityOfRentBooks, late);
+
+				return cli;
+
+			}
+
+		} catch (SQLException ex) {
+			System.err.println("Erro de Sistema - Problema ao buscar  Cliente pelo codigo de registtro");
+			throw new RuntimeException(ex);
+		} finally {
+			closeConection();
+			;
+		}
+
+		return (null);
+	}
+
+	@Override
+	public List<Client> listByName(String nome) {
+		List<Client> listOfClients = new ArrayList<>();
+		String sql = "SELECT * FROM client WHERE nome LIKE ?";
+
+		try {
+			conect(sql);
+			comand.setString(1, "%" + nome + "%");
+			ResultSet result = comand.executeQuery();
+
+			while (result.next()) {
+				int id = result.getInt("id");
+				String name = result.getString("name");
+				long cpf = result.getLong("cpf");
+				String phone = result.getString("phone");
+				long registerX = result.getLong("register");
+				int rentBooks = result.getInt("rentBooks");
+				int quantityOfRentBooks = result.getInt("quantityOfRentBooks");
+				int late = result.getInt("late");
+
+				Client cli = new Client(id, name, cpf, phone, registerX, rentBooks, quantityOfRentBooks, late);
+
+				listOfClients.add(cli);
+
+			}
+
+		} catch (SQLException ex) {
+			System.err.println("Erro de Sistema - Problema ao buscar  listar clientes pelo nome");
+			throw new RuntimeException(ex);
+		} finally {
+			closeConection();
+			;
+		}
+
+		return (listOfClients);
+	}
+
+	@Override
+	public void save(Client dominio) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void update(Client paciente) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public Client searchByID(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
