@@ -9,6 +9,7 @@ import br.library.model.menu.LayOut.ReportMenuLayOut;
 
 public class ReportMenu {
 	ReportMenuLayOut menu = new ReportMenuLayOut();
+	@SuppressWarnings("unused")
 	private final RentService serviceA = new RentService();
 	private final ClientService serviceB = new ClientService();
 	private final BookService serviceC = new BookService();

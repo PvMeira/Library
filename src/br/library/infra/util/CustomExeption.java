@@ -1,5 +1,6 @@
 package br.library.infra.util;
 
+@SuppressWarnings("serial")
 public class CustomExeption extends Exception {
 
     public CustomExeption(String s) {

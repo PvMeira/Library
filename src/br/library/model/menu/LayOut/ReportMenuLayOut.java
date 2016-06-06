@@ -7,7 +7,8 @@ public class ReportMenuLayOut {
 				+ "2-Mostrar Todos os livros disponiveis       :\n" 
 				+ "3-Mostrar livros que mais foram alugados    :\n" 
 				+ "4-Mostrar Clientes que mais alugaram        :\n" 
-				+ "4-Mostrar Clientes que mais atrasaram       :\n" 
+				+ "5-Mostrar Clientes que mais atrasaram       :\n" 
+				+ "6-Voltar para o menu principal              :\n" 
 	            + "\n--------------------------------------\n");
 	}
 

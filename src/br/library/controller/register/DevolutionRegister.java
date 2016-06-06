@@ -22,12 +22,12 @@ public class DevolutionRegister {
 	public void addNewDevolution() {
 		boolean late = false;
 		try {
-			int idRent = ConsoleReader.scanInt("Digite o código do aluguel do livro que deseja devolver: ");
-			if (serviceB.IdExist(idRent) == false) {
-				System.out.println("Não existe livro alugado com este código ");
+			int id = ConsoleReader.scanInt("Digite o ID do aluguel do livro que deseja devolver: ");
+			if (serviceB.IdExist(id) == false) {
+				System.err.println("Não existe livro alugado com este código ");
 				return;
 			}
-			Rent rent = serviceB.searchByCode(idRent);
+			Rent rent = serviceB.searchByCode(id);
 			Date data = new Date();
 			data = Date.from(Instant.now());
 			int numberOfDays = serviceA.diferenceOfTime(rent, data);
