@@ -25,7 +25,6 @@ public class RentRegister {
 	public void addNewRent() {
 		try {
 			long cpf = ConsoleReader.scanLong("Digite seu Cpf para continuar: ");
-			serviceB.clientExist(cpf);
 			if (serviceB.clientExist(cpf) == false) {
 				System.out.println("Cadastro nao encontrado");
 				return;
@@ -53,6 +52,7 @@ public class RentRegister {
 						System.err.println("Livro está alugado");
 					} else {
 						Date dateFormat = new Date();
+						@SuppressWarnings("unused")
 						java.sql.Date dataSql;
 						dateFormat = new java.sql.Date(dateFormat.getTime());
 						dataSql = (java.sql.Date) dateFormat;
@@ -80,6 +80,7 @@ public class RentRegister {
 						System.out.println("Livro está alugado");
 					} else {
 						Date dateFormat = new Date();
+						@SuppressWarnings("unused")
 						java.sql.Date dataSql;
 						dateFormat = new java.sql.Date(dateFormat.getTime());
 						dataSql = (java.sql.Date) dateFormat;

@@ -4,7 +4,8 @@ public class DevolutionMenuLayOut {
 	public String getOptionLayOut() {
 		return ("\n----------------------------------------\n" 
 	            + "1-Realizar uma devolução                :\n"
-				+ "2-Voltar para menu Principal            :\n" 
+	            + "2-Listar todas as devoluções            :\n" 
+				+ "4-Voltar para menu Principal            :\n" 
 	            + "\n--------------------------------------\n");
 	}
 }

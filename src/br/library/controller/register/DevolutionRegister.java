@@ -12,35 +12,47 @@ import br.library.infra.util.ConsoleReader;
 
 public class DevolutionRegister {
 	private DevolutionService serviceA;
-    private RentService serviceB;
+	private RentService serviceB;
 
-    public DevolutionRegister() {
-        serviceB = new RentService();
-        serviceA = new DevolutionService();
-    }
+	public DevolutionRegister() {
+		serviceB = new RentService();
+		serviceA = new DevolutionService();
+	}
 
+	public void addNewDevolution() {
+		boolean late = false;
+		try {
+			int idRent = ConsoleReader.scanInt("Digite o código do aluguel do livro que deseja devolver: ");
+			if (serviceB.IdExist(idRent) == false) {
+				System.out.println("Não existe livro alugado com este código ");
+				return;
+			}
+			Rent rent = serviceB.searchByCode(idRent);
+			Date data = new Date();
+			data = Date.from(Instant.now());
+			int numberOfDays = serviceA.diferenceOfTime(rent, data);
+			if (numberOfDays > 7) {
+				double charge = 1.00 * numberOfDays;
+				System.out.println("Cliente está com livro atrasado, quitar multa no valor de  " + charge
+						+ " com a administração!");
+				late = true;
+			}
+			serviceA.addNewDevolution(new Devolution(rent, data), late);
+			System.out.println("Livro devolvido com sucesso!");
+		} catch (InputMismatchException e) {
+			System.out.println("Entrada inválida!");
+		}
+	}
 
-    public void addNewDevolution() {
-        boolean late = false;
-        try {
-            int idRent = ConsoleReader.scanInt("Digite o código do aluguel do livro que deseja devolver: ");
-            if (serviceB.IdExist(idRent) == true) {
-                System.out.println("Não existe livro alugado com este código ");
-                return;
-            }
-            Rent rent = serviceB.searchByCode(idRent);
-            Date data = new Date();
-            data = Date.from(Instant.now());
-            int numberOfDays = serviceA.diferenceOfTime(rent, data);
-            if (numberOfDays > 7) {
-                double charge = 1.00 * numberOfDays;
-                System.out.println("Cliente está com livro atrasado, quitar multa no valor de  " + charge + " com a administração!");
-                late = true;
-            }
-            serviceA.addNewDevolution(new Devolution(rent, data),late);
-            System.out.println("Livro devolvido com sucesso!");
-        } catch (InputMismatchException e) {
-            System.out.println("Entrada inválida!");
-        }
-    }
+	public void showDevolution() {
+		System.out.println("-----------------------------\n");
+		System.out.println(String.format("%-20s", "|Código da devolução") + "\t"
+				+ String.format("%-20s", "|Nome do cliente") + String.format("%-20s", "  |Titulo do livro alugado")
+				+ String.format("%-20s", "    |Data da devolução"));
+		for (Devolution devolution : serviceA.listDevolution()) {
+			System.out.println(String.format("%-10s", devolution.getId()) + "\t"
+					+ String.format("%-20s", "        |" + devolution.getRent().getClient().getName()) + "\t"
+					+ String.format("%-20s", "      |" + devolution.getRent().getBooksRent().getName() + "\t"));
+		}
+	}
 }
