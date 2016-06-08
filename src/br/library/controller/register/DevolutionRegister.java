@@ -38,7 +38,7 @@ public class DevolutionRegister {
 				late = true;
 			}
 			serviceA.addNewDevolution(new Devolution(rent, data), late);
-			serviceB.deleteRent(rent);
+//			serviceB.deleteRent(rent);
 			System.out.println("Livro devolvido com sucesso!");
 		} catch (InputMismatchException e) {
 			System.out.println("Entrada inválida!");
