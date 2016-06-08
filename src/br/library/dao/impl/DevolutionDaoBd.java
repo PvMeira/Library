@@ -107,7 +107,7 @@ public class DevolutionDaoBd extends AbstractDao<Devolution> implements Devoluti
 				int id = result.getInt("id");
 				int idRent = result.getInt("id_rent");
 				
-				java.sql.Date dataSql = result.getDate("rentDate");
+				java.sql.Date dataSql = result.getDate("devolutionDate");
 				java.util.Date dataUtil = new java.util.Date(dataSql.getTime());
 				RentDAO rentDao = new RentDaoBd();
 				Rent rent = rentDao.searchById(idRent);
