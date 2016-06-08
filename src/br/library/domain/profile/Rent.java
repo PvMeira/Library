@@ -8,20 +8,22 @@ public class Rent {
 	private Client client;
 	private Book booksRent;
 	private Date rentData;
+	private boolean avaliable;
 
-	public Rent(Date dataRentRe, Client clientRe, Book booksRe) {
+	public Rent(Date dataRentRe, Client clientRe, Book booksRe,boolean status) {
 		this.rentData = dataRentRe;
 		this.client = clientRe;
 		this.booksRent = booksRe;
+		this.avaliable=status;
 
 	}
 
-	public Rent(int id, Date dataRentRe, Client clientRe, Book booksRe) {
+	public Rent(int id, Date dataRentRe, Client clientRe, Book booksRe,boolean status) {
 		this.id = id;
 		this.rentData = dataRentRe;
 		this.client = clientRe;
 		this.booksRent = booksRe;
-
+		this.avaliable=status;
 	}
 
 	public int getId() {
@@ -31,6 +33,7 @@ public class Rent {
 	public void setId(int id) {
 		this.id = id;
 	}
+	
 
 	public Client getClient() {
 		return client;
@@ -55,10 +58,18 @@ public class Rent {
 	public void setRentData(Date rentData) {
 		this.rentData = rentData;
 	}
+	public boolean isAvaliable() {
+		return avaliable;
+	}
+
+	public void setAvaliable(boolean avaliable) {
+		this.avaliable = avaliable;
+	}
 
 	@Override
 	public String toString() {
-		return "Cliente" + client + "\nLivros Alugados" + booksRent + "\nData de aluguel" + rentData;
+		return "Rent [id=" + id + ", client=" + client + ", booksRent=" + booksRent + ", rentData=" + rentData
+				+ ", avaliable=" + avaliable + "]";
 	}
 
 }

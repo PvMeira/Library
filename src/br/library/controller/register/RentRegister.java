@@ -57,7 +57,7 @@ public class RentRegister {
 						dateFormat = new java.sql.Date(dateFormat.getTime());
 						dataSql = (java.sql.Date) dateFormat;
 
-						serviceA.addNewRent(new Rent(dateFormat, client, book));
+						serviceA.addNewRent(new Rent(dateFormat, client, book,true));
 						System.out.println("Livro " + book.getName() + " alugado com sucesso! ");
 					}
 				} else {
@@ -85,7 +85,7 @@ public class RentRegister {
 						dateFormat = new java.sql.Date(dateFormat.getTime());
 						dataSql = (java.sql.Date) dateFormat;
 
-						serviceA.addNewRent(new Rent(dateFormat, client, book));
+						serviceA.addNewRent(new Rent(dateFormat, client, book,true));
 						System.out.println("Livro " + book.getName() + " alugado com sucesso! ");
 					}
 				} else {

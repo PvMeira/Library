@@ -5,6 +5,7 @@ public class DevolutionMenuLayOut {
 		return ("\n----------------------------------------\n" 
 	            + "1-Realizar uma devolução                :\n"
 	            + "2-Listar todas as devoluções            :\n" 
+	            + "3-Listar todos os alugueis ativos       :\n" 
 				+ "4-Voltar para menu Principal            :\n" 
 	            + "\n--------------------------------------\n");
 	}

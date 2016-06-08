@@ -173,7 +173,4 @@ public class DevolutionDaoBd extends AbstractDao<Devolution> implements Devoluti
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-
-
 }

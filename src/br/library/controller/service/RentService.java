@@ -29,6 +29,9 @@ public class RentService {
 	public List<Rent> ListRent() {
 		return dao.list();
 	}
+	  public void changeStatusOnRent(Rent rent){
+	    	dao.updateRentStatus(rent);
+	    }
 
 	public Rent searchByCode(int id) {
 		Rent rent = dao.searchById(id);
@@ -36,6 +39,9 @@ public class RentService {
 	}
 	public void deleteRent(Rent rent){
 		dao.delete(rent);
+	}
+	public List<Rent> listAllAvaliableRents(){
+		return dao.listAllAvaliableRents();
 	}
 
 }

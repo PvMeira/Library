@@ -24,6 +24,9 @@ public class DevolutionMenu {
 					d.showDevolution();
 					break;
 				case 3:
+					d.listAllAvaliableRents();
+					break;
+				case 4:
 					MainMenu mainMenu = new MainMenu();
 					mainMenu.mainSearch();
 				default:
@@ -33,7 +36,7 @@ public class DevolutionMenu {
 
 				System.err.println("Formato Inválido, apenas numeros aceitos!");
 			}
-		} while (op != 3);
+		} while (op != 4);
 
 	}
 }

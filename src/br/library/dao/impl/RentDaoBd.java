@@ -17,7 +17,7 @@ public class RentDaoBd extends AbstractDao<Rent> implements RentDAO {
 	public void save(Rent rent) {
 		int id;
 		try {
-			String sql = "INSERT INTO rent (rentDate, id_client, id_book) " + "VALUES (?,?,?)";
+			String sql = "INSERT INTO rent (rentDate, id_client, id_book,avaliable) " + "VALUES (?,?,?,?)";
 
 			conectUsingId(sql);
 
@@ -25,6 +25,7 @@ public class RentDaoBd extends AbstractDao<Rent> implements RentDAO {
 			comand.setDate(1, dataSql);
 			comand.setInt(2, rent.getClient().getId());
 			comand.setInt(3, rent.getBooksRent().getId());
+			comand.setBoolean(4, rent.isAvaliable());
 			comand.executeUpdate();
 
 			ResultSet result = comand.getGeneratedKeys();
@@ -124,17 +125,17 @@ public class RentDaoBd extends AbstractDao<Rent> implements RentDAO {
 				java.util.Date dataUtil = new java.util.Date(dataSql.getTime());
 				int idClient = result.getInt("id_client");
 				int idBook = result.getInt("id_book");
+				boolean status = result.getBoolean("avaliable");
 				ClientDAO clientDao = new ClientDAOBd();
 				BookDAO bookDao = new BookDaoBd();
 				Client client1 = clientDao.searchById(idClient);
 				Book book = bookDao.searchByIsbn(idBook);
 
-				Rent rent = new Rent(idRent, dataUtil, client1, book);
+				Rent rent = new Rent(idRent, dataUtil, client1, book, status);
 				rentList.add(rent);
 			}
 		} catch (SQLException ex) {
-			System.err.println(
-					"Erro de Sistema - Problema ao  listar os alugueis ativos");
+			System.err.println("Erro de Sistema - Problema ao  listar os alugueis ativos");
 			throw new RuntimeException(ex);
 		} finally {
 			closeConection();
@@ -153,22 +154,22 @@ public class RentDaoBd extends AbstractDao<Rent> implements RentDAO {
 			ResultSet result = comand.executeQuery();
 
 			if (result.next()) {
-				int idRent = result.getInt("id");			
+				int idRent = result.getInt("id");
 				java.sql.Date dataSql = result.getDate("rentDate");
 				java.util.Date dataUtil = new java.util.Date(dataSql.getTime());
 				int idClient = result.getInt("id_client");
 				int idBook = result.getInt("id_book");
+				boolean status = result.getBoolean("avaliable");
 				ClientDAO clientDao = new ClientDAOBd();
 				BookDAO bookDao = new BookDaoBd();
 				Client client = clientDao.searchById(idClient);
 				Book book = bookDao.searchByID(idBook);
 
-				Rent rent = new Rent(idRent, dataUtil, client, book);
+				Rent rent = new Rent(idRent, dataUtil, client, book, status);
 				return rent;
 			}
 		} catch (SQLException ex) {
-			System.err.println(
-					"Erro de Sistema - Problema ao buscar alugueis pelo id ");
+			System.err.println("Erro de Sistema - Problema ao buscar alugueis pelo id ");
 			throw new RuntimeException(ex);
 		} finally {
 			closeConection();
@@ -195,12 +196,61 @@ public class RentDaoBd extends AbstractDao<Rent> implements RentDAO {
 	}
 
 	@Override
-	public void update(Rent paciente) {
+	public void updateRentStatus(Rent rent) {
+		try {
+			String sql = "UPDATE rent SET avaliable=false " + "WHERE id=?";
+			conect(sql);
+			comand.setInt(1, rent.getId());
+			comand.executeUpdate();
+
+		} catch (SQLException ex) {
+			System.err.println("Erro de Sistema - Problema ao  atualizar quantidade do Livro no aluguel");
+			throw new RuntimeException(ex);
+		} finally {
+			closeConection();
+		}
 	}
 
 	@Override
 	public Rent searchByID(int id) {
 		return null;
+	}
+
+	@Override
+	public void update(Rent paciente) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public List<Rent> listAllAvaliableRents() {
+		List<Rent> avaliableRentList = new ArrayList<>();
+		String sql = "SELECT * FROM rent WHERE avaliable=true";
+		try {
+			conect(sql);
+			ResultSet result = comand.executeQuery();
+			while (result.next()) {
+				int idRent = result.getInt("id");
+				java.sql.Date dataSql = result.getDate("rentDate");
+				java.util.Date dataUtil = new java.util.Date(dataSql.getTime());
+				int idClient = result.getInt("id_client");
+				int idBook = result.getInt("id_book");
+				boolean status = result.getBoolean("avaliable");
+				ClientDAO clientDao = new ClientDAOBd();
+				BookDAO bookDao = new BookDaoBd();
+				Client client1 = clientDao.searchById(idClient);
+				Book book = bookDao.searchByID(idBook);
+
+				Rent rent = new Rent(idRent, dataUtil, client1, book, status);
+				avaliableRentList.add(rent);
+			}
+		} catch (SQLException ex) {
+			System.err.println("Erro de Sistema - Problema ao  listar os alugueis ativos");
+			throw new RuntimeException(ex);
+		} finally {
+			closeConection();
+		}
+		return (avaliableRentList);
 	}
 
 }

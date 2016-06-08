@@ -27,7 +27,7 @@ public class DevolutionService {
         Devolution devolution = dao.searchById(id);
         return devolution;
     }
-
+ 
     public int diferenceOfTime(Rent rent, Date date) {
         long time1 = rent.getRentData().getTime();
         long time2 = date.getTime();

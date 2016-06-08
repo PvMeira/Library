@@ -16,6 +16,8 @@ public interface RentDAO extends dao<Rent> {
 	public void updateQuantityOfRentBooksByClient(Rent rent);
 
 	public List<Rent> list();
+	public List<Rent> listAllAvaliableRents();
 
 	public Rent searchById(int id);
+	void updateRentStatus(Rent rent);
 }

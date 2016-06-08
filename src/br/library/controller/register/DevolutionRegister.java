@@ -28,6 +28,10 @@ public class DevolutionRegister {
 				return;
 			}
 			Rent rent = serviceB.searchByCode(id);
+			if(!rent.isAvaliable()){
+				System.out.println("Desculpe mas este venda, ja foi fechada");
+				return;
+			}
 			Date data = new Date();
 			data = Date.from(Instant.now());
 			int numberOfDays = serviceA.diferenceOfTime(rent, data);
@@ -38,7 +42,7 @@ public class DevolutionRegister {
 				late = true;
 			}
 			serviceA.addNewDevolution(new Devolution(rent, data), late);
-//			serviceB.deleteRent(rent);
+			serviceB.changeStatusOnRent(rent);
 			System.out.println("Livro devolvido com sucesso!");
 		} catch (InputMismatchException e) {
 			System.out.println("Entrada inválida!");
@@ -53,7 +57,20 @@ public class DevolutionRegister {
 		for (Devolution devolution : serviceA.listDevolution()) {
 			System.out.println(String.format("%-10s", devolution.getId()) + "\t"
 					+ String.format("%-20s", "        |" + devolution.getRent().getClient().getName()) + "\t"
-					+ String.format("%-20s", "      |" + devolution.getRent().getBooksRent().getName() + "\t"));
+					+ String.format("%-20s", "      |" + devolution.getRent().getBooksRent().getName() + "\t")
+					+ String.format("%-20s", "      |" + devolution.getDevolutionDate() + "\t"));
+		}
+	}
+	public void listAllAvaliableRents(){
+		System.out.println("-----------------------------\n");
+		System.out.println(String.format("%-20s", "|Código da venda") + "\t"
+				+ String.format("%-20s", "|Nome do cliente") + String.format("%-20s", "  |Titulo do livro alugado")
+				+ String.format("%-20s", "    |Data do aluguel"));
+		for (Rent rent : serviceB.listAllAvaliableRents()) {
+			System.out.println(String.format("%-10s", rent.getId()) + "\t"
+					+ String.format("%-20s", "        |" + rent.getClient().getName()) + "\t"
+					+ String.format("%-20s", "      |" + rent.getBooksRent().getName() + "\t")
+					+ String.format("%-20s", "      |" + rent.getRentData() + "\t"));
 		}
 	}
 }
