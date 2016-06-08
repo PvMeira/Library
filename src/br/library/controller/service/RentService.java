@@ -31,9 +31,11 @@ public class RentService {
 	}
 
 	public Rent searchByCode(int id) {
-
-		Rent rent = dao.searchByID(id);
+		Rent rent = dao.searchById(id);
 		return rent;
+	}
+	public void deleteRent(Rent rent){
+		dao.delete(rent);
 	}
 
 }

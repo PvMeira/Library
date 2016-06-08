@@ -161,7 +161,7 @@ public class RentDaoBd extends AbstractDao<Rent> implements RentDAO {
 				ClientDAO clientDao = new ClientDAOBd();
 				BookDAO bookDao = new BookDaoBd();
 				Client client = clientDao.searchById(idClient);
-				Book book = bookDao.searchById(idBook);
+				Book book = bookDao.searchByID(idBook);
 
 				Rent rent = new Rent(idRent, dataUtil, client, book);
 				return rent;
@@ -178,7 +178,20 @@ public class RentDaoBd extends AbstractDao<Rent> implements RentDAO {
 	}
 
 	@Override
-	public void delete(Rent paciente) {
+	public void delete(Rent rent) {
+		try {
+			String sql = "DELETE FROM rent WHERE id = ?";
+
+			conect(sql);
+			comand.setInt(1, rent.getId());
+			comand.executeQuery();
+
+		} catch (SQLException ex) {
+			System.err.println("Erro de Sistema - Problema ao deletar cadastro de venda");
+			throw new RuntimeException(ex);
+		} finally {
+			closeConection();
+		}
 	}
 
 	@Override
