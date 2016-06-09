@@ -2,9 +2,6 @@ package br.library.infra.persistence.setup;
 
 public class BDExeption extends RuntimeException {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	public BDExeption(String s) {

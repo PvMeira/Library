@@ -1,5 +1,8 @@
 package br.library.controller.register;
-
+/**
+ * @author Pedro
+ *
+ */
 import java.time.Instant;
 import java.util.Date;
 import java.util.InputMismatchException;

@@ -1,5 +1,8 @@
 package br.library.controller.register;
-
+/**
+ * @author Pedro
+ *
+ */
 import java.util.InputMismatchException;
 
 import br.library.controller.service.ClientService;

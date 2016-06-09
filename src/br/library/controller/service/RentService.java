@@ -1,5 +1,8 @@
 package br.library.controller.service;
-
+/**
+ * @author Pedro
+ *
+ */
 import java.util.List;
 
 import br.library.dao.impl.RentDaoBd;

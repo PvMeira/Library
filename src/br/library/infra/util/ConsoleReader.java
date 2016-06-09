@@ -1,8 +1,5 @@
 package br.library.infra.util;
-/**
- * @author Pedro
- *
- */
+
 import java.util.Scanner;
 
 public class ConsoleReader {

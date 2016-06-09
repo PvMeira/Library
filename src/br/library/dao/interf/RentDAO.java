@@ -1,5 +1,8 @@
 package br.library.dao.interf;
-
+/**
+ * @author Pedro
+ *
+ */
 import java.util.List;
 
 import br.library.domain.profile.Rent;

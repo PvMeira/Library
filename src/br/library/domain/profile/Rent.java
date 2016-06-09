@@ -1,7 +1,10 @@
 package br.library.domain.profile;
 
 import java.util.Date;
-
+/**
+ * @author Pedro
+ *
+ */
 public class Rent {
 
 	private int id;
@@ -68,8 +71,8 @@ public class Rent {
 
 	@Override
 	public String toString() {
-		return "Rent [id=" + id + ", client=" + client + ", booksRent=" + booksRent + ", rentData=" + rentData
-				+ ", avaliable=" + avaliable + "]";
+		return  "Cliente :" + client + "Livros Alugados :" + booksRent + "Data de aluguel :" + rentData
+				+ "Disponivel :" + avaliable;
 	}
 
 }

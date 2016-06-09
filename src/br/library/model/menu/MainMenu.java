@@ -45,13 +45,12 @@ public class MainMenu {
 				ReportMenu h = new ReportMenu();
 				h.bookMenu();
 				break;
+			case 6:
+				System.out.println("Aplicação Encerrada");
+			default:
+				System.out.println("opção Inválida");
 
-			
-		case 6:
-			System.out.println("Exit Aplication");
-			break;
-
-		}
+			}
 		} while (option != 6);
 	}
 }

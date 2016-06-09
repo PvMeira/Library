@@ -98,8 +98,8 @@ public class Book {
 
 	@Override
 	public String toString() {
-		return "Codigo ISBN" + isbn + "\nNome" + name + "\nEditora" + publishingCompany + "\nEscritor" + writer + "\nAno" + year
-				+ "\nStatus" + avaliable + "\nQuantidade total de alugueis" + totalRentQuantity + "]";
+		return "Codigo ISBN :" + isbn + "\nNome :" + name + "\nEditora :" + publishingCompany + "\nEscritor :" + writer + "\nAno :" + year
+				+ "\nStatus :" + avaliable + "\nQuantidade total de alugueis :" + totalRentQuantity;
 	}
 
 }

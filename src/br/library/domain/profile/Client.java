@@ -1,5 +1,8 @@
 package br.library.domain.profile;
-
+/**
+ * @author Pedro
+ *
+ */
 public class Client {
 
 	private int id, booksRent, quantityOfBooksRent, late;
@@ -105,8 +108,8 @@ public class Client {
 
 	@Override
 	public String toString() {
-		return "livros alugados=" + booksRent + "\nQuantidade de livros alugados" + quantityOfBooksRent + "\nEm atraso"
-				+ late + "\nNome" + name + "\nTelefoen" + phone + "\nRegistro" + register + "\nCPF=" + cpf;
+		return "Livros alugados :" + booksRent + "\nQuantidade de livros alugados :" + quantityOfBooksRent + "\nEm atraso :"
+				+ late + "\nNome :" + name + "\nTelefone :" + phone + "\nRegistro :" + register + "\nCPF :" + cpf;
 	}
 
 }

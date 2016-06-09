@@ -1,7 +1,10 @@
 package br.library.domain.profile;
 
 import java.util.Date;
-
+/**
+ * @author Pedro
+ *
+ */
 public class Devolution {
 
 	private int id;
@@ -52,7 +55,7 @@ public class Devolution {
 
 	@Override
 	public String toString() {
-		return "Date de devolução=" + devolutionDate + "\nAluguel" + rent;
+		return "Data de devolução :" + devolutionDate + "\nAluguel :" + rent;
 	}
 
 }

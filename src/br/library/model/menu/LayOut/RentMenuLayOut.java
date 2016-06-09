@@ -1,5 +1,8 @@
 package br.library.model.menu.LayOut;
-
+/**
+ * @author Pedro
+ *
+ */
 public class RentMenuLayOut {
 	public String getOptionLayOut() {
 		return ("\n----------------------------------------\n" 
