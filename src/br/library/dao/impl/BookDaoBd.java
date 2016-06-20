@@ -1,4 +1,5 @@
 package br.library.dao.impl;
+
 /**
  * @author Pedro
  *
@@ -279,14 +280,34 @@ public class BookDaoBd extends AbstractDao<Book> implements BookDAO {
 
 	}
 
-	@Override
-	public void update(Book paciente) {
-
+	public void editBook(Book book, int id) {
+		String sql = "UPDATE book SET isbn=(?), name1=(?), publishingCompany=(?), writer=(?), year=(?) WHERE id=(?)";
+		try {
+			conect(sql);
+			comand.setLong(1, book.getIsbn());
+			comand.setString(2, book.getName());
+			comand.setString(3, book.getPublishingCompany());
+			comand.setString(4, book.getWriter());
+			comand.setString(5, book.getYear());
+			comand.setInt(6, id);
+			comand.executeUpdate();
+		} catch (SQLException ex) {
+			System.err.println("Erro de Sistema - Problema ao editar  cadastro de Livro");
+			throw new RuntimeException(ex);
+		} finally {
+			closeConection();
+		}
 	}
 
 	@Override
 	public Book searchById(int id) {
 
 		return null;
+	}
+
+	@Override
+	public void update(Book paciente) {
+		// TODO Auto-generated method stub
+
 	}
 }
