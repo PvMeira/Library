@@ -280,6 +280,7 @@ public class BookDaoBd extends AbstractDao<Book> implements BookDAO {
 
 	}
 
+	@Override
 	public void editBook(Book book, int id) {
 		String sql = "UPDATE book SET isbn=(?), name1=(?), publishingCompany=(?), writer=(?), year=(?) WHERE id=(?)";
 		try {

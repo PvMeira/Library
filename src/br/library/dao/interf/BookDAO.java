@@ -15,6 +15,7 @@ public interface BookDAO extends dao<Book> {
 	public void edit(Book book, long code, String colum);
 
 	public void edit(Book book, String code, String colum);
+	public void editBook(Book book, int id);
 
 	public List<Book> list();
 
