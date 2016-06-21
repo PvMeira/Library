@@ -1,23 +1,23 @@
+
 package br.library.model.view.rent;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.swing.table.AbstractTableModel;
 
 import br.library.domain.profile.Book;
 
-public class RentTable extends AbstractTableModel {
-
+public class RentTableModel extends AbstractTableModel {
+	private static final long serialVersionUID = 1L;
 	private String header[];
 	private List<Book> books;
 
-	public RentTable() {
-		this.header = new String[] { "ISBN", "Titulo", "Editora", "Autor(es)", "Ano de Publicação", "Disponibilidade" };
+	public RentTableModel() {
+		this.header = new String[] { "ISBN", "Nome", "Editora", "Autor(es)", "Ano de Publicação", "Disponibilidade" };
 		this.books = new ArrayList<Book>();
 	}
 
-	public RentTable(String[] header, List<Book> books) {
+	public RentTableModel(String[] header, List<Book> books) {
 		this.header = header;
 		this.books = books;
 

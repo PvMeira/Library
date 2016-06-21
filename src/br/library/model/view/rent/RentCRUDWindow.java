@@ -1,27 +1,27 @@
 package br.library.model.view.rent;
 
-
-
 import java.awt.CardLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import br.library.model.controller.RentController;
 
 
-public class RentCrud extends JFrame {
-    private RentController controller;
+public class RentCRUDWindow extends JFrame {
+	private static final long serialVersionUID = 1L;
+
+	private RentController controller;
     
-    public final static String PANELFORM = "Form";
-    public final static String PANELTABLE = "Table";
-    private JPanel mainWindow; 
+    public final static String PANELFORM = "Formulario";
+    public final static String PANELTABLE = "Tabela";
+    private JPanel mainPanel; 
     private RentRegisterPanel rentRegisterPanel;
     private RentPanel rentPanel;
 
-
-    public RentCrud(JFrame jframe, RentController controller) {
+    public RentCRUDWindow(JFrame jframe, RentController controller) {
         this.controller = controller;
         this.controller.setWindow(this);
-        StartParam();
+        startParam();
         controller.updateTable();
         this.setTitle("Biblioteca");
         this.pack();
@@ -29,18 +29,18 @@ public class RentCrud extends JFrame {
         this.setVisible(true);
     }
 
-    private void StartParam() {
-        mainWindow = new JPanel(new CardLayout());
+    private void startParam() {
+        mainPanel = new JPanel(new CardLayout());
         rentPanel = new RentPanel(controller);
-        mainWindow.add(rentPanel, PANELTABLE);
+        mainPanel.add(rentPanel, PANELTABLE);
         rentRegisterPanel = new RentRegisterPanel(controller);
-        mainWindow.add(rentRegisterPanel, PANELFORM);
-        this.add(mainWindow);
+        mainPanel.add(rentRegisterPanel, PANELFORM);
+        this.add(mainPanel);
     }
 
     public void showPanel(String panel) {
-        CardLayout card = (CardLayout) (mainWindow.getLayout());
-        card.show(mainWindow, panel);
+        CardLayout card = (CardLayout) (mainPanel.getLayout());
+        card.show(mainPanel, panel);
 
     }
 
@@ -52,7 +52,7 @@ public class RentCrud extends JFrame {
         this.controller = controller;
     }
     
-    public RentRegisterPanel getRentRegisterPanel() {
+    public RentRegisterPanel getRegisterPanel() {
         return rentRegisterPanel;
     }
 }

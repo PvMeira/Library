@@ -29,6 +29,12 @@ public class Rent {
 		this.avaliable=status;
 	}
 
+	public Rent(Date dateFormat, Client client2, Book bookTemp) {
+		this.rentData=dateFormat;
+		this.client=client2;
+		this.booksRent=bookTemp;
+	}
+
 	public int getId() {
 		return id;
 	}
