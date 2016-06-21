@@ -12,6 +12,8 @@ public interface ClientDAO extends dao<Client> {
 	public void update(Client client, String newX, String colum);
 
 	public void update(Client client, long newX, String colum);
+	
+	
 
 	public List<Client> list();
 
@@ -23,4 +25,6 @@ public interface ClientDAO extends dao<Client> {
 	public Client searchByRegister(long register);
 
 	public List<Client> listByName(String name);
+
+	void updateClientWithID(Client client, int id);
 }

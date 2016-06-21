@@ -42,6 +42,12 @@ public class Client {
 		this.late = qntdeatrasoIn;
 	}
 
+	public Client(String nameTemp, long cpfTemp, String phoneTemp) {
+		this.name=nameTemp;
+		this.cpf=cpfTemp;
+		this.phone=phoneTemp;
+	}
+
 	public int getId() {
 		return id;
 	}

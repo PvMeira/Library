@@ -1,4 +1,5 @@
 package br.library.dao.impl;
+
 /**
  * @author Pedro
  *
@@ -322,16 +323,34 @@ public class ClientDAOBd extends AbstractDao<Client> implements ClientDAO {
 		// TODO Auto-generated method stub
 
 	}
-
-	@Override
-	public void update(Client paciente) {
-		// TODO Auto-generated method stub
-
+@Override
+	public void updateClientWithID(Client client, int id) {
+		String sql = "UPDATE client SET name=(?), cpf=(?), phone=(?) WHERE id=(?)";
+		try {
+			conect(sql);
+			comand.setString(1, client.getName());
+			comand.setLong(2, client.getCpf());
+			comand.setString(3, client.getPhone());
+			comand.setInt(4, id);
+			comand.executeUpdate();
+		} catch (SQLException ex) {
+			System.err.println("Erro de Sistema - Problema ao buscar  listar clientes pelo nome");
+			throw new RuntimeException(ex);
+		} finally {
+			closeConection();
+			;
+		}
 	}
 
 	@Override
 	public Client searchByID(int id) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void update(Client paciente) {
+		// TODO Auto-generated method stub
+
 	}
 }
