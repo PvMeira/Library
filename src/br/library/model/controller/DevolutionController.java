@@ -3,135 +3,147 @@ package br.library.model.controller;
 import java.util.Date;
 import java.util.List;
 
+import br.library.dao.impl.BookDaoBd;
+import br.library.dao.impl.RentDaoBd;
+import br.library.dao.interf.BookDAO;
+import br.library.dao.interf.RentDAO;
+import br.library.domain.profile.Book;
+import br.library.domain.profile.Client;
+import br.library.domain.profile.Rent;
 import br.library.infra.util.DateUtil;
+import br.library.infra.util.messengerJFrame;
+import br.library.model.view.rent.RentCRUDWindow;
+import br.library.model.view.rent.RentPanel;
+import br.library.model.view.rent.RentRegisterPanel;
+import br.library.model.view.rent.RentTableModel;
 
 public class DevolutionController {
 
-	private final static int TABELA = 0;
-	private final static int FORMCADASTRO = 1;
-	private final static int FORMEDICAO = 2;
-	private final static int FORMVISUALIZACAO = 3;
+	private final static int TABLE = 0;
+	private final static int REGISTERFORM = 1;
+	private final static int EDITFORM = 2;
+	private final static int VIEWFORM = 3;
 
-	private int telaAtual = 0;
-	private int linhaSelecionada = -1;
+	private int realTimeScreen = 0;
+	private int selectLine = -1;
 
-	private JanelaCrudAluguel janela;
-	private ClienteControllerUI controllerCliente;
-	private LivroControllerUI controllerLivro;
+	private RentCRUDWindow rentWindow;
+	private ClientController clientController;
+	private BookController bookController;
 
 	public DevolutionController() {
-		telaAtual = TABELA;
+		realTimeScreen = TABLE;
 	}
 
-	public void setJanela(JanelaCrudAluguel janela) {
-		this.janela = janela;
+	public void setWindow(RentCRUDWindow window) {
+		this.rentWindow = window;
 
 	}
 
-	public void visualizarLivro() {
-		PainelAluguel painelTabela = this.janela.getPainelTabela();
-		PainelCadastroAluguel form = janela.getPainelFormulario();
-		AluguelTableModel tableModel = (AluguelTableModel) painelTabela.getTabelaAluguel().getModel();
+	public void view() {
+		RentPanel panelTable = this.rentWindow.getRentPanel();
+		RentRegisterPanel form = rentWindow.getRegisterPanel();
+		RentTableModel tableModel = (RentTableModel) panelTable.getRentTable().getModel();
 
-		linhaSelecionada = painelTabela.getTabelaAluguel().getSelectedRow();
-		if (linhaSelecionada < 0) {
-			PrintUtil.printMessageError(janela, "Não há nenhum elemento selecionado na tabela");
+		selectLine = panelTable.getRentTable().getSelectedRow();
+		if (selectLine < 0) {
+			messengerJFrame.printErrorMessage(rentWindow, "Não há nenhum elemento selecionado na tabela");
 			return;
 		}
-		Livro li = tableModel.getLivro(linhaSelecionada);
-		form.carregaDados(Long.toString(li.getIsbn()), li.getTitulo(), li.getEditora(), li.getAutor(),
-				li.getAnoPublicacao());
-		form.getLabelPainelFormulario().setText("Visualizar Livro");
-		form.getBotaoSalvar().setVisible(true);
-		form.getBotaoSalvar().setText("Alugar");
+		Book li = tableModel.getBook(selectLine);
+		form.loadData(Long.toString(li.getIsbn()), li.getName(), li.getPublishingCompany(), li.getWriter(),
+				li.getYear());
+		form.getRegisterPanelLabel().setText("Visualizar Livro");
+		form.getSaveButton().setVisible(true);
+		form.getSaveButton().setText("Alugar");
 
-		telaAtual = FORMVISUALIZACAO;
-		this.janela.mostrarPainel(JanelaCrudAluguel.PAINELFORM);
+		realTimeScreen = VIEWFORM;
+		this.rentWindow.showPanel(RentCRUDWindow.PANELFORM);
 	}
 
-	public void salvarAluguel(long rg) {
-		PainelAluguel painelTabela = this.janela.getPainelTabela();
-		AluguelTableModel tableModel = (AluguelTableModel) painelTabela.getTabelaAluguel().getModel();
+	public void save(long cpf) {
+		RentPanel panelTable = this.rentWindow.getRentPanel();
+		RentTableModel tableModel = (RentTableModel) panelTable.getRentTable().getModel();
 		try {
-			controllerCliente = new ClienteControllerUI();
-			Cliente cli = controllerCliente.buscarClientePorRg(rg);
-			if (cli.getLivrosAlugados() == 3) {
-				PrintUtil.printMessageError(janela, "Você já possui o máximo permitido de livros alugados!");
+			clientController = new ClientController();
+			Client client = clientController.searchByCpf(cpf);
+			if (client.getBooksRent() == 3) {
+				messengerJFrame.printErrorMessage(rentWindow, "Você já possui o máximo permitido de livros alugados!");
 				return;
 			} else {
 				Date dateFormat = new Date();
 				java.sql.Date dataSql;
 				dateFormat = new java.sql.Date(dateFormat.getTime());
 				dataSql = (java.sql.Date) dateFormat;
-				linhaSelecionada = painelTabela.getTabelaAluguel().getSelectedRow();
-				int idLivro = tableModel.getLivro(linhaSelecionada).getCod();
-				controllerLivro = new LivroControllerUI();
-				Livro li = controllerLivro.buscarLivroPorCod(idLivro);
-				if (li.isDisponibilidade() == false) {
-					PrintUtil.printMessageError(janela, "Livro já está alugado!");
+				selectLine = panelTable.getRentTable().getSelectedRow();
+				int id = tableModel.getBook(selectLine).getId();
+				bookController = new BookController();
+				Book bookTemp = bookController.searchBookById(id);
+				if (bookTemp.isAvaliable() == false) {
+					messengerJFrame.printErrorMessage(rentWindow, "Livro já está alugado!");
 					return;
 				} else {
-					AluguelDao dao = new AluguelDaoBd();
-					dao.inserir(new Aluguel(dateFormat, cli, li));
-					PrintUtil.printMessageSucesso(janela, "Livro alugado com sucesso!");
+					RentDAO dao = new RentDaoBd();
+					dao.save(new Rent(dateFormat, client, bookTemp));
+					messengerJFrame.printSucessMesenge(rentWindow, "Livro alugado com sucesso!");
 
 				}
 			}
 		} catch (Exception e) {
-			PrintUtil.printMessageError(janela, "Campo Inválido!");
+			messengerJFrame.printErrorMessage(rentWindow, "Campo Inválido!");
 		}
 	}
 
-	public void voltarPrincipal() {
-		telaAtual = TABELA;
-		this.atualizaTabela();
-		this.janela.mostrarPainel(JanelaCrudAluguel.PAINELTABELA);
+	public void backToMainScreen() {
+		realTimeScreen = TABLE;
+		this.updateTable();
+		this.rentWindow.showPanel(RentCRUDWindow.PANELTABLE);
 	}
 
-	public void atualizaTabela() {
-		PainelAluguel painelTabela = this.janela.getPainelTabela();
-		AluguelTableModel tableModel = (AluguelTableModel) painelTabela.getTabelaAluguel().getModel();
+	public void updateTable() {
+		RentPanel panelTable = this.rentWindow.getRentPanel();
+		RentTableModel tableModel = (RentTableModel) panelTable.getRentTable().getModel();
 
-		LivroDao dao = new LivroDaoBd();
-		tableModel.setLivro(dao.listar());
+		BookDAO dao = new BookDaoBd();
+		tableModel.setBook(dao.list());
 
-		painelTabela.getTabelaAluguel().updateUI();
+		panelTable.getRentTable().updateUI();
 	}
 
-	public boolean CodigoExiste(int id) {
-		AluguelDao dao = new AluguelDaoBd();
-		Aluguel aluguel = dao.procurarPorId(id);
-		if (aluguel != null) {
+	public boolean idExist(int id) {
+		RentDAO dao = new RentDaoBd();
+		Rent rent = dao.searchById(id);
+		if (rent != null) {
 			return true;
 		} else {
 			return false;
 		}
 	}
 
-	public void addAluguel(Aluguel a) {
-		new AluguelDaoBd().inserir(a);
+	public void addRent(Rent rentTemp) {
+		new RentDaoBd().save(rentTemp);
 	}
 
-	public List<Aluguel> listarAluguel() {
-		return (new AluguelDaoBd().listar());
+	public List<Rent> listRent() {
+		return (new RentDaoBd().list());
 	}
 
-	public Aluguel buscarPorCodigo(int id) {
-		AluguelDao dao = new AluguelDaoBd();
-		Aluguel aluguel = dao.procurarPorId(id);
-		return aluguel;
+	public Rent searchById(int id) {
+		RentDAO dao = new RentDaoBd();
+		Rent rent = dao.searchById(id);
+		return rent;
 	}
 
-	public void mostrarAluguel() {
+	public void showRent() {
 		System.out.println("-----------------------------\n");
 		System.out.println(String.format("%-20s", "|Código do Aluguel") + "\t"
 				+ String.format("%-20s", "|Nome do cliente") + String.format("%-20s", "  |Titulo do livro alugado")
 				+ String.format("%-20s", "    |Data do aluguel:"));
-		for (Aluguel aluguel : listarAluguel()) {
-			System.out.println(String.format("%-10s", aluguel.getId()) + "\t"
-					+ String.format("%-20s", "        |" + aluguel.getC().getNome()) + "\t"
-					+ String.format("%-20s", "      |" + aluguel.getLivrosAlugados().getTitulo() + "\t" + String
-							.format("%-20s", "                  |" + DateUtil.dateToString(aluguel.getDataAluguel()))));
+		for (Rent rent : listRent()) {
+			System.out.println(String.format("%-10s", rent.getId()) + "\t"
+					+ String.format("%-20s", "        |" + rent.getClient().getName()) + "\t"
+					+ String.format("%-20s", "      |" + rent.getBooksRent().getName() + "\t" + String.format("%-20s",
+							"                  |" + DateUtil.dateToString(rent.getRentData()))));
 		}
 	};
 

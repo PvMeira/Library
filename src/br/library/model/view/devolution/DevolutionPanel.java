@@ -1,65 +1,69 @@
 
 package br.library.model.view.devolution;
 
-import controller.UI.AluguelControllerUI;
-import controller.UI.ClienteControllerUI;
-import controller.UI.DevolucaoControllerUI;
-import controller.UI.LivroControllerUI;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import model.Livro;
 
-public class PainelDevolucao extends javax.swing.JPanel {
+import br.library.model.controller.BookController;
+import br.library.model.controller.ClientController;
+import br.library.model.controller.DevolutionController;
+import br.library.model.controller.RentController;
 
-	private ClienteControllerUI controllerCliente;
-	private AluguelControllerUI controllerAluguel;
-	private LivroControllerUI controllerLivro;
-	private DevolucaoControllerUI controller;
+public class DevolutionPanel extends javax.swing.JPanel {
 
-	public PainelDevolucao(DevolucaoControllerUI controller) {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private ClientController clientController;
+	private RentController rentController;
+	private BookController controllerLivro;
+	private DevolutionController controller;
+
+	public DevolutionPanel(DevolutionController controller) {
 		this.controller = controller;
 		initComponents();
 	}
 
 	private void initComponents() {
 
-		botaoVisualizar = new javax.swing.JButton();
+		viewButton = new javax.swing.JButton();
 		jScrollPane1 = new javax.swing.JScrollPane();
-		tabelaLivros = new javax.swing.JTable();
-		botaoInserir = new javax.swing.JButton();
-		botaoEditar = new javax.swing.JButton();
-		botaoRemover = new javax.swing.JButton();
+		bookstable = new javax.swing.JTable();
+		insertButton = new javax.swing.JButton();
+		editButton = new javax.swing.JButton();
+		removeButton = new javax.swing.JButton();
 
-		botaoVisualizar.setText("Visualizar");
-		botaoVisualizar.addActionListener(new java.awt.event.ActionListener() {
+		viewButton.setText("Visualizar");
+		viewButton.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				botaoVisualizarActionPerformed(evt);
+				viewButtonActionPerformed(evt);
 			}
 		});
 
-		tabelaLivros.setModel(new DevolucaoTableModel());
-		jScrollPane1.setViewportView(tabelaLivros);
+		bookstable.setModel(new DevolutionTableModel());
+		jScrollPane1.setViewportView(bookstable);
 
-		botaoInserir.setText("Devolução");
-		botaoInserir.addActionListener(new java.awt.event.ActionListener() {
+		insertButton.setText("Devolução");
+		insertButton.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				botaoInserirActionPerformed(evt);
+				insertButtonActionPerformed(evt);
 			}
 		});
 
-		botaoEditar.setText("Procurar livro por titulo");
-		botaoEditar.addActionListener(new java.awt.event.ActionListener() {
+		editButton.setText("Procurar livro por titulo");
+		editButton.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				botaoEditarActionPerformed(evt);
+				editButtonActionPerformed(evt);
 			}
 		});
 
-		botaoRemover.setText("Procurar livro por isbn");
-		botaoRemover.addActionListener(new java.awt.event.ActionListener() {
+		removeButton.setText("Procurar livro por isbn");
+		removeButton.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				botaoRemoverActionPerformed(evt);
+				removeButtonActionPerformed(evt);
 			}
 		});
 
@@ -68,11 +72,11 @@ public class PainelDevolucao extends javax.swing.JPanel {
 		layout.setHorizontalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
 				.addGroup(layout.createSequentialGroup().addContainerGap()
 						.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-								.addGroup(layout.createSequentialGroup().addComponent(botaoInserir).addGap(10, 10, 10)
-										.addComponent(botaoEditar).addGap(18, 18, 18).addComponent(botaoRemover)
+								.addGroup(layout.createSequentialGroup().addComponent(insertButton).addGap(10, 10, 10)
+										.addComponent(editButton).addGap(18, 18, 18).addComponent(removeButton)
 										.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED,
 												javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-										.addComponent(botaoVisualizar))
+										.addComponent(viewButton))
 								.addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 482, Short.MAX_VALUE))
 						.addContainerGap()));
 		layout.setVerticalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(
@@ -82,30 +86,30 @@ public class PainelDevolucao extends javax.swing.JPanel {
 								javax.swing.GroupLayout.PREFERRED_SIZE)
 						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
 						.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-								.addComponent(botaoInserir).addComponent(botaoEditar).addComponent(botaoRemover)
-								.addComponent(botaoVisualizar))
+								.addComponent(insertButton).addComponent(editButton).addComponent(removeButton)
+								.addComponent(viewButton))
 						.addGap(19, 19, 19)));
 	}
 
-	private void botaoVisualizarActionPerformed(java.awt.event.ActionEvent evt) {
-		controller.visualizarLivro();
+	private void viewButtonActionPerformed(java.awt.event.ActionEvent evt) {
+		controller.view();
 	}
 
-	private void botaoInserirActionPerformed(java.awt.event.ActionEvent evt) {
+	private void insertButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		try {
-			String idAluguel = "";
+			String idRent = "";
 			String[] opcoes = { "sim", "não" };
-			String rg = JOptionPane.showInputDialog("Digite seu RG:");
-			controllerCliente = new ClienteControllerUI();
-			if (controllerCliente.clienteExiste(Long.parseLong(rg))) {
-				idAluguel = JOptionPane.showInputDialog("Digite o isbn do livro:");
-				controllerAluguel = new AluguelControllerUI();
-				if (controllerAluguel.CodigoExiste(Integer.parseInt(idAluguel))) {
+			String cpf = JOptionPane.showInputDialog("Digite seu CPF:");
+			clientController = new ClientController();
+			if (clientController.clientExist(Long.parseLong(cpf))) {
+				idRent = JOptionPane.showInputDialog("Digite o isbn do livro:");
+				rentController = new RentController();
+				if (rentController.idExist(Integer.parseInt(idRent))) {
 					int op = JOptionPane.showOptionDialog(this, "Deseja devolver este livro?", "Código encontrado!",
 							JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, opcoes, opcoes[0]);
 					if (op == 0) {
 						JOptionPane.showMessageDialog(this, "Processando Dados...");
-						controller.salvarDevolucao(Long.parseLong(rg), Integer.parseInt(idAluguel));
+						controller.save(Long.parseLong(cpf), Integer.parseInt(idRent));
 					} else {
 						JOptionPane.showMessageDialog(this, "Livro não pode ser devolvido!");
 					}
@@ -120,7 +124,7 @@ public class PainelDevolucao extends javax.swing.JPanel {
 		}
 	}
 
-	private void botaoEditarActionPerformed(java.awt.event.ActionEvent evt) {
+	private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		try {
 			String idAluguel = "";
 			String[] opcoes = { "sim", "não" };
@@ -134,11 +138,11 @@ public class PainelDevolucao extends javax.swing.JPanel {
 						JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, opcoes, opcoes[0]);
 				if (op == 0) {
 					String rg = JOptionPane.showInputDialog("Digite seu RG: ");
-					controllerCliente = new ClienteControllerUI();
-					if (controllerCliente.clienteExiste(Long.parseLong(rg))) {
+					clientController = new ClienteControllerUI();
+					if (clientController.clientExist(Long.parseLong(rg))) {
 						idAluguel = JOptionPane.showInputDialog("Digite o isbn do livro:");
-						controllerAluguel = new AluguelControllerUI();
-						if (controllerAluguel.CodigoExiste(Integer.parseInt(idAluguel))) {
+						rentController = new AluguelControllerUI();
+						if (rentController.idExist(Integer.parseInt(idAluguel))) {
 							JOptionPane.showMessageDialog(this, "Processando Dados...");
 							controller.salvarDevolucao(Long.parseLong(rg), Integer.parseInt(idAluguel));
 						} else {
@@ -159,7 +163,7 @@ public class PainelDevolucao extends javax.swing.JPanel {
 		}
 	}
 
-	private void botaoRemoverActionPerformed(java.awt.event.ActionEvent evt) {
+	private void removeButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		try {
 			String idAluguel = "";
 			String[] opcoes = { "sim", "não" };
@@ -173,11 +177,11 @@ public class PainelDevolucao extends javax.swing.JPanel {
 						JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, opcoes, opcoes[0]);
 				if (op == 0) {
 					String rg = JOptionPane.showInputDialog("Digite seu RG: ");
-					controllerCliente = new ClienteControllerUI();
-					if (controllerCliente.clienteExiste(Long.parseLong(rg))) {
+					clientController = new ClienteControllerUI();
+					if (clientController.clientExist(Long.parseLong(rg))) {
 						idAluguel = JOptionPane.showInputDialog("Digite o isbn do livro:");
-						controllerAluguel = new AluguelControllerUI();
-						if (controllerAluguel.CodigoExiste(Integer.parseInt(idAluguel))) {
+						rentController = new AluguelControllerUI();
+						if (rentController.idExist(Integer.parseInt(idAluguel))) {
 							JOptionPane.showMessageDialog(this, "Processando Dados...");
 							controller.salvarDevolucao(Long.parseLong(rg), Integer.parseInt(idAluguel));
 						} else {
@@ -199,19 +203,19 @@ public class PainelDevolucao extends javax.swing.JPanel {
 	}
 
 	public JButton getBotaoEditar() {
-		return botaoEditar;
+		return editButton;
 	}
 
 	public JButton getBotaoInserir() {
-		return botaoInserir;
+		return insertButton;
 	}
 
 	public JButton getBotaoRemover() {
-		return botaoRemover;
+		return removeButton;
 	}
 
 	public JButton getBotaoVisualizar() {
-		return botaoVisualizar;
+		return viewButton;
 	}
 
 	public JScrollPane getjScrollPane1() {
@@ -219,14 +223,14 @@ public class PainelDevolucao extends javax.swing.JPanel {
 	}
 
 	public JTable getTabelaDevolucao() {
-		return tabelaLivros;
+		return bookstable;
 	}
 
-	private javax.swing.JButton botaoEditar;
-	private javax.swing.JButton botaoInserir;
-	private javax.swing.JButton botaoRemover;
-	private javax.swing.JButton botaoVisualizar;
+	private javax.swing.JButton editButton;
+	private javax.swing.JButton insertButton;
+	private javax.swing.JButton removeButton;
+	private javax.swing.JButton viewButton;
 	private javax.swing.JScrollPane jScrollPane1;
-	private javax.swing.JTable tabelaLivros;
+	private javax.swing.JTable bookstable;
 
 }

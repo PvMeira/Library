@@ -9,13 +9,13 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-public class PainelCadastroDevolucao extends javax.swing.JPanel {
+public class DevolutionRegiterPanel extends javax.swing.JPanel {
 	private DevolucaoControllerUI controller;
-	private JanelaCrudDevolucao janela;
+	private DevolutionCRUDWindow janela;
 	private ClienteControllerUI controllerCliente;
 	private AluguelControllerUI controllerAluguel;
 
-	public PainelCadastroDevolucao(DevolucaoControllerUI controller) {
+	public DevolutionRegiterPanel(DevolucaoControllerUI controller) {
 		this.controller = controller;
 		initComponents();
 	}
@@ -195,7 +195,7 @@ public class PainelCadastroDevolucao extends javax.swing.JPanel {
 			if (controllerCliente.clienteExiste(Long.parseLong(rg))) {
 				idAluguel = JOptionPane.showInputDialog("Digite o isbn do livro:");
 				controllerAluguel = new AluguelControllerUI();
-				if (controllerAluguel.CodigoExiste(Integer.parseInt(idAluguel))) {
+				if (controllerAluguel.idExist(Integer.parseInt(idAluguel))) {
 					int op = JOptionPane.showOptionDialog(this, "Deseja devolver este livro?", "Código encontrado!",
 							JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, opcoes, opcoes[0]);
 					if (op == 0) {
@@ -216,7 +216,7 @@ public class PainelCadastroDevolucao extends javax.swing.JPanel {
 	}// GEN-LAST:event_botaoSalvarActionPerformed
 
 	private void botaoVoltarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_botaoVoltarActionPerformed
-		controller.voltarPrincipal();
+		controller.backToMainScreen();
 	}// GEN-LAST:event_botaoVoltarActionPerformed
 
 	public JButton getBotaoSalvar() {
