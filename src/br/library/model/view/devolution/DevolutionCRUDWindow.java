@@ -19,7 +19,7 @@ public class DevolutionCRUDWindow extends JFrame {
 
 	public DevolutionCRUDWindow(JFrame jframe, DevolutionController controller) {
 		this.controller = controller;
-		this.controller.setWindow(this);
+//		this.controller.setWindow(this);
 		initParam();
 		controller.updateTable();
 		this.setTitle("Biblioteca");

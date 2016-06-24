@@ -6,6 +6,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
+import br.library.domain.profile.Book;
 import br.library.model.controller.BookController;
 import br.library.model.controller.ClientController;
 import br.library.model.controller.DevolutionController;
@@ -13,13 +14,10 @@ import br.library.model.controller.RentController;
 
 public class DevolutionPanel extends javax.swing.JPanel {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private ClientController clientController;
 	private RentController rentController;
-	private BookController controllerLivro;
+	private BookController bookController;
 	private DevolutionController controller;
 
 	public DevolutionPanel(DevolutionController controller) {
@@ -98,7 +96,7 @@ public class DevolutionPanel extends javax.swing.JPanel {
 	private void insertButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		try {
 			String idRent = "";
-			String[] opcoes = { "sim", "não" };
+			String[] options = { "sim", "não" };
 			String cpf = JOptionPane.showInputDialog("Digite seu CPF:");
 			clientController = new ClientController();
 			if (clientController.clientExist(Long.parseLong(cpf))) {
@@ -106,10 +104,10 @@ public class DevolutionPanel extends javax.swing.JPanel {
 				rentController = new RentController();
 				if (rentController.idExist(Integer.parseInt(idRent))) {
 					int op = JOptionPane.showOptionDialog(this, "Deseja devolver este livro?", "Código encontrado!",
-							JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, opcoes, opcoes[0]);
+							JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 					if (op == 0) {
 						JOptionPane.showMessageDialog(this, "Processando Dados...");
-						controller.save(Long.parseLong(cpf), Integer.parseInt(idRent));
+//						controller.save(Long.parseLong(cpf), Integer.parseInt(idRent));
 					} else {
 						JOptionPane.showMessageDialog(this, "Livro não pode ser devolvido!");
 					}
@@ -126,25 +124,25 @@ public class DevolutionPanel extends javax.swing.JPanel {
 
 	private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		try {
-			String idAluguel = "";
-			String[] opcoes = { "sim", "não" };
-			String titulo = JOptionPane.showInputDialog("Digite o titulo desejado:");
-			controllerLivro = new LivroControllerUI();
-			if (controllerLivro.LivroExiste(titulo)) {
-				Livro li = controllerLivro.buscarLivroPorTitulo(titulo);
-				JOptionPane.showMessageDialog(this, "Livro Encontrado! \nTitulo: " + li.getTitulo() + "\nAutor: "
-						+ li.getAutor() + "\nAno de Publicação: " + li.getAnoPublicacao());
+			String idRent = "";
+			String[] options = { "sim", "não" };
+			String bookName = JOptionPane.showInputDialog("Digite o titulo desejado:");
+			bookController = new BookController();
+			if (bookController.BookExist(bookName)) {
+				Book bookTemp = bookController.searchBookByName(bookName);
+				JOptionPane.showMessageDialog(this, "Livro Encontrado! \nTitulo: " + bookTemp.getName() + "\nAutor: "
+						+ bookTemp.getName() + "\nAno de Publicação: " + bookTemp.getYear());
 				int op = JOptionPane.showOptionDialog(this, "Deseja devolver este livro?", "Livro encontrado!",
-						JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, opcoes, opcoes[0]);
+						JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 				if (op == 0) {
 					String rg = JOptionPane.showInputDialog("Digite seu RG: ");
-					clientController = new ClienteControllerUI();
+					clientController = new ClientController();
 					if (clientController.clientExist(Long.parseLong(rg))) {
-						idAluguel = JOptionPane.showInputDialog("Digite o isbn do livro:");
-						rentController = new AluguelControllerUI();
-						if (rentController.idExist(Integer.parseInt(idAluguel))) {
+						idRent = JOptionPane.showInputDialog("Digite o isbn do livro:");
+						rentController = new RentController();
+						if (rentController.idExist(Integer.parseInt(idRent))) {
 							JOptionPane.showMessageDialog(this, "Processando Dados...");
-							controller.salvarDevolucao(Long.parseLong(rg), Integer.parseInt(idAluguel));
+//							controller.save(Long.parseLong(rg), Integer.parseInt(idRent));
 						} else {
 							JOptionPane.showMessageDialog(this, "Código não encontrado!");
 						}
@@ -165,25 +163,25 @@ public class DevolutionPanel extends javax.swing.JPanel {
 
 	private void removeButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		try {
-			String idAluguel = "";
-			String[] opcoes = { "sim", "não" };
+			String idRent = "";
+			String[] options = { "sim", "não" };
 			String isbn = JOptionPane.showInputDialog("Digite o ISBN desejado:");
-			controllerLivro = new LivroControllerUI();
-			if (controllerLivro.LivroExiste(Long.parseLong(isbn))) {
-				Livro li = controllerLivro.buscarLivroPorIsbn(Long.parseLong(isbn));
-				JOptionPane.showMessageDialog(this, "Livro Encontrado! \nTitulo: " + li.getTitulo() + "\nAutor: "
-						+ li.getAutor() + "\nAno de Publicação: " + li.getAnoPublicacao());
+			bookController = new BookController();
+			if (bookController.BookExist(Long.parseLong(isbn))) {
+				Book bookTemp = bookController.searchBookByIsbn(Long.parseLong(isbn));
+				JOptionPane.showMessageDialog(this, "Livro Encontrado! \nTitulo: " + bookTemp.getName() + "\nAutor: "
+						+ bookTemp.getWriter() + "\nAno de Publicação: " + bookTemp.getYear());
 				int op = JOptionPane.showOptionDialog(this, "Deseja devolver este livro?", "Livro encontrado!",
-						JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, opcoes, opcoes[0]);
+						JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 				if (op == 0) {
 					String rg = JOptionPane.showInputDialog("Digite seu RG: ");
-					clientController = new ClienteControllerUI();
+					clientController = new ClientController();
 					if (clientController.clientExist(Long.parseLong(rg))) {
-						idAluguel = JOptionPane.showInputDialog("Digite o isbn do livro:");
-						rentController = new AluguelControllerUI();
-						if (rentController.idExist(Integer.parseInt(idAluguel))) {
+						idRent = JOptionPane.showInputDialog("Digite o isbn do livro:");
+						rentController = new RentController();
+						if (rentController.idExist(Integer.parseInt(idRent))) {
 							JOptionPane.showMessageDialog(this, "Processando Dados...");
-							controller.salvarDevolucao(Long.parseLong(rg), Integer.parseInt(idAluguel));
+//							controller.save(Long.parseLong(rg), Integer.parseInt(idRent));
 						} else {
 							JOptionPane.showMessageDialog(this, "Código não encontrado!");
 						}
@@ -202,19 +200,19 @@ public class DevolutionPanel extends javax.swing.JPanel {
 		}
 	}
 
-	public JButton getBotaoEditar() {
+	public JButton getEditButton() {
 		return editButton;
 	}
 
-	public JButton getBotaoInserir() {
+	public JButton getInsertButton() {
 		return insertButton;
 	}
 
-	public JButton getBotaoRemover() {
+	public JButton getRemoveButton() {
 		return removeButton;
 	}
 
-	public JButton getBotaoVisualizar() {
+	public JButton getViewButton() {
 		return viewButton;
 	}
 
@@ -222,7 +220,7 @@ public class DevolutionPanel extends javax.swing.JPanel {
 		return jScrollPane1;
 	}
 
-	public JTable getTabelaDevolucao() {
+	public JTable getDevolutionTable() {
 		return bookstable;
 	}
 
