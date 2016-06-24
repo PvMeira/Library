@@ -27,7 +27,7 @@ public class ClientCRUDWindow extends JFrame {
         this.controller.setWindow(this);
         initParam();
         controller.updateTable();
-        this.setTitle("Área do Cliente");
+        this.setTitle("Menu Cliente");
         this.pack();
         this.setLocationRelativeTo(jframe);
         this.setVisible(true);

@@ -1,4 +1,7 @@
-
+/**
+ * @author Pedro
+ *
+ */
 package br.library.model.view.book;
 
 import javax.swing.JButton;
@@ -8,9 +11,6 @@ import javax.swing.JTable;
 import br.library.model.controller.BookController;
 
 public class BookPanel extends javax.swing.JPanel {
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private BookController controller;
 

@@ -1,6 +1,9 @@
 
 package br.library.model.view.book;
-
+/**
+ * @author Pedro
+ *
+ */
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
@@ -9,15 +12,12 @@ import br.library.domain.profile.Book;
 
 public class BookTableModel extends AbstractTableModel {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private String header[];
 	private List<Book> books;
 
 	public BookTableModel() {
-		this.header = new String[] { "ISBN", "Titulo", "Editora", "Autor(es)", "Ano de publicação", "Qnt Alugado" };
+		this.header = new String[] { "ISBN", "Titulo", "Editora", "Autor(es)", "Ano de publicaï¿½ï¿½o", "Qnt Alugado" };
 		this.books = new ArrayList<Book>();
 	}
 

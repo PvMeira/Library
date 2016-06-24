@@ -9,9 +9,7 @@ import br.library.infra.util.messengerJFrame;
 import br.library.model.controller.ClientController;
 
 public class RegisterClientPanel extends javax.swing.JPanel {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	private ClientController controller;
 	private ClientCRUDWindow window;
@@ -20,8 +18,6 @@ public class RegisterClientPanel extends javax.swing.JPanel {
 		this.controller = controller;
 		initComponents();
 	}
-
-	@SuppressWarnings("unchecked")
 
 	private void initComponents() {
 

@@ -1,6 +1,10 @@
 
 package br.library.model.view.book;
 
+/**
+ * @author Pedro
+ *
+ */
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -10,9 +14,6 @@ import br.library.model.controller.BookController;
 
 public class RegisterBookPanel extends javax.swing.JPanel {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private BookController controller;
 	private BookCRUDWindow window;
@@ -63,7 +64,7 @@ public class RegisterBookPanel extends javax.swing.JPanel {
 
 		jLabel5.setText("Autor(es):");
 
-		jLabel6.setText("Ano de Publicação:");
+		jLabel6.setText("Ano de Publicaï¿½ï¿½o:");
 
 		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
 		this.setLayout(layout);

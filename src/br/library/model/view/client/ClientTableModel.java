@@ -14,9 +14,6 @@ import br.library.domain.profile.Client;
 
 public class ClientTableModel extends AbstractTableModel{
 
-    /**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private String header[];
     private List<Client> clients;

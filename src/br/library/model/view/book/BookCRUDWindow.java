@@ -1,5 +1,8 @@
 package br.library.model.view.book;
-
+/**
+ * @author Pedro
+ *
+ */
 import java.awt.CardLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -9,9 +12,6 @@ import br.library.model.controller.BookController;
 
 
 public class BookCRUDWindow extends JFrame {
-    /**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	private BookController controller;
