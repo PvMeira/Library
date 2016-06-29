@@ -55,7 +55,7 @@ public class ClientController {
 
 		selectLine = tablePanel.getClientsTable().getSelectedRow();
 		if (selectLine < 0) {
-			messengerJFrame.printErrorMessage(window, "não há nenhum elemento selecionado na tabela");
+			messengerJFrame.printErrorMessage(window, "nÃ£o hÃ¡ nenhum elemento selecionado na tabela");
 			return;
 		}
 		Client cli = tableModel.getClient(selectLine);
@@ -77,7 +77,7 @@ public class ClientController {
 
 		selectLine = tablePanel.getClientsTable().getSelectedRow();
 		if (selectLine < 0) {
-			messengerJFrame.printErrorMessage(window, "não há nenhum elemento selecionado na tabela");
+			messengerJFrame.printErrorMessage(window, "nï¿½o hï¿½ nenhum elemento selecionado na tabela");
 			return;
 		}
 		Client cli = tableModel.getClient(selectLine);
@@ -97,13 +97,13 @@ public class ClientController {
 		ClientTableModel tableModel = (ClientTableModel) panelTable.getClientsTable().getModel();
 		selectLine = panelTable.getClientsTable().getSelectedRow();
 		if (selectLine < 0) {
-			messengerJFrame.printErrorMessage(window, "não há nenhum elemento selecionado na tabela");
+			messengerJFrame.printErrorMessage(window, "nï¿½o hï¿½ nenhum elemento selecionado na tabela");
 			return;
 		}
 		Client cli = tableModel.getClient(selectLine);
 		if (cli.getBooksRent() > 0) {
 			messengerJFrame.printErrorMessage(window,
-					"Cliente possui livros alugados, para cancelar cadastro é necessario devolver todos os livros antes");
+					"Cliente possui livros alugados, para cancelar cadastro ï¿½ necessario devolver todos os livros antes");
 			return;
 		} else {
 			ClientDAO dao = new ClientDAOBd();
@@ -123,16 +123,16 @@ public class ClientController {
 			String nameTemp = name, phoneTemp = phone;
 			if (realTimeScrenn == REGISTERFORM) {
 				if (clientExist(cpfTemp)) {
-					messengerJFrame.printErrorMessage(window, "CPF já existe");
+					messengerJFrame.printErrorMessage(window, "CPF jï¿½ existe");
 				} else if (cpfValidator(cpfTemp) == false) {
-					messengerJFrame.printErrorMessage(window, "CPF é inválido");
+					messengerJFrame.printErrorMessage(window, "CPF ï¿½ invï¿½lido");
 				} else {
 					if (!nameValidator(nameTemp) || name == null) {
-						messengerJFrame.printErrorMessage(window, "Nome é inválido");
+						messengerJFrame.printErrorMessage(window, "Nome ï¿½ invï¿½lido");
 					} else {
 						if (isPhone(phoneTemp) != true || phone == null) {
 							messengerJFrame.printErrorMessage(window,
-									"Numero de telefone inválido Digite no formato (xx) xxxx-xxxx: ");
+									"Numero de telefone invï¿½lido Digite no formato (xx) xxxx-xxxx: ");
 							return;
 						}
 						long register;
@@ -148,16 +148,16 @@ public class ClientController {
 				}
 			} else if (realTimeScrenn == EDITFORM) {
 				if (clientExist(cpfTemp)) {
-					messengerJFrame.printErrorMessage(window, "RG já existe.");
+					messengerJFrame.printErrorMessage(window, "RG jÃ¡ existe.");
 				} else if (cpfValidator(cpfTemp) == false) {
-					messengerJFrame.printErrorMessage(window, "RG é inválido!");
+					messengerJFrame.printErrorMessage(window, "RG Ã© invÃ¡lido!");
 				} else {
 					if (!nameValidator(nameTemp) || name == null) {
-						messengerJFrame.printErrorMessage(window, "Nome é inválido!");
+						messengerJFrame.printErrorMessage(window, "Nome Ã© invÃ¡lido!");
 					} else {
 						if (isPhone(phoneTemp) != true || phone == null) {
 							messengerJFrame.printErrorMessage(window,
-									"Numero de telefone inválido Digite no formato (xx) xxxx-xxxx: ");
+									"Numero de telefone invÃ¡lido Digite no formato (xx) xxxx-xxxx: ");
 							return;
 						}
 						selectLine = panelTable.getClientsTable().getSelectedRow();
@@ -171,7 +171,7 @@ public class ClientController {
 				}
 			}
 		} catch (Exception e) {
-			messengerJFrame.printErrorMessage(window, "CPF inválido!");
+			messengerJFrame.printErrorMessage(window, "CPF invÃ¡lido!");
 		}
 	}
 
