@@ -52,7 +52,7 @@ public class DevolutionPanel extends javax.swing.JPanel {
 		insertButton.setText("Devovler");
 		insertButton.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				insertButtonActionPerformed(evt);
+				removeButtonActionPerformed(evt);
 			}
 		});
 
