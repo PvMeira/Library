@@ -9,7 +9,7 @@ import javax.swing.JTextField;
 import br.library.model.controller.ClientController;
 import br.library.model.controller.DevolutionController;
 import br.library.model.controller.RentController;
-
+@SuppressWarnings(value = { "all" })
 public class DevolutionRegiterPanel extends javax.swing.JPanel {
 
 	private static final long serialVersionUID = 1L;
@@ -43,7 +43,7 @@ public class DevolutionRegiterPanel extends javax.swing.JPanel {
 
 		jLabel4.setText("Editora:");
 
-		registerPanelLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+		registerPanelLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); 
 		registerPanelLabel.setText("Dados do Livro");
 
 		saveButton.setText("Devolver");
@@ -66,7 +66,7 @@ public class DevolutionRegiterPanel extends javax.swing.JPanel {
 
 		jLabel5.setText("Autor(es):");
 
-		jLabel6.setText("Ano de Publica√ß√£o:");
+		jLabel6.setText("Ano de PublicaÁ„o:");
 
 		javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
 		jPanel2.setLayout(jPanel2Layout);
@@ -192,39 +192,39 @@ public class DevolutionRegiterPanel extends javax.swing.JPanel {
 								.addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE,
 										javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
 								.addGap(0, 0, Short.MAX_VALUE))));
-	}// </editor-fold>//GEN-END:initComponents
+	}
 
-	private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_botaoSalvarActionPerformed
+	private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		try {
 			String idRent = "";
-			String[] options = { "sim", "n√£o" };
+			String[] options = { "sim", "n„o" };
 			String cpf = JOptionPane.showInputDialog("Digite seu CPF:");
 			clientController = new ClientController();
 			if (clientController.clientExist(Long.parseLong(cpf))) {
 				idRent = JOptionPane.showInputDialog("Digite o isbn do livro:");
 				rentController = new RentController();
-				if (rentController.idExist(Integer.parseInt(idRent))) {
-					int op = JOptionPane.showOptionDialog(this, "Deseja devolver este livro?", "C√≥digo encontrado!",
+				if (rentController.codeExist(Integer.parseInt(idRent))) {
+					int op = JOptionPane.showOptionDialog(this, "Deseja devolver este livro?", "CÛdigo encontrado!",
 							JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 					if (op == 0) {
 						JOptionPane.showMessageDialog(this, "Processando Dados...");
-//						devolutionController.save(Long.parseLong(cpf), Integer.parseInt(idRent));
+						devolutionController.save(Long.parseLong(cpf), Integer.parseInt(idRent));
 					} else {
-						JOptionPane.showMessageDialog(this, "Livro n√£o pode ser devolvido!");
+						JOptionPane.showMessageDialog(this, "Livro n„o pode ser devolvido!");
 					}
 				} else {
-					JOptionPane.showMessageDialog(this, "C√≥digo n√£o encontrado!");
+					JOptionPane.showMessageDialog(this, "CÛdigo N„o encontrado!");
 				}
 			} else {
-				JOptionPane.showMessageDialog(this, "Cliente n√£o encontrado!");
+				JOptionPane.showMessageDialog(this, "Cliente n„o encontrado!");
 			}
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(this, "Campo inv√°lido!");
+			JOptionPane.showMessageDialog(this, "Campo inv·lido!");
 		}
 	}
 
 	private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {
-		devolutionController.backToMainScreen();
+		devolutionController.backToMainMenu();
 	}
 
 	public JButton getSaveButton() {

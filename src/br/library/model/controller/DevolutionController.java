@@ -1,22 +1,24 @@
 package br.library.model.controller;
 
+import java.time.Instant;
 import java.util.Date;
 import java.util.List;
 
 import br.library.dao.impl.BookDaoBd;
-import br.library.dao.impl.RentDaoBd;
+import br.library.dao.impl.DevolutionDaoBd;
 import br.library.dao.interf.BookDAO;
-import br.library.dao.interf.RentDAO;
+import br.library.dao.interf.DevolutionDAO;
 import br.library.domain.profile.Book;
-import br.library.domain.profile.Client;
+import br.library.domain.profile.Devolution;
 import br.library.domain.profile.Rent;
 import br.library.infra.util.DateUtil;
 import br.library.infra.util.messengerJFrame;
-import br.library.model.view.rent.RentCRUDWindow;
-import br.library.model.view.rent.RentPanel;
-import br.library.model.view.rent.RentRegisterPanel;
-import br.library.model.view.rent.RentTableModel;
+import br.library.model.view.devolution.DevolutionCRUDWindow;
+import br.library.model.view.devolution.DevolutionPanel;
+import br.library.model.view.devolution.DevolutionRegiterPanel;
+import br.library.model.view.devolution.DevolutionTableModel;
 
+@SuppressWarnings(value = { "all" })
 public class DevolutionController {
 
 	private final static int TABLE = 0;
@@ -27,124 +29,122 @@ public class DevolutionController {
 	private int realTimeScreen = 0;
 	private int selectLine = -1;
 
-	private RentCRUDWindow rentWindow;
-	private ClientController clientController;
+	private DevolutionCRUDWindow devolutionWindow;
+	private RentController rentController;
 	private BookController bookController;
 
 	public DevolutionController() {
 		realTimeScreen = TABLE;
 	}
 
-	public void setWindow(RentCRUDWindow window) {
-		this.rentWindow = window;
+	public void setWindow(DevolutionCRUDWindow window) {
+		this.devolutionWindow = window;
 
 	}
 
 	public void view() {
-		RentPanel panelTable = this.rentWindow.getRentPanel();
-		RentRegisterPanel form = rentWindow.getRegisterPanel();
-		RentTableModel tableModel = (RentTableModel) panelTable.getRentTable().getModel();
+		DevolutionPanel panelTable = this.devolutionWindow.getPanelTable();
+		DevolutionRegiterPanel form = devolutionWindow.getRegisterPanel();
+		DevolutionTableModel tableModel = (DevolutionTableModel) panelTable.getDevolutionTable().getModel();
 
-		selectLine = panelTable.getRentTable().getSelectedRow();
+		selectLine = panelTable.getDevolutionTable().getSelectedRow();
 		if (selectLine < 0) {
-			messengerJFrame.printErrorMessage(rentWindow, "NÃ£o hÃ¡ nenhum elemento selecionado na tabela");
+			messengerJFrame.printErrorMessage(devolutionWindow, "Não há nenhum elemento selecionado na tabela");
 			return;
 		}
-		Book li = tableModel.getBook(selectLine);
-		form.loadData(Long.toString(li.getIsbn()), li.getName(), li.getPublishingCompany(), li.getWriter(),
-				li.getYear());
+		Book bookTemp = tableModel.getBook(selectLine);
+		form.carregaDados(Long.toString(bookTemp.getIsbn()), bookTemp.getName(), bookTemp.getPublishingCompany(), bookTemp.getWriter(),
+				bookTemp.getYear());
 		form.getRegisterPanelLabel().setText("Visualizar Livro");
 		form.getSaveButton().setVisible(true);
-		form.getSaveButton().setText("Alugar");
+		form.getSaveButton().setText("Devolver");
 
 		realTimeScreen = VIEWFORM;
-		this.rentWindow.showPanel(RentCRUDWindow.PANELFORM);
+		this.devolutionWindow.showPanel(DevolutionCRUDWindow.PANELFORM);
 	}
 
-	public void save(long cpf) {
-		RentPanel panelTable = this.rentWindow.getRentPanel();
-		RentTableModel tableModel = (RentTableModel) panelTable.getRentTable().getModel();
+	public void save(long cpf, int idRent) {
+		boolean late = false;
+		DevolutionPanel panelTable = this.devolutionWindow.getPanelTable();
+		DevolutionTableModel tableModel = (DevolutionTableModel) panelTable.getDevolutionTable().getModel();
 		try {
-			clientController = new ClientController();
-			Client client = clientController.searchByCpf(cpf);
-			if (client.getBooksRent() == 3) {
-				messengerJFrame.printErrorMessage(rentWindow, "VocÃª jÃ¡ possui o mÃ¡ximo permitido de livros alugados!");
+			rentController = new RentController();
+			Rent rentTemp = rentController.searchById(idRent);
+			selectLine = panelTable.getDevolutionTable().getSelectedRow();
+			if (rentTemp.getClient().getCpf() != cpf) {
+				messengerJFrame.printErrorMessage(devolutionWindow, "Você não possui livro alugado com este código!");
+				return;
+			} else if (rentTemp.getBooksRent().isAvaliable() == true) {
+				messengerJFrame.printErrorMessage(devolutionWindow, "Este livro já foi devolvido!");
 				return;
 			} else {
-				Date dateFormat = new Date();
-				java.sql.Date dataSql;
-				dateFormat = new java.sql.Date(dateFormat.getTime());
-				dataSql = (java.sql.Date) dateFormat;
-				selectLine = panelTable.getRentTable().getSelectedRow();
-				int id = tableModel.getBook(selectLine).getId();
-				bookController = new BookController();
-				Book bookTemp = bookController.searchBookById(id);
-				if (bookTemp.isAvaliable() == false) {
-					messengerJFrame.printErrorMessage(rentWindow, "Livro jÃ¡ estÃ¡ alugado!");
-					return;
-				} else {
-					RentDAO dao = new RentDaoBd();
-					dao.save(new Rent(dateFormat, client, bookTemp));
-					messengerJFrame.printSucessMesenge(rentWindow, "Livro alugado com sucesso!");
-
+				Date data = new Date();
+				data = Date.from(Instant.now());
+				int quantityOfDays = dateDif(rentTemp, data);
+				if (quantityOfDays > 7) {
+					double multa = 1.00 * quantityOfDays;
+					messengerJFrame.printErrorMessage(devolutionWindow,
+							"Este livro está atrasado, acerte a multa no valor de " + multa + " com a administração.");
+					late = true;
 				}
+				DevolutionDAO dao = new DevolutionDaoBd();
+				dao.insert(new Devolution(rentTemp, data), late);
+				messengerJFrame.printSucessMesenge(devolutionWindow, "Livro devolvido com sucesso!");
 			}
 		} catch (Exception e) {
-			messengerJFrame.printErrorMessage(rentWindow, "Campo InvÃ¡lido!");
+			messengerJFrame.printErrorMessage(devolutionWindow, "Campo Inválido!");
 		}
 	}
 
-	public void backToMainScreen() {
+	public void backToMainMenu() {
 		realTimeScreen = TABLE;
-		this.updateTable();
-		this.rentWindow.showPanel(RentCRUDWindow.PANELTABLE);
+		this.updateWindow();
+		this.devolutionWindow.showPanel(DevolutionCRUDWindow.PANELTABLE);
 	}
 
-	public void updateTable() {
-		RentPanel panelTable = this.rentWindow.getRentPanel();
-		RentTableModel tableModel = (RentTableModel) panelTable.getRentTable().getModel();
+	public void updateWindow() {
+		DevolutionPanel painelTabela = this.devolutionWindow.getPanelTable();
+		DevolutionTableModel tableModel = (DevolutionTableModel) painelTabela.getDevolutionTable().getModel();
 
 		BookDAO dao = new BookDaoBd();
 		tableModel.setBook(dao.list());
 
-		panelTable.getRentTable().updateUI();
+		painelTabela.getDevolutionTable().updateUI();
 	}
 
-	public boolean idExist(int id) {
-		RentDAO dao = new RentDaoBd();
-		Rent rent = dao.searchById(id);
-		if (rent != null) {
-			return true;
-		} else {
-			return false;
-		}
+	public void addDevolution(Devolution devolution, boolean late) {
+		new DevolutionDaoBd().insert(devolution, late);
 	}
 
-	public void addRent(Rent rentTemp) {
-		new RentDaoBd().save(rentTemp);
+	public List<Devolution> listDevolution() {
+		return (new DevolutionDaoBd().list());
 	}
 
-	public List<Rent> listRent() {
-		return (new RentDaoBd().list());
+	public Devolution searchById(int id) {
+		DevolutionDAO dao = new DevolutionDaoBd();
+		Devolution devolucao = dao.searchById(id);
+		return devolucao;
 	}
 
-	public Rent searchById(int id) {
-		RentDAO dao = new RentDaoBd();
-		Rent rent = dao.searchById(id);
-		return rent;
+	public int dateDif(Rent rent, Date date) {
+		long time1 = rent.getRentData().getTime();
+		long time2 = date.getTime();
+		long diferenceBetwen = time2 - time1;
+		return (int) ((diferenceBetwen + 60L * 60 * 1000) / (24L * 60 * 60 * 1000)) + 1;
 	}
 
-	public void showRent() {
+	public void mostrarDevolucao() {
 		System.out.println("-----------------------------\n");
-		System.out.println(String.format("%-20s", "|CÃ³digo do Aluguel") + "\t"
+		System.out.println(String.format("%-20s", "|Código da devolução") + "\t"
 				+ String.format("%-20s", "|Nome do cliente") + String.format("%-20s", "  |Titulo do livro alugado")
-				+ String.format("%-20s", "    |Data do aluguel:"));
-		for (Rent rent : listRent()) {
-			System.out.println(String.format("%-10s", rent.getId()) + "\t"
-					+ String.format("%-20s", "        |" + rent.getClient().getName()) + "\t"
-					+ String.format("%-20s", "      |" + rent.getBooksRent().getName() + "\t" + String.format("%-20s",
-							"                  |" + DateUtil.dateToString(rent.getRentData()))));
+				+ String.format("%-20s", "    |Data da devolução"));
+		for (Devolution devolucao : listDevolution()) {
+			System.out.println(String.format("%-10s", devolucao.getId()) + "\t"
+					+ String.format("%-20s", "        |" + devolucao.getRent().getClient().getName()) + "\t"
+					+ String.format("%-20s",
+							"      |" + devolucao.getRent().getBooksRent().getName() + "\t" + String.format("%-20s",
+									"                  |" + DateUtil.dateToString(devolucao.getDevolutionDate()))));
 		}
-	};
+	}
 
 }

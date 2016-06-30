@@ -14,7 +14,7 @@ public class DevolutionTableModel extends AbstractTableModel {
 	private List<Book> books;
 
 	public DevolutionTableModel() {
-		this.header = new String[] { "ISBN", "Nome", "Editora", "Autor(es)", "Ano de PublicaÃ§Ã£o", "Disponibilidade" };
+		this.header = new String[] { "ISBN", "Nome", "Editora", "Autor(es)", "Ano de Publicação", "Disponibilidade" };
 		this.books = new ArrayList<Book>();
 	}
 

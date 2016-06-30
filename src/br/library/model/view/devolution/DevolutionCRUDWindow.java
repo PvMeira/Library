@@ -19,10 +19,10 @@ public class DevolutionCRUDWindow extends JFrame {
 
 	public DevolutionCRUDWindow(JFrame jframe, DevolutionController controller) {
 		this.controller = controller;
-//		this.controller.setWindow(this);
+		this.controller.setWindow(this);
 		initParam();
-		controller.updateTable();
-		this.setTitle("Biblioteca");
+		controller.updateWindow();
+		this.setTitle("Devolução");
 		this.pack();
 		this.setLocationRelativeTo(jframe);
 		this.setVisible(true);
@@ -37,13 +37,13 @@ public class DevolutionCRUDWindow extends JFrame {
 		this.add(main);
 	}
 
-	public void mostrarPainel(String painel) {
+	public void showPanel(String panel) {
 		CardLayout card = (CardLayout) (main.getLayout());
-		card.show(main, painel);
+		card.show(main, panel);
 
 	}
 
-	public DevolutionPanel getPainelTabela() {
+	public DevolutionPanel getPanelTable() {
 		return devolutionPanel;
 	}
 
@@ -51,7 +51,7 @@ public class DevolutionCRUDWindow extends JFrame {
 		this.controller = controller;
 	}
 
-	public DevolutionRegiterPanel getPainelFormulario() {
+	public DevolutionRegiterPanel getRegisterPanel() {
 		return devolutionRegiterPanel;
 	}
 }

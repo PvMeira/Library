@@ -123,19 +123,19 @@ public class BookController {
 			String nameTemp = name, publishingCompanyTemp = publishingCompany, writerTemp = writer, yearTemp = year;
 			if (realTimeScrenn == REGISTERFORM) {
 				if (BookExist(isbnTemp)) {
-					messengerJFrame.printErrorMessage(window, "ISBN jï¿½ existe");
+					messengerJFrame.printErrorMessage(window, "ISBN é existe");
 				} else if (isbnValidator(isbnTemp) == false) {
-					messengerJFrame.printErrorMessage(window, "Campo ISBN ï¿½ invalido");
+					messengerJFrame.printErrorMessage(window, "Campo ISBN é invalido");
 				} else if (name == null || name.trim().length() == 0) {
-					messengerJFrame.printErrorMessage(window, "Campo Nome ï¿½ invalido");
+					messengerJFrame.printErrorMessage(window, "Campo Nome é invalido");
 				} else if (publishingCompany == null || publishingCompany.trim().length() == 0) {
-					messengerJFrame.printErrorMessage(window, "Campo Editora ï¿½ invalido");
+					messengerJFrame.printErrorMessage(window, "Campo Editora é invalido");
 
 				} else if (writer == null || writer.trim().length() == 0) {
-					messengerJFrame.printErrorMessage(window, "Campo Autor(es) ï¿½ invalido");
+					messengerJFrame.printErrorMessage(window, "Campo Autor(es) é invalido");
 
 				} else if (yearValidator(year) != true || year == null) {
-					messengerJFrame.printErrorMessage(window, "Campo Ano de Publicaï¿½ï¿½o ï¿½ invalido! Digite: xxxx");
+					messengerJFrame.printErrorMessage(window, "Campo Ano de Publicação é invalido! Digite: xxxx");
 				} else {
 					Book book = new Book(isbnTemp, nameTemp, publishingCompanyTemp, writerTemp, yearTemp);
 					BookDAO dao = new BookDaoBd();
@@ -146,29 +146,29 @@ public class BookController {
 
 			} else if (realTimeScrenn == EDITFORM) {
 				if (BookExist(isbnTemp)) {
-					messengerJFrame.printErrorMessage(window, "ISBN jÃ¡ existe");
+					messengerJFrame.printErrorMessage(window, "ISBN já existe");
 				} else if (isbnValidator(isbnTemp) == false) {
-					messengerJFrame.printErrorMessage(window, "Campo ISBN Ã© invÃ¡lido!");
+					messengerJFrame.printErrorMessage(window, "Campo ISBN é inválido!");
 				} else if (name == null || name.trim().length() == 0) {
-					messengerJFrame.printErrorMessage(window, "Campo Titulo Ã© invÃ¡lido!");
+					messengerJFrame.printErrorMessage(window, "Campo Titulo é inválido!");
 				} else if (publishingCompany == null || publishingCompany.trim().length() == 0) {
-					messengerJFrame.printErrorMessage(window, "Campo Editora Ã© invÃ¡lido");
+					messengerJFrame.printErrorMessage(window, "Campo Editora é inválido");
 
 				} else if (writer == null || writer.trim().length() == 0) {
-					messengerJFrame.printErrorMessage(window, "Campo Autor(es) Ã© invÃ¡lido");
+					messengerJFrame.printErrorMessage(window, "Campo Autor(es) é inválido");
 				} else if (yearValidator(year) != true || year == null) {
-					messengerJFrame.printErrorMessage(window, "Campo Ano de PubliÃ§Ã£o Ã© invÃ¡lido! Digite: xxxx");
+					messengerJFrame.printErrorMessage(window, "Campo Ano de Publicação é inválido! Digite: xxxx");
 				} else {
 					selectLine = bookPanel.getBooksTable().getSelectedRow();
 					int id = tableModel.getBook(selectLine).getId();
 					Book book = new Book(isbnTemp, nameTemp, publishingCompanyTemp, writerTemp, yearTemp);
 					BookDAO dao = new BookDaoBd();
 					dao.editBook(book, id);
-					messengerJFrame.printSucessMesenge(window, "Ediï¿½ï¿½o realizada com sucesso!");
+					messengerJFrame.printSucessMesenge(window, "Editar realizada com sucesso!");
 				}
 			}
 		} catch (Exception e) {
-			messengerJFrame.printErrorMessage(window, "Campo ISBN ï¿½ invalido");
+			messengerJFrame.printErrorMessage(window, "Campo ISBN é invalido");
 		}
 	}
 

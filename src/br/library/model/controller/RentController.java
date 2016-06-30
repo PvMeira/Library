@@ -16,7 +16,7 @@ import br.library.model.view.rent.RentCRUDWindow;
 import br.library.model.view.rent.RentPanel;
 import br.library.model.view.rent.RentRegisterPanel;
 import br.library.model.view.rent.RentTableModel;
-@SuppressWarnings("All")
+@SuppressWarnings("all")
 public class RentController {
 
 	private final static int TABLE = 0;
@@ -47,7 +47,7 @@ public class RentController {
 
 		selectLine = panelTable.getRentTable().getSelectedRow();
 		if (selectLine < 0) {
-			messengerJFrame.printErrorMessage(window, "Nï¿½o hï¿½ nenhum elemento selecionado na tabela");
+			messengerJFrame.printErrorMessage(window, "Não há nenhum elemento selecionado na tabela");
 			return;
 		}
 		Book bookTemp = tableModel.getBook(selectLine);
@@ -68,7 +68,7 @@ public class RentController {
 			clientController = new ClientController();
 			Client client = clientController.searchByCpf(cpf);
 			if (client.getBooksRent() == 3) {
-				messengerJFrame.printErrorMessage(window, "Cliente jï¿½ possui maximo de livros alugados!");
+				messengerJFrame.printErrorMessage(window, "Cliente já possui maximo de livros alugados!");
 				return;
 			} else {
 				Date dateFormat = new Date();
@@ -80,7 +80,7 @@ public class RentController {
 				bookController = new BookController();
 				Book bookTemp = bookController.searchBookById(id);
 				if (bookTemp.isAvaliable() == false) {
-					messengerJFrame.printErrorMessage(window, "Livro jï¿½ estï¿½ alugado!");
+					messengerJFrame.printErrorMessage(window, "Livro já está alugado!");
 					return;
 				} else {
 					RentDAO dao = new RentDaoBd();
@@ -90,7 +90,7 @@ public class RentController {
 				}
 			}
 		} catch (Exception e) {
-			messengerJFrame.printErrorMessage(window, "Campo Invï¿½lido!");
+			messengerJFrame.printErrorMessage(window, "Campo inválido!");
 		}
 	}
 
@@ -110,7 +110,7 @@ public class RentController {
 		rentPanel.getRentTable().updateUI();
 	}
 
-	public boolean idExist(int id) {
+	public boolean codeExist(int id) {
 		RentDAO dao = new RentDaoBd();
 		Rent rent = dao.searchById(id);
 		if (rent != null) {
@@ -136,7 +136,7 @@ public class RentController {
 
 	public void showRent() {
 		System.out.println("-----------------------------\n");
-		System.out.println(String.format("%-20s", "|Cï¿½digo do Aluguel") + "\t"
+		System.out.println(String.format("%-20s", "|Código do Aluguel") + "\t"
 				+ String.format("%-20s", "|Nome do cliente") + String.format("%-20s", "  |Titulo do livro alugado")
 				+ String.format("%-20s", "    |Data do aluguel:"));
 		for (Rent rent : listRent()) {

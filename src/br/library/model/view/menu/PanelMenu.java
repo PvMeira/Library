@@ -49,35 +49,35 @@ public class PanelMenu extends javax.swing.JFrame {
 			}
 		});
 
-		jButton3.setText("Alugar Livro");
+		jButton3.setText("Alugar");
 		jButton3.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				jButton3ActionPerformed(evt);
 			}
 		});
 
-		jButton4.setText("Devolver Livro");
+		jButton4.setText("Devolver");
 		jButton4.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				jButton4ActionPerformed(evt);
 			}
 		});
 
-		jButton5.setText("Biblioteca");
+		jButton5.setText("Livro");
 		jButton5.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				jButton5ActionPerformed(evt);
 			}
 		});
 
-//		jButton1.setText("Pesquisar");
-//		jButton1.addActionListener(new java.awt.event.ActionListener() {
-//			public void actionPerformed(java.awt.event.ActionEvent evt) {
-//				jButton1ActionPerformed(evt);
-//			}
-//		});
+		// jButton1.setText("Pesquisar");
+		// jButton1.addActionListener(new java.awt.event.ActionListener() {
+		// public void actionPerformed(java.awt.event.ActionEvent evt) {
+		// jButton1ActionPerformed(evt);
+		// }
+		// });
 
-		jMenu1.setText("Acessar");
+		jMenu1.setText("Menu");
 
 		jMenuItem1.setAccelerator(
 				javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.ALT_MASK));
@@ -91,7 +91,7 @@ public class PanelMenu extends javax.swing.JFrame {
 
 		jMenuItem2.setAccelerator(
 				javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_B, java.awt.event.InputEvent.ALT_MASK));
-		jMenuItem2.setText("Biblioteca");
+		jMenuItem2.setText("Livro");
 		jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				jMenuItem2ActionPerformed(evt);
@@ -111,7 +111,7 @@ public class PanelMenu extends javax.swing.JFrame {
 
 		jMenuItem4.setAccelerator(
 				javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.ALT_MASK));
-		jMenuItem4.setText("DevoluÃ§Ã£o");
+		jMenuItem4.setText("Devolução");
 		jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				jMenuItem4ActionPerformed(evt);
@@ -131,11 +131,11 @@ public class PanelMenu extends javax.swing.JFrame {
 
 		jMenuBar1.add(jMenu1);
 
-		jMenu2.setText("Sobre");
+		jMenu2.setText("Informações Adicionais");
 
 		jMenuItem6.setAccelerator(
 				javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.ALT_MASK));
-		jMenuItem6.setText("VersÃ£o");
+		jMenuItem6.setText("Sobre o Desenvolvedor");
 		jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				jMenuItem6ActionPerformed(evt);
@@ -153,19 +153,19 @@ public class PanelMenu extends javax.swing.JFrame {
 				.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
 				.addGroup(jInternalFrame1Layout.createSequentialGroup().addGap(18, 18, 18)
 						.addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-								.addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 160,
+								.addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 120,
 										javax.swing.GroupLayout.PREFERRED_SIZE)
-								.addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 160,
+								.addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 120,
 										javax.swing.GroupLayout.PREFERRED_SIZE))
 						.addGap(18, 18, 18)
 						.addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
 								.addGroup(jInternalFrame1Layout.createSequentialGroup()
-										.addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 160,
+										.addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 120,
 												javax.swing.GroupLayout.PREFERRED_SIZE)
 										.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-										.addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 160,
+										.addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 120,
 												javax.swing.GroupLayout.PREFERRED_SIZE))
-								.addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 160,
+								.addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 120,
 										javax.swing.GroupLayout.PREFERRED_SIZE))
 						.addGap(0, 16, Short.MAX_VALUE)));
 		jInternalFrame1Layout.setVerticalGroup(jInternalFrame1Layout
@@ -233,12 +233,12 @@ public class PanelMenu extends javax.swing.JFrame {
 		controller.setJanela(window);
 	}
 
-//	private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
-//		PainelRelatorio pr = new PainelRelatorio();
-//		pr.pack();
-//		pr.setLocationRelativeTo(this);
-//		pr.setVisible(true);
-//	}
+	// private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
+	// PainelRelatorio pr = new PainelRelatorio();
+	// pr.pack();
+	// pr.setLocationRelativeTo(this);
+	// pr.setVisible(true);
+	// }
 
 	private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {
 		ClientController controller = new ClientController();
@@ -259,23 +259,23 @@ public class PanelMenu extends javax.swing.JFrame {
 	}
 
 	private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {
-		JOptionPane.showMessageDialog(this, "BETA");
+		JOptionPane.showMessageDialog(this, "Pedro Vitor Meira Ciria-Java Developemnt");
 	}
 
 	private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {
 		DevolutionController controller = new DevolutionController();
 		DevolutionCRUDWindow window = new DevolutionCRUDWindow(this, controller);
-//		controller.setWindow(janela);
+		controller.setWindow(window);
 	}
 
 	private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {
 		DevolutionController controller = new DevolutionController();
 		DevolutionCRUDWindow window = new DevolutionCRUDWindow(this, controller);
-//		controller.setWindow(window);
+		controller.setWindow(window);
 	}
 
 	private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {
-//		PainelRelatorio pr = new PainelRelatorio();
+		// PainelRelatorio pr = new PainelRelatorio();
 		// pr.pack();
 		// pr.setLocationRelativeTo(this);
 		// pr.setVisible(true);
