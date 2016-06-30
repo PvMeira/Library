@@ -12,6 +12,11 @@ import br.library.model.view.devolution.DevolutionCRUDWindow;
 import br.library.model.view.rent.RentCRUDWindow;
 import br.library.model.view.report.ReportPanel;
 
+/**
+ * @author Pedro
+ *
+ */
+
 public class PanelMenu extends javax.swing.JFrame {
 
 	private static final long serialVersionUID = 1L;

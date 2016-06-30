@@ -6,6 +6,11 @@ import javax.swing.JPanel;
 
 import br.library.model.controller.DevolutionController;
 
+/**
+ * @author Pedro
+ *
+ */
+
 public class DevolutionCRUDWindow extends JFrame {
 	private static final long serialVersionUID = 1L;
 

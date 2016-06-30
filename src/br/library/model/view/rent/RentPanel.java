@@ -11,6 +11,11 @@ import br.library.model.controller.BookController;
 import br.library.model.controller.ClientController;
 import br.library.model.controller.RentController;
 
+/**
+ * @author Pedro
+ *
+ */
+
 public class RentPanel extends javax.swing.JPanel {
 
 	private static final long serialVersionUID = 1L;

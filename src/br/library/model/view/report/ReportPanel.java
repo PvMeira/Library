@@ -9,6 +9,11 @@ import br.library.model.controller.ClientController;
 import br.library.model.view.book.BookTableModel;
 import br.library.model.view.client.ClientTableModel;
 
+/**
+ * @author Pedro
+ *
+ */
+
 public class ReportPanel extends javax.swing.JFrame {
 
 	private static final long serialVersionUID = 1L;

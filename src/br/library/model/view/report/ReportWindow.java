@@ -5,6 +5,11 @@ import java.awt.CardLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+/**
+ * @author Pedro
+ *
+ */
+
 public class ReportWindow extends JFrame {
 
 	private static final long serialVersionUID = 1L;

@@ -5,7 +5,10 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import br.library.model.controller.RentController;
-
+/**
+ * @author Pedro
+ *
+ */
 
 public class RentCRUDWindow extends JFrame {
 	private static final long serialVersionUID = 1L;

@@ -9,9 +9,15 @@ import javax.swing.JTextField;
 import br.library.model.controller.ClientController;
 import br.library.model.controller.RentController;
 
+/**
+ * @author Pedro
+ *
+ */
+
 public class RentRegisterPanel extends javax.swing.JPanel {
 	private static final long serialVersionUID = 1L;
 	private RentController controller;
+	@SuppressWarnings("unused")
 	private RentCRUDWindow window;
 	private ClientController clientController;
 
@@ -159,11 +165,11 @@ public class RentRegisterPanel extends javax.swing.JPanel {
 								.addGap(0, 0, Short.MAX_VALUE))));
 	}
 
-	private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_botaoVoltarActionPerformed
+	private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		controller.backToMainScreen();
 	}
 
-	private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_botaoSalvarActionPerformed
+	private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		try {
 			String[] opcoes = { "sim", "não" };
 			String cpf = JOptionPane.showInputDialog("Digite seu Cpf");

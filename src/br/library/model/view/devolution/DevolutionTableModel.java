@@ -7,6 +7,11 @@ import javax.swing.table.AbstractTableModel;
 
 import br.library.domain.profile.Book;
 
+/**
+ * @author Pedro
+ *
+ */
+
 public class DevolutionTableModel extends AbstractTableModel {
 
 	private static final long serialVersionUID = 1L;
