@@ -62,12 +62,12 @@ public class PanelMenu extends javax.swing.JFrame {
 			}
 		});
 
-		jButton4.setText("Devolver");
-		jButton4.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				jButton4ActionPerformed(evt);
-			}
-		});
+//		jButton4.setText("Devolver");
+//		jButton4.addActionListener(new java.awt.event.ActionListener() {
+//			public void actionPerformed(java.awt.event.ActionEvent evt) {
+//				jButton4ActionPerformed(evt);
+//			}
+//		});
 
 		jButton5.setText("Livro");
 		jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -117,7 +117,7 @@ public class PanelMenu extends javax.swing.JFrame {
 
 		jMenuItem4.setAccelerator(
 				javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.ALT_MASK));
-		jMenuItem4.setText("Devolução");
+		jMenuItem4.setText("Devoluï¿½ï¿½o");
 		jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				jMenuItem4ActionPerformed(evt);
@@ -137,7 +137,7 @@ public class PanelMenu extends javax.swing.JFrame {
 
 		jMenuBar1.add(jMenu1);
 
-		jMenu2.setText("Informações Adicionais");
+		jMenu2.setText("Informaï¿½ï¿½es Adicionais");
 
 		jMenuItem6.setAccelerator(
 				javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.ALT_MASK));
@@ -268,11 +268,11 @@ public class PanelMenu extends javax.swing.JFrame {
 		JOptionPane.showMessageDialog(this, "Pedro Vitor Meira Ciria-Java Developemnt");
 	}
 
-	private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {
-		DevolutionController controller = new DevolutionController();
-		DevolutionCRUDWindow window = new DevolutionCRUDWindow(this, controller);
-		controller.setWindow(window);
-	}
+//	private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {
+//		DevolutionController controller = new DevolutionController();
+//		DevolutionCRUDWindow window = new DevolutionCRUDWindow(this, controller);
+//		controller.setWindow(window);
+//	}
 
 	private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {
 		DevolutionController controller = new DevolutionController();
@@ -281,10 +281,10 @@ public class PanelMenu extends javax.swing.JFrame {
 	}
 
 	private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {
-		// PainelRelatorio pr = new PainelRelatorio();
-		// pr.pack();
-		// pr.setLocationRelativeTo(this);
-		// pr.setVisible(true);
+		 ReportPanel pr = new ReportPanel();
+		 pr.pack();
+		 pr.setLocationRelativeTo(this);
+		 pr.setVisible(true);
 	}
 
 	public static void main(String args[]) {
