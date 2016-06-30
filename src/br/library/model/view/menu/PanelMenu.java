@@ -10,6 +10,7 @@ import br.library.model.view.book.BookCRUDWindow;
 import br.library.model.view.client.ClientCRUDWindow;
 import br.library.model.view.devolution.DevolutionCRUDWindow;
 import br.library.model.view.rent.RentCRUDWindow;
+import br.library.model.view.report.ReportPanel;
 
 public class PanelMenu extends javax.swing.JFrame {
 
@@ -70,12 +71,12 @@ public class PanelMenu extends javax.swing.JFrame {
 			}
 		});
 
-		// jButton1.setText("Pesquisar");
-		// jButton1.addActionListener(new java.awt.event.ActionListener() {
-		// public void actionPerformed(java.awt.event.ActionEvent evt) {
-		// jButton1ActionPerformed(evt);
-		// }
-		// });
+		jButton1.setText("Pesquisar");
+		jButton1.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				jButton1ActionPerformed(evt);
+			}
+		});
 
 		jMenu1.setText("Menu");
 
@@ -233,12 +234,12 @@ public class PanelMenu extends javax.swing.JFrame {
 		controller.setJanela(window);
 	}
 
-	// private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
-	// PainelRelatorio pr = new PainelRelatorio();
-	// pr.pack();
-	// pr.setLocationRelativeTo(this);
-	// pr.setVisible(true);
-	// }
+	private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
+		ReportPanel pr = new ReportPanel();
+		pr.pack();
+		pr.setLocationRelativeTo(this);
+		pr.setVisible(true);
+	}
 
 	private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {
 		ClientController controller = new ClientController();
