@@ -102,42 +102,42 @@ public class DevolutionPanel extends javax.swing.JPanel {
 	private void insertButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		try {
 			String idRent = "";
-			String[] options = { "sim", "não" };
+			String[] options = { "sim", "nï¿½o" };
 			String cpf = JOptionPane.showInputDialog("Digite seu CPF:");
 			clientController = new ClientController();
 			if (clientController.clientExist(Long.parseLong(cpf))) {
-				idRent = JOptionPane.showInputDialog("Digite o isbn do livro:");
+				idRent = JOptionPane.showInputDialog("Digite o id do livro:");
 				rentController = new RentController();
 				if (rentController.codeExist(Integer.parseInt(idRent))) {
-					int op = JOptionPane.showOptionDialog(this, "Deseja devolver este livro?", "Código encontrado!",
+					int op = JOptionPane.showOptionDialog(this, "Deseja devolver este livro?", "Cï¿½digo encontrado!",
 							JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 					if (op == 0) {
 						JOptionPane.showMessageDialog(this, "Processando Dados...");
 						controller.save(Long.parseLong(cpf), Integer.parseInt(idRent));
 					} else {
-						JOptionPane.showMessageDialog(this, "Livro não pode ser devolvido!");
+						JOptionPane.showMessageDialog(this, "Livro nï¿½o pode ser devolvido!");
 					}
 				} else {
-					JOptionPane.showMessageDialog(this, "Código não encontrado!");
+					JOptionPane.showMessageDialog(this, "Cï¿½digo nï¿½o encontrado!");
 				}
 			} else {
-				JOptionPane.showMessageDialog(this, "Cliente não encontrado!");
+				JOptionPane.showMessageDialog(this, "Cliente nï¿½o encontrado!");
 			}
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(this, "Campo inválido!");
+			JOptionPane.showMessageDialog(this, "Campo invï¿½lido!");
 		}
 	}
 
 	private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		try {
 			String idRent = "";
-			String[] options = { "sim", "não" };
+			String[] options = { "sim", "nï¿½o" };
 			String bookName = JOptionPane.showInputDialog("Digite o titulo desejado:");
 			bookController = new BookController();
 			if (bookController.BookExist(bookName)) {
 				Book bookTemp = bookController.searchBookByName(bookName);
 				JOptionPane.showMessageDialog(this, "Livro Encontrado! \nTitulo: " + bookTemp.getName() + "\nAutor: "
-						+ bookTemp.getName() + "\nANo de Publicação: " + bookTemp.getYear());
+						+ bookTemp.getName() + "\nANo de Publicaï¿½ï¿½o: " + bookTemp.getYear());
 				int op = JOptionPane.showOptionDialog(this, "Deseja devolver este livro?", "Livro encontrado!",
 						JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 				if (op == 0) {
@@ -150,33 +150,33 @@ public class DevolutionPanel extends javax.swing.JPanel {
 							JOptionPane.showMessageDialog(this, "Processando Dados...");
 							controller.save(Long.parseLong(rg), Integer.parseInt(idRent));
 						} else {
-							JOptionPane.showMessageDialog(this, "Código não encontrado!");
+							JOptionPane.showMessageDialog(this, "Cï¿½digo nï¿½o encontrado!");
 						}
 					} else {
-						JOptionPane.showMessageDialog(this, "Cliente não encontrado!");
+						JOptionPane.showMessageDialog(this, "Cliente nï¿½o encontrado!");
 					}
 
 				} else {
-					JOptionPane.showMessageDialog(this, "Livro não foi alugado!");
+					JOptionPane.showMessageDialog(this, "Livro nï¿½o foi alugado!");
 				}
 			} else {
-				JOptionPane.showMessageDialog(this, "Livro não encontrado!");
+				JOptionPane.showMessageDialog(this, "Livro nï¿½o encontrado!");
 			}
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(this, "Campo inválido!");
+			JOptionPane.showMessageDialog(this, "Campo invï¿½lido!");
 		}
 	}
 
 	private void removeButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		try {
 			String idRent = "";
-			String[] options = { "sim", "não" };
+			String[] options = { "sim", "nï¿½o" };
 			String isbn = JOptionPane.showInputDialog("Digite o ISBN desejado:");
 			bookController = new BookController();
 			if (bookController.BookExist(Long.parseLong(isbn))) {
 				Book bookTemp = bookController.searchBookByIsbn(Long.parseLong(isbn));
 				JOptionPane.showMessageDialog(this, "Livro Encontrado! \nTitulo: " + bookTemp.getName() + "\nAutor: "
-						+ bookTemp.getWriter() + "\nAno de Publicação: " + bookTemp.getYear());
+						+ bookTemp.getWriter() + "\nAno de Publicaï¿½ï¿½o: " + bookTemp.getYear());
 				int op = JOptionPane.showOptionDialog(this, "Deseja devolver este livro?", "Livro encontrado!",
 						JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 				if (op == 0) {
@@ -189,20 +189,20 @@ public class DevolutionPanel extends javax.swing.JPanel {
 							JOptionPane.showMessageDialog(this, "Processando Dados...");
 							controller.save(Long.parseLong(cpf), Integer.parseInt(idRent));
 						} else {
-							JOptionPane.showMessageDialog(this, "Código não encontrado!");
+							JOptionPane.showMessageDialog(this, "Cï¿½digo nï¿½o encontrado!");
 						}
 					} else {
-						JOptionPane.showMessageDialog(this, "Cliente não encontrado!");
+						JOptionPane.showMessageDialog(this, "Cliente nï¿½o encontrado!");
 					}
 
 				} else {
-					JOptionPane.showMessageDialog(this, "Livro não foi alugado!");
+					JOptionPane.showMessageDialog(this, "Livro nï¿½o foi alugado!");
 				}
 			} else {
-				JOptionPane.showMessageDialog(this, "Livro não encontrado!");
+				JOptionPane.showMessageDialog(this, "Livro nï¿½o encontrado!");
 			}
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(this, "Campo inválido!");
+			JOptionPane.showMessageDialog(this, "Campo invï¿½lido!");
 		}
 	}
 

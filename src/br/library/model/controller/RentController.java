@@ -16,6 +16,7 @@ import br.library.model.view.rent.RentCRUDWindow;
 import br.library.model.view.rent.RentPanel;
 import br.library.model.view.rent.RentRegisterPanel;
 import br.library.model.view.rent.RentTableModel;
+
 @SuppressWarnings("all")
 public class RentController {
 

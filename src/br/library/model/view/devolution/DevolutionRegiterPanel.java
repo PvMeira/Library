@@ -14,6 +14,7 @@ import javax.swing.JTextField;
 import br.library.model.controller.ClientController;
 import br.library.model.controller.DevolutionController;
 import br.library.model.controller.RentController;
+
 @SuppressWarnings(value = { "all" })
 public class DevolutionRegiterPanel extends javax.swing.JPanel {
 
@@ -48,7 +49,7 @@ public class DevolutionRegiterPanel extends javax.swing.JPanel {
 
 		jLabel4.setText("Editora:");
 
-		registerPanelLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); 
+		registerPanelLabel.setFont(new java.awt.Font("Tahoma", 1, 18));
 		registerPanelLabel.setText("Dados do Livro");
 
 		saveButton.setText("Devolver");
@@ -76,59 +77,47 @@ public class DevolutionRegiterPanel extends javax.swing.JPanel {
 		javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
 		jPanel2.setLayout(jPanel2Layout);
 		jPanel2Layout.setHorizontalGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-				.addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-						.addGap(0, 139, Short.MAX_VALUE).addComponent(registerPanelLabel).addGap(129, 129, 129))
-				.addGroup(
-						jPanel2Layout.createSequentialGroup()
-								.addGroup(jPanel2Layout
-										.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+				.addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
+						jPanel2Layout.createSequentialGroup().addGap(0, 139, Short.MAX_VALUE)
+								.addComponent(registerPanelLabel).addGap(129, 129, 129))
+				.addGroup(jPanel2Layout.createSequentialGroup()
+						.addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+								.addGroup(jPanel2Layout.createSequentialGroup().addGap(63, 63, 63)
 										.addGroup(jPanel2Layout
-												.createSequentialGroup().addGap(63, 63, 63).addGroup(jPanel2Layout
-														.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING,
+												.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+												.addGroup(jPanel2Layout.createSequentialGroup().addComponent(jLabel6)
+														.addGap(21, 21, 21).addComponent(textYear))
+										.addGroup(javax.swing.GroupLayout.Alignment.LEADING,
+												jPanel2Layout.createSequentialGroup().addComponent(jLabel5)
+														.addPreferredGap(
+																javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+												.addComponent(textWriter, javax.swing.GroupLayout.PREFERRED_SIZE, 199,
+														javax.swing.GroupLayout.PREFERRED_SIZE))
+										.addGroup(
+												jPanel2Layout.createSequentialGroup()
+														.addGroup(jPanel2Layout
+																.createParallelGroup(
+																		javax.swing.GroupLayout.Alignment.LEADING)
+																.addComponent(jLabel2).addComponent(jLabel1))
+														.addPreferredGap(
+																javax.swing.LayoutStyle.ComponentPlacement.RELATED,
+																javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+												.addGroup(jPanel2Layout
+														.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING,
 																false)
-														.addGroup(jPanel2Layout.createSequentialGroup()
-																.addComponent(jLabel6).addGap(21, 21, 21)
-																.addComponent(textYear))
-														.addGroup(javax.swing.GroupLayout.Alignment.LEADING,
-																jPanel2Layout
-																		.createSequentialGroup().addComponent(jLabel5)
-																		.addPreferredGap(
-																				javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-																		.addComponent(textWriter,
-																				javax.swing.GroupLayout.PREFERRED_SIZE,
-																				199,
-																				javax.swing.GroupLayout.PREFERRED_SIZE))
-														.addGroup(jPanel2Layout.createSequentialGroup()
-																.addGroup(jPanel2Layout
-																		.createParallelGroup(
-																				javax.swing.GroupLayout.Alignment.LEADING)
-																		.addComponent(jLabel2).addComponent(jLabel1))
-																.addPreferredGap(
-																		javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-																		javax.swing.GroupLayout.DEFAULT_SIZE,
-																		Short.MAX_VALUE)
-																.addGroup(jPanel2Layout
-																		.createParallelGroup(
-																				javax.swing.GroupLayout.Alignment.LEADING,
-																				false)
-																		.addComponent(textISBN).addComponent(textName,
-																				javax.swing.GroupLayout.PREFERRED_SIZE,
-																				200,
-																				javax.swing.GroupLayout.PREFERRED_SIZE)))
-														.addGroup(javax.swing.GroupLayout.Alignment.LEADING,
-																jPanel2Layout.createSequentialGroup()
-																		.addComponent(jLabel4).addGap(21, 21, 21)
-																		.addComponent(textPublishingCompany,
-																				javax.swing.GroupLayout.PREFERRED_SIZE,
-																				200,
-																				javax.swing.GroupLayout.PREFERRED_SIZE))
-														.addComponent(backButton,
-																javax.swing.GroupLayout.PREFERRED_SIZE, 87,
+														.addComponent(textISBN).addComponent(textName,
+																javax.swing.GroupLayout.PREFERRED_SIZE, 200,
 																javax.swing.GroupLayout.PREFERRED_SIZE)))
-										.addGroup(jPanel2Layout.createSequentialGroup().addGap(81, 81, 81).addComponent(
-												saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 87,
+										.addGroup(javax.swing.GroupLayout.Alignment.LEADING,
+												jPanel2Layout.createSequentialGroup().addComponent(jLabel4)
+														.addGap(21, 21, 21).addComponent(textPublishingCompany,
+																javax.swing.GroupLayout.PREFERRED_SIZE, 200,
+																javax.swing.GroupLayout.PREFERRED_SIZE))
+										.addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 87,
 												javax.swing.GroupLayout.PREFERRED_SIZE)))
-								.addContainerGap(78, Short.MAX_VALUE)));
+						.addGroup(jPanel2Layout.createSequentialGroup().addGap(81, 81, 81).addComponent(saveButton,
+								javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
+						.addContainerGap(78, Short.MAX_VALUE)));
 		jPanel2Layout.setVerticalGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
 				.addGroup(jPanel2Layout.createSequentialGroup().addGap(17, 17, 17).addComponent(registerPanelLabel)
 						.addGap(18, 18, 18)

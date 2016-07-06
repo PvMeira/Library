@@ -19,7 +19,7 @@ public class DevolutionTableModel extends AbstractTableModel {
 	private List<Book> books;
 
 	public DevolutionTableModel() {
-		this.header = new String[] { "ISBN", "Nome", "Editora", "Autor(es)", "Ano de Publicação", "Disponibilidade" };
+		this.header = new String[] { "ID","ISBN", "Nome", "Editora", "Autor(es)", "Ano de PublicaÃ§Ã£o", "Disponibilidade" };
 		this.books = new ArrayList<Book>();
 	}
 
@@ -36,7 +36,7 @@ public class DevolutionTableModel extends AbstractTableModel {
 
 	@Override
 	public int getColumnCount() {
-		return (6);
+		return (7);
 	}
 
 	@Override
@@ -46,17 +46,19 @@ public class DevolutionTableModel extends AbstractTableModel {
 
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
-		if (columnIndex == 0)
+		if(columnIndex == 0)
+			return (this.books.get(rowIndex).getId());
+	    else if (columnIndex == 1)
 			return (this.books.get(rowIndex).getIsbn());
-		else if (columnIndex == 1)
-			return (this.books.get(rowIndex).getName());
 		else if (columnIndex == 2)
-			return (this.books.get(rowIndex).getPublishingCompany());
+			return (this.books.get(rowIndex).getName());
 		else if (columnIndex == 3)
-			return (this.books.get(rowIndex).getWriter());
+			return (this.books.get(rowIndex).getPublishingCompany());
 		else if (columnIndex == 4)
-			return (this.books.get(rowIndex).getYear());
+			return (this.books.get(rowIndex).getWriter());
 		else if (columnIndex == 5)
+			return (this.books.get(rowIndex).getYear());
+		else if (columnIndex == 6)
 			return (this.books.get(rowIndex).isAvaliable());
 		else
 			return null;
