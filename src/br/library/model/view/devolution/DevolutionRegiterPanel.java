@@ -195,7 +195,7 @@ public class DevolutionRegiterPanel extends javax.swing.JPanel {
 			String cpf = JOptionPane.showInputDialog("Digite seu CPF:");
 			clientController = new ClientController();
 			if (clientController.clientExist(Long.parseLong(cpf))) {
-				idRent = JOptionPane.showInputDialog("Digite o isbn do livro:");
+				idRent = JOptionPane.showInputDialog("Digite o codigo da devolucao:");
 				rentController = new RentController();
 				if (rentController.codeExist(Integer.parseInt(idRent))) {
 					int op = JOptionPane.showOptionDialog(this, "Deseja devolver este livro?", "Código encontrado!",

@@ -62,12 +62,12 @@ public class PanelMenu extends javax.swing.JFrame {
 			}
 		});
 
-//		jButton4.setText("Devolver");
-//		jButton4.addActionListener(new java.awt.event.ActionListener() {
-//			public void actionPerformed(java.awt.event.ActionEvent evt) {
-//				jButton4ActionPerformed(evt);
-//			}
-//		});
+		jButton4.setText("Devolver");
+		jButton4.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				jButton4ActionPerformed(evt);
+			}
+		});
 
 		jButton5.setText("Livro");
 		jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -268,11 +268,11 @@ public class PanelMenu extends javax.swing.JFrame {
 		JOptionPane.showMessageDialog(this, "Pedro Vitor Meira Ciria-Java Developemnt");
 	}
 
-//	private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {
-//		DevolutionController controller = new DevolutionController();
-//		DevolutionCRUDWindow window = new DevolutionCRUDWindow(this, controller);
-//		controller.setWindow(window);
-//	}
+	private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {
+		DevolutionController controller = new DevolutionController();
+		DevolutionCRUDWindow window = new DevolutionCRUDWindow(this, controller);
+		controller.setWindow(window);
+	}
 
 	private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {
 		DevolutionController controller = new DevolutionController();
